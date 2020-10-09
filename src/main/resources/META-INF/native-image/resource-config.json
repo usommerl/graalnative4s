@@ -1,0 +1,6 @@
+{
+  "resources": [
+    { "pattern": ".*application\\.conf$" },
+    { "pattern": ".*swagger-ui/.*" }
+  ]
+}
