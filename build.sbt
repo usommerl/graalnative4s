@@ -8,6 +8,8 @@ val v = new {
   val tapir      = "0.16.16"
   val odin       = "0.8.1"
   val pureconfig = "0.14.0"
+  val munit      = "0.7.14"
+  val munitCE    = "0.4-e42dd8d"
 }
 
 lazy val graalnative4s = project
@@ -33,8 +35,11 @@ lazy val graalnative4s = project
       "io.circe"                    %% "circe-generic-extras"     % v.circe,
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
-      "org.http4s"                  %% "http4s-dsl"               % v.http4s
+      "org.http4s"                  %% "http4s-dsl"               % v.http4s,
+      "org.scalameta"               %% "munit"                    % v.munit % Test,
+      "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
+    testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
     buildInfoPackage := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.ToMap, BuildInfoOption.BuildTime),
