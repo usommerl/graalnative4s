@@ -23,7 +23,7 @@ object Api {
     val docs: OpenAPI = apis
       .flatMap(_.endpoints)
       .toOpenAPI(BuildInfo.name, BuildInfo.version)
-      .servers(List(Server(config.apiServerUrl)))
+      .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
     val routes: List[HttpRoutes[F]] = new SwaggerHttp4s(docs.toYaml).routes :: apis.map(_.routes)
