@@ -2,10 +2,11 @@ package server
 
 import scala.concurrent.ExecutionContext.global
 
-import cats.implicits._
 import cats.effect._
+import cats.implicits._
 import dev.sommerlatt.BuildInfo
 import io.odin._
+import org.http4s.HttpApp
 import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.{Logger => Http4sLogger}
@@ -13,7 +14,6 @@ import org.slf4j.impl.StaticLoggerBinder
 import pureconfig.ConfigSource
 import pureconfig.generic.auto._
 import pureconfig.module.catseffect.syntax._
-import org.http4s.HttpApp
 
 object Main extends IOApp {
 

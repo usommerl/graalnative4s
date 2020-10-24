@@ -1,19 +1,19 @@
 package server
 
+import cats.Applicative
 import cats.effect.{ContextShift, Sync}
 import cats.implicits._
 import dev.sommerlatt.BuildInfo
 import org.http4s.{EntityBody, HttpRoutes}
 import org.http4s.server.middleware.CORS
+import sttp.model.StatusCode
+import sttp.tapir._
 import sttp.tapir.docs.openapi._
 import sttp.tapir.openapi.{OpenAPI, Server, Tag}
 import sttp.tapir.openapi.circe.yaml._
-import sttp.tapir.swagger.http4s.SwaggerHttp4s
-import sttp.tapir.server.http4s._
 import sttp.tapir.server.ServerEndpoint
-import sttp.tapir._
-import cats.Applicative
-import sttp.model.StatusCode
+import sttp.tapir.server.http4s._
+import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
   def apply[F[_]: Sync: ContextShift](config: ApiDocsConfiguration): HttpRoutes[F] = {
@@ -47,7 +47,6 @@ object HelloWorldApi {
         .out(stringBody)
         .errorOut(statusCode)
         .serverLogic(name => F.pure(s"Hello ${name.getOrElse("World")}!".asRight))
-
   }
 }
 
