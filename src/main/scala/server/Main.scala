@@ -7,9 +7,8 @@ import cats.implicits._
 import dev.sommerlatt.BuildInfo
 import io.odin._
 import org.http4s.HttpApp
-import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeServerBuilder
-import org.http4s.server.middleware.{Logger => Http4sLogger}
+import org.http4s.server.middleware.{Logger => Log}
 import org.slf4j.impl.StaticLoggerBinder
 import pureconfig.ConfigSource
 import pureconfig.generic.auto._
@@ -18,7 +17,7 @@ import pureconfig.module.catseffect.syntax._
 object Main extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] = {
-    implicit val logger: Logger[IO] = StaticLoggerBinder.baseLogger.withMinimalLevel(Level.Info)
+    implicit val logger = StaticLoggerBinder.baseLogger.withMinimalLevel(Level.Info)
     runF[IO]
   }
 
@@ -26,8 +25,7 @@ object Main extends IOApp {
     for {
       _        <- Logger[F].info(s"STARTED  [ $BuildInfo ]")
       config   <- Blocker[F].use(ConfigSource.default.loadF[F, Configuration])
-      api      = Api[F](config.apiDocs).orNotFound
-      httpApp  = Http4sLogger.httpApp(logHeaders = true, logBody = false)(api)
+      httpApp  = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
       exitCode <- serve[F](httpApp).as(ExitCode.Success)
     } yield exitCode
 

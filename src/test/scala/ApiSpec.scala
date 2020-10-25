@@ -1,17 +1,14 @@
 package server
 
-import cats.effect.IO
-import munit.CatsEffectSuite
-import org.http4s.Request
-import org.http4s.dsl.io._
-import org.http4s.implicits._
-import org.http4s.Response
 import cats.data.Kleisli
-import org.http4s.headers.`Content-Type`
-import org.http4s.MediaType._
-import org.http4s.Status
-import org.http4s.Charset
+import cats.effect.IO
 import io.circe.Json
+import munit.CatsEffectSuite
+import org.http4s.{Charset, Request, Response, Status}
+import org.http4s.MediaType._
+import org.http4s.dsl.io._
+import org.http4s.headers.`Content-Type`
+import org.http4s.implicits._
 
 class ApiSpec extends ApiSuite {
   test("GET /hello should greet the world if name parameter is omitted") {
@@ -27,7 +24,7 @@ class ApiSpec extends ApiSuite {
 
 trait ApiSuite extends CatsEffectSuite {
   def api(serverUrl: String = "http://localhost:8080"): Kleisli[IO, Request[IO], Response[IO]] =
-    Api[IO](ApiDocsConfiguration(serverUrl)).orNotFound
+    Api[IO](ApiDocsConfiguration(serverUrl))
 
   def check(responseIO: IO[Response[IO]], expectedStatus: Status, expectedBody: Json): IO[Unit] =
     check(responseIO, expectedStatus, Some(expectedBody.noSpaces), Some(`Content-Type`(application.json)))

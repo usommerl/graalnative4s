@@ -1,10 +1,12 @@
 package server
 
 import cats.Applicative
+import cats.data.Kleisli
 import cats.effect.{ContextShift, Sync}
 import cats.implicits._
 import dev.sommerlatt.BuildInfo
-import org.http4s.{EntityBody, HttpRoutes}
+import org.http4s.{EntityBody, HttpRoutes, Request, Response}
+import org.http4s.implicits._
 import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
 import sttp.tapir._
@@ -16,7 +18,7 @@ import sttp.tapir.server.http4s._
 import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
-  def apply[F[_]: Sync: ContextShift](config: ApiDocsConfiguration): HttpRoutes[F] = {
+  def apply[F[_]: Sync: ContextShift](config: ApiDocsConfiguration): Kleisli[F, Request[F], Response[F]] = {
 
     val apis: List[TapirApi[F]] = List(HelloWorldApi())
 
@@ -28,7 +30,7 @@ object Api {
 
     val routes: List[HttpRoutes[F]] = new SwaggerHttp4s(docs.toYaml).routes :: apis.map(_.routes)
 
-    CORS(routes.reduce(_ <+> _))
+    CORS(routes.reduce(_ <+> _)).orNotFound
   }
 }
 
