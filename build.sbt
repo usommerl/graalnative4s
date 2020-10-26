@@ -46,7 +46,7 @@ lazy val graalnative4s = project
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
-    docker / imageNames := Seq(ImageName(s"usommerl/${name.value}:${dockerImageTag}"))
+    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}"))
   )
 
 def dockerImageTag: String = {

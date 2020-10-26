@@ -8,7 +8,7 @@ RUN curl -L -o musl.tar.gz \
 RUN sbt graalvm-native-image:packageBin
 
 FROM scratch
-COPY --from=builder /build/target/graalvm-native-image/scala-graalvm-webservice /server
+COPY --from=builder /build/target/graalvm-native-image/graalnative4s /server
 ENV PATH "/"
 EXPOSE 8080
 ENTRYPOINT [ "/server" ]
