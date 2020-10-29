@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on: [push, pull_request]
 
@@ -21,5 +21,19 @@ jobs:
       run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
     - name: Create docker image
       run: sbt docker
-    - name: Publish docker image
+    - name: Publish docker image to ghcr.io
       run: sbt dockerPush
+    - name: Tag image for gcr.io
+      run: |
+        export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
+        export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io/eu.gcr.io/')
+        docker tag $IMAGE_GHCR $IMAGE_GCR
+        echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
+    - name: Deploy to Cloud Run
+      uses: stefda/action-cloud-run@v1.0
+      with:
+        image: ${{ env.image_gcr }}
+        service: graalnative4s
+        project: ${{ github.repository_owner }}
+        region: europe-west3
+        service key: ${{ secrets.GCP_SA_KEY }}
