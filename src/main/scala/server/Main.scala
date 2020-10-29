@@ -26,12 +26,12 @@ object Main extends IOApp {
       _        <- Logger[F].info(s"STARTED  [ $BuildInfo ]")
       config   <- Blocker[F].use(ConfigSource.default.loadF[F, Configuration])
       httpApp  = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
-      exitCode <- serve[F](httpApp).as(ExitCode.Success)
+      exitCode <- serve[F](config.port, httpApp).as(ExitCode.Success)
     } yield exitCode
 
-  def serve[F[_]: ConcurrentEffect: Timer](httpApp: HttpApp[F]): F[Unit] =
+  def serve[F[_]: ConcurrentEffect: Timer](port: Int, httpApp: HttpApp[F]): F[Unit] =
     BlazeServerBuilder[F](global)
-      .bindHttp(8080, "0.0.0.0")
+      .bindHttp(port, "0.0.0.0")
       .withHttpApp(httpApp)
       .serve
       .compile
