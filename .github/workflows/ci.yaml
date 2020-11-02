@@ -3,7 +3,7 @@ name: CI/CD
 on: [push, pull_request]
 
 jobs:
-  run:
+  CI:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -14,6 +14,17 @@ jobs:
         java-version: 1.11
     - name: Run tests
       run: sbt test
+  CD:
+    needs: [CI]
+    if: contains('refs/tags/v', github.ref) || contains('refs/heads/release', github.ref)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
     - name: Docker login
       env:
         TOKEN: ${{ secrets.PAT_GHCR }}
@@ -35,5 +46,5 @@ jobs:
         image: ${{ env.image_gcr }}
         service: graalnative4s
         project: ${{ github.repository_owner }}
-        region: europe-west3
+        region: europe-west1
         service key: ${{ secrets.GCP_SA_KEY }}
