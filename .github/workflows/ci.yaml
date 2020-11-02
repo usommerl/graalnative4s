@@ -16,7 +16,7 @@ jobs:
       run: sbt test
   CD:
     needs: [CI]
-    if: contains('refs/tags/v', github.ref) || contains('refs/heads/release', github.ref)
+    #if: contains('refs/tags/v', github.ref) || contains('refs/heads/release', github.ref)
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
