@@ -1,4 +1,4 @@
 package server
 
-case class Configuration(apiDocs: ApiDocsConfiguration)
-case class ApiDocsConfiguration(apiServerUrl: String)
+case class Configuration(port: Int, apiDocs: ApiDocsConfiguration)
+case class ApiDocsConfiguration(serverUrl: String)

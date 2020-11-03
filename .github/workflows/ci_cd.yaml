@@ -1,0 +1,51 @@
+name: CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: Run tests
+      run: sbt test
+  cd:
+    needs: [ci]
+    if: contains('refs/tags/v', github.ref)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: Docker login
+      env:
+        TOKEN: ${{ secrets.PAT_GHCR }}
+        USERNAME: ${{ github.repository_owner }}
+      run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+    - name: Create docker image
+      run: sbt docker
+    - name: Publish docker image to ghcr.io
+      run: sbt dockerPush
+    - name: Tag image for gcr.io
+      run: |
+        export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
+        export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io/eu.gcr.io/')
+        docker tag $IMAGE_GHCR $IMAGE_GCR
+        echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
+    - name: Deploy to Cloud Run
+      uses: stefda/action-cloud-run@v1.0
+      with:
+        image: ${{ env.image_gcr }}
+        service: graalnative4s
+        project: ${{ github.repository_owner }}
+        region: europe-west1
+        env: .github/workflows/cloud_run_env_vars
+        service key: ${{ secrets.GCP_SA_KEY }}
