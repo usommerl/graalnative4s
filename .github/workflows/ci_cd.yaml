@@ -47,4 +47,5 @@ jobs:
         service: graalnative4s
         project: ${{ github.repository_owner }}
         region: europe-west1
+        env: .github/workflows/cloud_run_env_vars
         service key: ${{ secrets.GCP_SA_KEY }}
