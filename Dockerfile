@@ -5,6 +5,7 @@ WORKDIR /build
 RUN curl -L -o musl.tar.gz \
     https://github.com/gradinac/musl-bundle-example/releases/download/v1.0/musl.tar.gz && \
     tar -xvzf musl.tar.gz
+RUN sbt clean compile
 RUN sbt graalvm-native-image:packageBin
 
 FROM scratch
