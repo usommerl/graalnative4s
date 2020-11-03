@@ -4,7 +4,7 @@ import cats.Applicative
 import cats.data.Kleisli
 import cats.effect.{ContextShift, Sync}
 import cats.implicits._
-import dev.sommerlatt.BuildInfo
+import dev.usommerl.BuildInfo
 import org.http4s.{EntityBody, HttpRoutes, Request, Response, Uri}
 import org.http4s.dsl.Http4sDsl
 import org.http4s.headers.Location

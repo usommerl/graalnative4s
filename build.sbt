@@ -1,5 +1,5 @@
 ThisBuild / scalaVersion := "2.13.3"
-ThisBuild / organization := "dev.sommerlatt"
+ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.0"
 
 val v = new {
