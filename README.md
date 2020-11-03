@@ -8,7 +8,7 @@ Employ Scala for serverless workloads by using GraalVM native-image and Google C
 I was wondering what is a good combination of purely functional Scala libraries that are easy to compile to a native-image. Well, and what do you do with a small image that starts up fast?
 
 ### Build
-Use `sbt docker` to build the docker image locally. The Dockerfile provides or downloads all required GraalVM tooling. You don't need to install anything. Nonetheless, the image will be as minimal as possible by using a multi-stage build.
+Use `sbt docker` to build the docker image locally. The Dockerfile provides or downloads all required GraalVM tooling. You don't need to install anything. Nonetheless, [the image will be as minimal as possible](https://github.com/users/usommerl/packages/container/package/graalnative4s) by using a multi-stage build.
 
 ### Deploy
 The [Github actions workflow](.github/workflows/ci_cd.yaml) will deploy the created image continuously. You could also use the Cloud Run button to allow others to deploy your application to their GCP accounts.
