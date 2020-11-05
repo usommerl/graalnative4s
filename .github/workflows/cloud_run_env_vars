@@ -1,1 +1,2 @@
 APIDOCS_SERVER_URL=https://graalnative4s.usommerl.dev
+APIDOCS_DESCRIPTION="Just a sample application. For further information see [github.com/usommerl/graalnative4s](https://github.com/usommerl/graalnative4s)."
