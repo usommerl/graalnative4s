@@ -24,7 +24,7 @@ class ApiSpec extends ApiSuite {
 
 trait ApiSuite extends CatsEffectSuite {
   def api(serverUrl: String = "http://localhost:8080"): Kleisli[IO, Request[IO], Response[IO]] =
-    Api[IO](ApiDocsConfiguration(serverUrl))
+    Api[IO](ApiDocsConfiguration(serverUrl, None))
 
   def check(responseIO: IO[Response[IO]], expectedStatus: Status, expectedBody: Json): IO[Unit] =
     check(responseIO, expectedStatus, Some(expectedBody.noSpaces), Some(`Content-Type`(application.json)))

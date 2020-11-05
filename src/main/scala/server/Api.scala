@@ -13,7 +13,7 @@ import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
 import sttp.tapir._
 import sttp.tapir.docs.openapi._
-import sttp.tapir.openapi.{OpenAPI, Server, Tag}
+import sttp.tapir.openapi.{Info, OpenAPI, Server, Tag}
 import sttp.tapir.openapi.circe.yaml._
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.server.http4s._
@@ -29,7 +29,7 @@ object Api {
 
     val docs: OpenAPI = apis
       .flatMap(_.endpoints)
-      .toOpenAPI(BuildInfo.name, BuildInfo.version)
+      .toOpenAPI(Info(BuildInfo.name, BuildInfo.version, config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 

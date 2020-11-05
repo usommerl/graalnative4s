@@ -1,6 +1,7 @@
 # graalnative4s
 
-![build](https://github.com/usommerl/graalnative4s/workflows/CI%2FCD/badge.svg)
+![build](https://github.com/usommerl/graalnative4s/workflows/CI%20%2F%20CD/badge.svg)
+[![codecov](https://codecov.io/gh/usommerl/graalnative4s/branch/develop/graph/badge.svg?token=P2HZ3XP9B2)](https://codecov.io/gh/usommerl/graalnative4s)
 
 Employ Scala for serverless workloads by using GraalVM native-image and Google Cloud Run.
 
