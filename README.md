@@ -1,26 +1,34 @@
 # graalnative4s
 
-![build](https://github.com/usommerl/graalnative4s/workflows/CI%20%2F%20CD/badge.svg)
-[![codecov](https://codecov.io/gh/usommerl/graalnative4s/branch/develop/graph/badge.svg?token=P2HZ3XP9B2)](https://codecov.io/gh/usommerl/graalnative4s)
+Employ Scala for serverless applications
 
-Employ Scala for serverless workloads by using GraalVM native-image and Google Cloud Run.
+![build](https://img.shields.io/github/workflow/status/usommerl/graalnative4s/CI?style=for-the-badge)
+[![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
 
 ## Rationale
-I was wondering what is a good combination of purely functional Scala libraries that are easy to compile to a native-image. Well, and what do you do with a small image that starts up fast?
+This is a showcase project for a combination of purely functional Scala libraries that can be compiled with GraalVM native image easily. It uses [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with Graal have beneficial properties such as lower memory consumption and fast startup. This makes them suitable for serverless use cases.
 
 ### Build
-Use `sbt docker` to build the docker image locally. The Dockerfile provides or downloads all required GraalVM tooling. You don't need to install anything. Nonetheless, [the image will be as minimal as possible](https://github.com/users/usommerl/packages/container/package/graalnative4s) by using a multi-stage build.
+Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
 
 ### Deploy
-The [Github actions workflow](.github/workflows/ci_cd.yaml) will deploy the created image continuously. You could also use the Cloud Run button to allow others to deploy your application to their GCP accounts.
+This repository contains a [workflow][workflow] that will deploy the created image to Google Cloud Run. You could also use the button below to deploy it to your own GCP account.
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
-### Use
+### Try
 The most recent version of this sample application is online here: [https://graalnative4s.usommerl.dev](https://graalnative4s.usommerl.dev)
 
-### Contribution
-Suggestions and contributions are welcome. Please feel free to use this as a template for your own projects.
+### Attribution & Contribution
+I have taken a lot of inspiration and knowledge from [this blog post by James Ward][inspiration]. You should also check out his [hello-uzhttp][uzhttp] example. Suggestions and contributions are welcome.
 
+[http4s]: https://github.com/http4s/http4s
+[circe]: https://github.com/circe/circe
+[tapir]: https://github.com/softwaremill/tapir
+[odin]: https://github.com/valskalla/odin
 
+[image]: https://github.com/users/usommerl/packages/container/package/graalnative4s
+[workflow]: .github/workflows/ci_cd.yaml
+[inspiration]: https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
+[uzhttp]: https://github.com/jamesward/hello-uzhttp
 
