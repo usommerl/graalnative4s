@@ -6,7 +6,7 @@ Employ Scala for serverless applications
 [![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
 
 ## Rationale
-This is a showcase project for a combination of purely functional Scala libraries that can be used with GraalVM native image without much effort. It uses [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with Graal have beneficial properties such as lower memory consumption and fast startup. This makes them suitable for serverless use cases.
+This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM native image without much effort. It uses [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with Graal have beneficial properties such as lower memory consumption and fast startup. This makes them suitable for serverless use cases.
 
 ### Build
 Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
