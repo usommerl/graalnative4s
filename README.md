@@ -16,7 +16,7 @@ This repository contains a [workflow][workflow] that will deploy the created ima
 ### Try
 The most recent version of this small example is online here: [https://graalnative4s.usommerl.dev](https://graalnative4s.usommerl.dev)
 
-### Acknowledgements
+### Acknowledgements & Participation
 I have taken a lot of inspiration and knowledge from [this blog post by James Ward][inspiration]. You should check out his [hello-uzhttp][uzhttp] example. Suggestions and contributions to this repository are welcome!
 
 [http4s]: https://github.com/http4s/http4s
