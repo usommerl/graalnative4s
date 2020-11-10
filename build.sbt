@@ -1,15 +1,15 @@
 ThisBuild / scalaVersion := "2.13.3"
 ThisBuild / organization := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.0"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.3"
 
 val v = new {
-  val http4s     = "0.21.7"
+  val http4s     = "0.21.8"
   val circe      = "0.13.0"
   val tapir      = "0.16.16"
-  val odin       = "0.8.1"
+  val odin       = "0.9.1"
   val pureconfig = "0.14.0"
-  val munit      = "0.7.14"
-  val munitCE    = "0.9.0"
+  val munit      = "0.7.17"
+  val munitCE    = "0.4-e42dd8d"
 }
 
 lazy val graalnative4s = project
