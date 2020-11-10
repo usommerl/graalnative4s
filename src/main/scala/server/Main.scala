@@ -25,7 +25,7 @@ object Main extends IOApp {
     for {
       _        <- Logger[F].info(s"STARTED  [ $BuildInfo ]")
       config   <- Blocker[F].use(ConfigSource.default.loadF[F, Configuration])
-      httpApp  = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
+      httpApp   = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
       exitCode <- serve[F](config.port, httpApp).as(ExitCode.Success)
     } yield exitCode
 
