@@ -34,12 +34,11 @@ object Api {
       .tags(apis.map(_.tag))
 
     val redirectRootToDocs =
-      HttpRoutes.of[F] {
-        case path @ GET -> Root =>
-          Uri
-            .fromString(s"${path.uri}/docs")
-            .map(uri => PermanentRedirect(Location(uri)))
-            .getOrElse(NotFound())
+      HttpRoutes.of[F] { case path @ GET -> Root =>
+        Uri
+          .fromString(s"${path.uri}/docs")
+          .map(uri => PermanentRedirect(Location(uri)))
+          .getOrElse(NotFound())
       }
 
     val routes: List[HttpRoutes[F]] =

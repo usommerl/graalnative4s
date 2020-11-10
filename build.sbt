@@ -36,7 +36,7 @@ lazy val graalnative4s = project
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
-      "org.scalameta"               %% "munit"                    % v.munit % Test,
+      "org.scalameta"               %% "munit"                    % v.munit   % Test,
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
