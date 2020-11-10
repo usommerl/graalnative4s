@@ -2,6 +2,7 @@
 
 ![build](https://img.shields.io/github/workflow/status/usommerl/graalnative4s/CI?style=for-the-badge)
 [![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
+[![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=for-the-badge)](https://scala-steward.org)
 
 This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
 
