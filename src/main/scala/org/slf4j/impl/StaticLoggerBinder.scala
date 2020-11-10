@@ -7,9 +7,8 @@ import io.odin.{consoleLogger, Level, Logger}
 import io.odin.formatter.Formatter
 import io.odin.slf4j.OdinLoggerBinder
 
-/**
-  * This is bridge is needed for project dependencies that require an SLF4J API
-  * See: https://github.com/valskalla/odin/tree/v0.8.1#slf4j-bridge
+/** This is bridge is needed for project dependencies that require an SLF4J API
+  * See: https://github.com/valskalla/odin/tree/v0.9.1#slf4j-bridge
   *
   * This particular implementation was stolen from here:
   * https://github.com/pitgull/pitgull/blob/v0.0.2/src/main/scala/org/slf4j/impl/StaticLoggerBinder.scala
@@ -20,8 +19,8 @@ class StaticLoggerBinder extends OdinLoggerBinder[IO] {
 
   import StaticLoggerBinder.baseLogger
 
-  val loggers: PartialFunction[String, Logger[IO]] = {
-    case _ => baseLogger.withMinimalLevel(Level.Info)
+  val loggers: PartialFunction[String, Logger[IO]] = { case _ =>
+    baseLogger.withMinimalLevel(Level.Info)
   }
 }
 

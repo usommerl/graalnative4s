@@ -1,15 +1,15 @@
 ThisBuild / scalaVersion := "2.13.3"
 ThisBuild / organization := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.0"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.3"
 
 val v = new {
-  val http4s     = "0.21.7"
+  val http4s     = "0.21.8"
   val circe      = "0.13.0"
   val tapir      = "0.16.16"
-  val odin       = "0.8.1"
+  val odin       = "0.9.1"
   val pureconfig = "0.14.0"
-  val munit      = "0.7.14"
-  val munitCE    = "0.4-e42dd8d"
+  val munit      = "0.7.17"
+  val munitCE    = "0.9.0"
 }
 
 lazy val graalnative4s = project
@@ -36,7 +36,7 @@ lazy val graalnative4s = project
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
-      "org.scalameta"               %% "munit"                    % v.munit % Test,
+      "org.scalameta"               %% "munit"                    % v.munit   % Test,
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
