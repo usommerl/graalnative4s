@@ -9,7 +9,7 @@ val v = new {
   val odin       = "0.9.1"
   val pureconfig = "0.14.0"
   val munit      = "0.7.17"
-  val munitCE    = "0.4-e42dd8d"
+  val munitCE    = "0.9.0"
 }
 
 lazy val graalnative4s = project
