@@ -2,7 +2,9 @@ package server
 
 import cats.data.Kleisli
 import cats.effect.IO
+import dev.usommerl.BuildInfo
 import io.circe.Json
+import io.circe.literal._
 import munit.CatsEffectSuite
 import org.http4s.{Charset, Request, Response, Status}
 import org.http4s.MediaType._
@@ -11,6 +13,7 @@ import org.http4s.headers.`Content-Type`
 import org.http4s.implicits._
 
 class ApiSpec extends ApiSuite {
+
   test("GET /hello should greet the world if name parameter is omitted") {
     val response = api().run(Request[IO](method = GET, uri = uri"/hello"))
     check(response, Ok, "Hello World!")
@@ -19,6 +22,23 @@ class ApiSpec extends ApiSuite {
   test("GET /hello should greet with the name that was provided via the corresponding query parameter") {
     val response = api().run(Request[IO](method = GET, uri = uri"/hello?name=John%20Doe"))
     check(response, Ok, "Hello John Doe!")
+  }
+
+  test("GET /info should respond with application information") {
+    val response = api().run(Request[IO](method = GET, uri = uri"/info"))
+    check(
+      response,
+      Ok,
+      json"""
+      {
+        "name": ${BuildInfo.name},
+        "version": ${BuildInfo.version},
+        "scalaVersion": ${BuildInfo.scalaVersion},
+        "sbtVersion": ${BuildInfo.sbtVersion},
+        "builtAt": ${BuildInfo.builtAtString},
+        "dependencies": ${BuildInfo.test_libraryDependencies.sorted}
+      }"""
+    )
   }
 }
 

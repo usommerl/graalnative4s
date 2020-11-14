@@ -3,7 +3,7 @@ ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.3"
 
 val v = new {
-  val http4s     = "0.21.8"
+  val http4s     = "0.21.9"
   val circe      = "0.13.0"
   val tapir      = "0.16.16"
   val odin       = "0.9.1"
@@ -40,9 +40,9 @@ lazy val graalnative4s = project
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion) ++ Seq[BuildInfoKey](Test / libraryDependencies),
     buildInfoPackage := organization.value,
-    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.ToMap, BuildInfoOption.BuildTime),
+    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
