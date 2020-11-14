@@ -40,9 +40,9 @@ lazy val graalnative4s = project
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion) ++ Seq[BuildInfoKey](Test / libraryDependencies),
     buildInfoPackage := organization.value,
-    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.ToMap, BuildInfoOption.BuildTime),
+    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),

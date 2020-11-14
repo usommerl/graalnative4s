@@ -5,6 +5,7 @@ import cats.data.Kleisli
 import cats.effect.{ContextShift, Sync}
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import io.circe.generic.auto._
 import org.http4s.{EntityBody, HttpRoutes, Request, Response, Uri}
 import org.http4s.dsl.Http4sDsl
 import org.http4s.headers.Location
@@ -13,7 +14,8 @@ import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
 import sttp.tapir._
 import sttp.tapir.docs.openapi._
-import sttp.tapir.openapi.{Info, OpenAPI, Server, Tag}
+import sttp.tapir.json.circe.jsonBody
+import sttp.tapir.openapi.{OpenAPI, Server, Tag}
 import sttp.tapir.openapi.circe.yaml._
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.server.http4s._
@@ -25,11 +27,11 @@ object Api {
     val dsl = Http4sDsl[F]
     import dsl._
 
-    val apis: List[TapirApi[F]] = List(HelloWorldApi())
+    val apis: List[TapirApi[F]] = List(Examples())
 
     val docs: OpenAPI = apis
       .flatMap(_.endpoints)
-      .toOpenAPI(Info(BuildInfo.name, BuildInfo.version, config.description))
+      .toOpenAPI(openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
@@ -48,13 +50,32 @@ object Api {
   }
 }
 
-object HelloWorldApi {
+object Examples {
   def apply[F[_]: Sync: ContextShift]()(implicit F: Applicative[F]) = new TapirApi[F] {
-
     override val tag                  = Tag("Getting started", None)
-    override lazy val serverEndpoints = List(get)
+    override lazy val serverEndpoints = List(info, hello)
 
-    private val get: ServerEndpoint[Option[String], StatusCode, String, Nothing, F] =
+    private val info: ServerEndpoint[Unit, StatusCode, Info, Nothing, F] =
+      endpoint.get
+        .summary("Fetch general information about the application")
+        .tag(tag.name)
+        .in("info")
+        .out(jsonBody[Info])
+        .errorOut(statusCode)
+        .serverLogic(_ =>
+          F.pure(
+            Info(
+              BuildInfo.name,
+              BuildInfo.version,
+              BuildInfo.scalaVersion,
+              BuildInfo.sbtVersion,
+              BuildInfo.builtAtString,
+              BuildInfo.test_libraryDependencies.sorted
+            ).asRight
+          )
+        )
+
+    private val hello: ServerEndpoint[Option[String], StatusCode, String, Nothing, F] =
       endpoint.get
         .summary("The infamous hello world endpoint")
         .tag(tag.name)
@@ -63,6 +84,15 @@ object HelloWorldApi {
         .out(stringBody)
         .errorOut(statusCode)
         .serverLogic(name => F.pure(s"Hello ${name.getOrElse("World")}!".asRight))
+
+    case class Info(
+      name: String,
+      version: String,
+      scalaVersion: String,
+      sbtVersion: String,
+      builtAt: String,
+      dependencies: Seq[String]
+    )
   }
 }
 
