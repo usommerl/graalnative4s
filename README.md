@@ -4,7 +4,7 @@
 [![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
 [![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=for-the-badge)](https://scala-steward.org)
 
-This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
+This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [pureconfig] to load runtime configuration, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
 
 ### Build
 Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
@@ -24,6 +24,7 @@ I have taken a lot of inspiration and knowledge from [this blog post by James Wa
 [circe]: https://github.com/circe/circe
 [tapir]: https://github.com/softwaremill/tapir
 [odin]: https://github.com/valskalla/odin
+[pureconfig]: https://github.com/pureconfig/pureconfig
 
 [image]: https://github.com/users/usommerl/packages/container/package/graalnative4s
 [workflow]: .github/workflows/ci_cd.yaml
