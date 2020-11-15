@@ -4,7 +4,7 @@
 [![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
 [![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=for-the-badge)](https://scala-steward.org)
 
-This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [pureconfig] to load the runtime configuration, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that where built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
+This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [pureconfig] to load runtime configuration, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that were built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
 
 ### Build
 Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
@@ -18,7 +18,7 @@ This repository contains a [workflow][workflow] that will deploy the created ima
 The most recent version of this small example is online here: [https://graalnative4s.usommerl.dev](https://graalnative4s.usommerl.dev)
 
 ### Acknowledgements & Participation
-I have taken a lot of inspiration and knowledge from [this blog post by James Ward][inspiration]. You should check out his [hello-uzhttp][uzhttp] example. Suggestions and contributions to this repository are welcome!
+I have taken a lot of inspiration and knowledge from [this blog post by James Ward][inspiration]. You should check out his [hello-uzhttp][uzhttp] example. Another project that helped me to connect the dots regarding `native-image` configuration was [vasilmkd/docker-stats-monitor][docker-stats-monitor]. Suggestions and contributions to this repository are welcome!
 
 [http4s]: https://github.com/http4s/http4s
 [circe]: https://github.com/circe/circe
@@ -30,4 +30,5 @@ I have taken a lot of inspiration and knowledge from [this blog post by James Wa
 [workflow]: .github/workflows/ci_cd.yaml
 [inspiration]: https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 [uzhttp]: https://github.com/jamesward/hello-uzhttp
+[docker-stats-monitor]: https://github.com/vasilmkd/docker-stats-monitor
 

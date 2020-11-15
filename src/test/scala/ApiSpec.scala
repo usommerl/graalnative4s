@@ -9,7 +9,7 @@ import munit.CatsEffectSuite
 import org.http4s.{Charset, Request, Response, Status}
 import org.http4s.MediaType._
 import org.http4s.dsl.io._
-import org.http4s.headers.`Content-Type`
+import org.http4s.headers.{`Content-Type`, `Location`}
 import org.http4s.implicits._
 
 class ApiSpec extends ApiSuite {
@@ -39,6 +39,12 @@ class ApiSpec extends ApiSuite {
         "dependencies": ${BuildInfo.test_libraryDependencies.sorted}
       }"""
     )
+  }
+
+  test("GET / should redirect to /docs endpoint") {
+    val response = api().run(Request[IO](method = GET, uri = uri"/"))
+    check(response, PermanentRedirect)
+    response.map(r => assertEquals(r.headers.get(`Location`), Some(Location(uri"/docs"))))
   }
 }
 
