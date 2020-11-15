@@ -6,7 +6,7 @@ import cats.effect.{ContextShift, Sync}
 import cats.implicits._
 import dev.usommerl.BuildInfo
 import io.circe.generic.auto._
-import org.http4s.{EntityBody, HttpRoutes, Request, Response, Uri}
+import org.http4s.{EntityBody, HttpRoutes, Request, Response}
 import org.http4s.dsl.Http4sDsl
 import org.http4s.headers.Location
 import org.http4s.implicits._
@@ -35,16 +35,9 @@ object Api {
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
-    val redirectRootToDocs =
-      HttpRoutes.of[F] { case path @ GET -> Root =>
-        Uri
-          .fromString(s"${path.uri}/docs")
-          .map(uri => PermanentRedirect(Location(uri)))
-          .getOrElse(NotFound())
-      }
+    val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
 
-    val routes: List[HttpRoutes[F]] =
-      apis.map(_.routes) ++ List(new SwaggerHttp4s(docs.toYaml).routes, redirectRootToDocs)
+    val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(new SwaggerHttp4s(docs.toYaml).routes, redirectRootToDocs)
 
     CORS(routes.reduce(_ <+> _)).orNotFound
   }
