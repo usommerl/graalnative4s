@@ -7,15 +7,12 @@
 This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [pureconfig] to load runtime configuration, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that were built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
 
 ### Build
+Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything besides `docker` and `sbt`, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
 
-**Please note that it is currently impossible to build a docker image** because Oracle removed all GraalVM images from Docker Hub. They are now using [ghcr.io to publish GraalVM images but did not upload an image for v20.1.0](https://github.com/orgs/graalvm/packages/container/graalvm-ce/versions). I have made several attempts to upgrade to newer GraalVM versions but was not successful so far (See: [#16](https://github.com/usommerl/graalnative4s/issues/16), [#51](https://github.com/usommerl/graalnative4s/issues/51)).
+You can create an even smaller image by utilizing UPX compression. Use the `UPX_COMPRESSION` environment variable at build time to specify the compression level.
+Please note that while this reduces the size of the image significantly it also [has an impact on startup performance and memory consumption.](./benchmark/upx.md)
 
-~~Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything besides `docker` and `sbt`, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.~~
-
-~~You can create an even smaller image by utilizing UPX compression. Use the `UPX_COMPRESSION` environment variable at build time to specify the compression level.
-Please note that while this reduces the size of the image significantly it also [has an impact on startup performance and memory consumption.](./benchmark/upx.md)~~
-
-~~Example: `export UPX_COMPRESSION='--best'; sbt docker`~~
+Example: `export UPX_COMPRESSION="--best"; sbt docker`
 
 ### Deploy
 This repository contains a [workflow][workflow] that will deploy the created image to Google Cloud Run. You could also use the button below to deploy it to your own GCP account.
