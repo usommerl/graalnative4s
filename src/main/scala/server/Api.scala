@@ -31,9 +31,8 @@ object Api {
 
     val apis: List[TapirApi[F]] = List(Examples())
 
-    val docs: OpenAPI = apis
-      .flatMap(_.endpoints)
-      .toOpenAPI(openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
+    val docs: OpenAPI = OpenAPIDocsInterpreter
+      .toOpenAPI(apis.flatMap(_.endpoints), openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
@@ -95,5 +94,5 @@ abstract class TapirApi[F[_]: Sync: Concurrent: ContextShift: Timer] {
   def tag: Tag
   def serverEndpoints: List[ServerEndpoint[_, _, _, Any, F]]
   def endpoints: List[Endpoint[_, _, _, _]] = serverEndpoints.map(_.endpoint)
-  def routes: HttpRoutes[F]                 = serverEndpoints.toRoutes
+  def routes: HttpRoutes[F]                 = Http4sServerInterpreter.toRoutes(serverEndpoints)
 }
