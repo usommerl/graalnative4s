@@ -12,6 +12,8 @@ val v = new {
   val munitCE    = "0.12.0"
 }
 
+val upx = "UPX_COMPRESSION"
+
 lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
@@ -46,12 +48,15 @@ lazy val graalnative4s = project
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
-    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}"))
+    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
+    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty)
   )
 
 def dockerImageTag: String = {
   import sys.process._
   val regex       = """v\d+\.\d+\.\d+""".r.regex
   val versionTags = "git tag --points-at HEAD".!!.trim.split("\n").filter(_.matches(regex))
-  versionTags.sorted(Ordering.String.reverse).headOption.map(_.replace("v", "")).getOrElse("latest")
+  val version     = versionTags.sorted(Ordering.String.reverse).headOption.map(_.replace("v", "")).getOrElse("latest")
+  val upxSuffix   = sys.env.get(upx).map(s => s"-upx${s.replace("--", "-")}").getOrElse("")
+  s"$version$upxSuffix"
 }
