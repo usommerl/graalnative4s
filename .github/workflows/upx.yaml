@@ -1,0 +1,24 @@
+name: upx
+
+on: [push, pull_request]
+
+jobs:
+  upx:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: Docker login
+      env:
+        TOKEN: ${{ secrets.PAT_GHCR }}
+        USERNAME: ${{ github.repository_owner }}
+      run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+    - name: Create docker image with a UPX compressed executable
+      run: export UPX_COMPRESSION="--best"; sbt docker
+    - name: Publish docker image to ghcr.io
+      run: sbt dockerPush
