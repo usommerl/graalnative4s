@@ -7,7 +7,12 @@
 This is a showcase for a combination of purely functional Scala libraries that can be used with GraalVM `native-image` without much effort. It employs [http4s][http4s] for general server functionality, [circe][circe] for JSON processing, [pureconfig] to load runtime configuration, [tapir][tapir] to describe HTTP endpoints and [odin][odin] for logging. Applications that were built with `native-image` have beneficial properties such as a lower memory footprint and fast startup. This makes them suitable for serverless applications.
 
 ### Build
-Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
+Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything besides `docker` and `sbt`, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.
+
+You can create an even smaller image by utilizing UPX compression. Use the `UPX_COMPRESSION` environment variable at build time to specify the compression level.
+Please note that while this reduces the size of the image significantly it also [has an impact on startup performance and memory consumption.](./benchmark/upx.md)
+
+Example: `export UPX_COMPRESSION="--best"; sbt docker`
 
 ### Deploy
 This repository contains a [workflow][workflow] that will deploy the created image to Google Cloud Run. You could also use the button below to deploy it to your own GCP account.
