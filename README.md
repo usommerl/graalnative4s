@@ -12,7 +12,7 @@ Use `sbt docker` to build a docker image with the native image binary. You don't
 You can create an even smaller image by utilizing UPX compression. Use the `UPX_COMPRESSION` environment variable at build time to specify the compression level.
 Please note that while this reduces the size of the image significantly it also [has an impact on startup performance and memory consumption.](./benchmark/upx.md)
 
-Example: `export UPX_COMPRESSION="--best"; sbt docker`
+Example: `export UPX_COMPRESSION='--best'; sbt docker`
 
 ### Deploy
 This repository contains a [workflow][workflow] that will deploy the created image to Google Cloud Run. You could also use the button below to deploy it to your own GCP account.
