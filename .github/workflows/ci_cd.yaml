@@ -30,11 +30,13 @@ jobs:
         TOKEN: ${{ secrets.PAT_GHCR }}
         USERNAME: ${{ github.repository_owner }}
       run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
-    - name: Create docker image
-      run: sbt docker
-    - name: Publish docker image to ghcr.io
-      run: sbt dockerPush
-    - name: Tag image for gcr.io
+    - name: Create and publish a docker image with a UPX compressed executable
+      run: export UPX_COMPRESSION='--best'; sbt ';docker;dockerPush'
+    - name: Create and publish docker image without compression
+      run: sbt ';docker;dockerPush'
+    - name: Remove image with UPX compressed executable
+      run: docker rmi $(docker images -q 'ghcr.io/usommerl/graalnative4s*upx*')
+    - name: Tag remaining image for gcr.io
       run: |
         export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
         export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io/eu.gcr.io/')
