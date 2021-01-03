@@ -51,3 +51,19 @@ jobs:
         region: europe-west1
         env: .github/workflows/cloud_run_env_vars
         service key: ${{ secrets.GCP_SA_KEY }}
+    - name: Generate release changelog
+      id: generate-release-changelog
+      uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        onlyLastTag: "true"
+        stripHeaders: "true"
+        stripGeneratorNotice: "true"
+    - name: Create GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        body: ${{ steps.generate-release-changelog.outputs.changelog }}
