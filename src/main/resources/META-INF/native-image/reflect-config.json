@@ -1,0 +1,34 @@
+[
+{
+  "name":"java.lang.String[]"
+},
+{
+  "name":"java.lang.invoke.VarHandle",
+  "methods":[{"name":"releaseFence","parameterTypes":[] }]
+},
+{
+  "name":"java.nio.ByteBuffer[]"
+},
+{
+  "name":"java.sql.Date"
+},
+{
+  "name":"java.sql.Timestamp"
+},
+{
+  "name":"org.http4s.blaze.channel.nio1.SelectorLoop[]"
+},
+{
+  "name":"org.http4s.blaze.util.TickWheelExecutor$Bucket[]"
+},
+{
+  "name":"scala.Function2[]"
+},
+{
+  "name":"scala.Symbol",
+  "methods":[{"name":"apply","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"scala.util.Either[]"
+}
+]
