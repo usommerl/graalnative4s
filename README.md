@@ -8,7 +8,7 @@ This is a showcase for a combination of purely functional Scala libraries that c
 
 ### Build
 
-**Please note that it is currently impossible to build a docker image** because Oracle removed all GraalVM images from Docker Hub. They are now using [ghcr.io to publish GraalVM images but did not upload an image for v20.1.0](https://github.com/orgs/graalvm/packages/container/graalvm-ce/versions). I have made several attempts to upgrade to newer GraalVM versions but was not successful so far (See: #16, #51).
+**Please note that it is currently impossible to build a docker image** because Oracle removed all GraalVM images from Docker Hub. They are now using [ghcr.io to publish GraalVM images but did not upload an image for v20.1.0](https://github.com/orgs/graalvm/packages/container/graalvm-ce/versions). I have made several attempts to upgrade to newer GraalVM versions but was not successful so far (See: [#16](https://github.com/usommerl/graalnative4s/issues/16), [#51](https://github.com/usommerl/graalnative4s/issues/51)).
 
 ~~Use `sbt docker` to build a docker image with the native image binary. You don't need to install anything besides `docker` and `sbt`, the build process downloads all required GraalVM tooling. The [created image][image] will be as minimal as possible by using a multi-stage build.~~
 
