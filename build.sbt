@@ -3,13 +3,13 @@ ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
 
 val v = new {
-  val http4s     = "0.21.15"
+  val http4s     = "0.21.16"
   val circe      = "0.13.0"
-  val tapir      = "0.17.1"
+  val tapir      = "0.17.8"
   val odin       = "0.9.1"
   val pureconfig = "0.14.0"
-  val munit      = "0.7.20"
-  val munitCE    = "0.12.0"
+  val munit      = "0.7.21"
+  val munitCE    = "0.13.0"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -49,7 +49,14 @@ lazy val graalnative4s = project
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
     docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
-    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty)
+    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
+    assembly / assemblyMergeStrategy := {
+      case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
+      case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
+      case x =>
+        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        oldStrategy(x)
+    }
   )
 
 def dockerImageTag: String = {
