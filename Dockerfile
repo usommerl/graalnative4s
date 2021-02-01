@@ -10,7 +10,7 @@ RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.
 ARG RESULT_LIB="/staticlibs"
 
 RUN mkdir ${RESULT_LIB} && \
-    curl -L -o musl.tar.gz https://musl.libc.org/releases/musl-1.2.1.tar.gz && \
+    curl -L -o musl.tar.gz https://musl.libc.org/releases/musl-1.2.2.tar.gz && \
     mkdir musl && tar -xvzf musl.tar.gz -C musl --strip-components 1 && cd musl && \
     ./configure --disable-shared --prefix=${RESULT_LIB} && \
     make && make install && \
@@ -30,6 +30,7 @@ RUN curl -L -o zlib.tar.gz https://zlib.net/zlib-1.2.11.tar.gz && \
 COPY . /build
 WORKDIR /build
 RUN sbt graalvm-native-image:packageBin
+RUN for f in target/graalvm-native-image/reports/*.txt; do printf '#%.0s' {1..80}; printf "\n$f\n\n"; cat $f; done
 
 RUN if [ -n "${upx_compression}" ]; then \
       curl -L -o upx-3.96-amd64_linux.tar.xz https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && \

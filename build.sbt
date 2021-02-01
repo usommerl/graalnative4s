@@ -1,12 +1,12 @@
 ThisBuild / scalaVersion := "2.13.3"
 ThisBuild / organization := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
   val http4s     = "0.21.16"
   val circe      = "0.13.0"
   val tapir      = "0.17.8"
-  val odin       = "0.9.1"
+  val odin       = "0.10.0"
   val pureconfig = "0.14.0"
   val munit      = "0.7.21"
   val munitCE    = "0.13.0"
