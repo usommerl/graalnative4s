@@ -1,6 +1,6 @@
 ThisBuild / scalaVersion := "2.13.3"
 ThisBuild / organization := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
   val http4s     = "0.21.16"
