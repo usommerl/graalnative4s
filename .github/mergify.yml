@@ -1,4 +1,22 @@
 pull_request_rules:
+  - name: Add label to feature branches
+    conditions:
+      - base~=(?i)^(feat|feature).*
+    actions:
+      label:
+        add: [feature]
+  - name: Add label to bugfix branches
+    conditions:
+      - base~=(?i)^(fix|bugfix).*
+    actions:
+      label:
+        add: [bug]
+  - name: Add label to scala-steward PRs
+    conditions:
+      - author=scala-steward
+    actions:
+      label:
+        add: [dependency-update]
   - name: Automatically merge Scala Steward PRs on CI success
     conditions:
       - author=scala-steward
