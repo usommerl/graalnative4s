@@ -8,7 +8,7 @@ val v = new {
   val tapir      = "0.17.11"
   val odin       = "0.11.0"
   val pureconfig = "0.14.0"
-  val munit      = "0.7.21"
+  val munit      = "0.7.22"
   val munitCE    = "0.13.0"
 }
 
