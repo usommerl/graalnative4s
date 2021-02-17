@@ -9,7 +9,7 @@ val v = new {
   val odin       = "0.11.0"
   val pureconfig = "0.14.0"
   val munit      = "0.7.22"
-  val munitCE    = "0.13.0"
+  val munitCE    = "0.13.1"
 }
 
 val upx = "UPX_COMPRESSION"
