@@ -38,9 +38,10 @@ object Main extends IOApp {
       .drain
 
   private lazy val startMessage: String =
-    "STARTED [ name: %s, version: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
+    "STARTED [ name: %s, version: %s, vmVersion: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
       BuildInfo.name,
       BuildInfo.version,
+      System.getProperty("java.vm.version"),
       BuildInfo.scalaVersion,
       BuildInfo.sbtVersion,
       BuildInfo.builtAtString

@@ -33,6 +33,7 @@ class ApiSpec extends ApiSuite {
       {
         "name": ${BuildInfo.name},
         "version": ${BuildInfo.version},
+        "vmVersion": ${System.getProperty("java.vm.version")},
         "scalaVersion": ${BuildInfo.scalaVersion},
         "sbtVersion": ${BuildInfo.sbtVersion},
         "builtAt": ${BuildInfo.builtAtString},
