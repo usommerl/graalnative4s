@@ -42,7 +42,7 @@ lazy val graalnative4s = project
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion) ++ Seq[BuildInfoKey](Test / libraryDependencies),
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
     buildInfoPackage := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
     semanticdbEnabled := true,
@@ -53,7 +53,7 @@ lazy val graalnative4s = project
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
-      case x =>
+      case x                                                      =>
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
     }

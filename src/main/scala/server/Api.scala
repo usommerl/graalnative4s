@@ -61,6 +61,7 @@ object Examples {
             Info(
               BuildInfo.name,
               BuildInfo.version,
+              System.getProperty("java.vm.version"),
               BuildInfo.scalaVersion,
               BuildInfo.sbtVersion,
               BuildInfo.builtAtString,
@@ -82,6 +83,7 @@ object Examples {
     case class Info(
       name: String,
       version: String,
+      vmVersion: String,
       scalaVersion: String,
       sbtVersion: String,
       builtAt: String,
