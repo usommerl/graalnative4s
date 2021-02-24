@@ -24,7 +24,7 @@ import sttp.tapir.server.http4s._
 import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
-  def apply[F[_]: Sync: Concurrent: ContextShift: Timer](config: ApiDocsConfiguration): Kleisli[F, Request[F], Response[F]] = {
+  def apply[F[_]: Sync: Concurrent: ContextShift: Timer](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
 
     val dsl = Http4sDsl[F]
     import dsl._
@@ -33,7 +33,7 @@ object Api {
 
     val docs: OpenAPI = OpenAPIDocsInterpreter
       .toOpenAPI(apis.flatMap(_.endpoints), openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
-      .servers(List(Server(config.serverUrl)))
+      .servers(List(Server(config.serverUri.toString)))
       .tags(apis.map(_.tag))
 
     val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }

@@ -10,9 +10,6 @@ import org.http4s.HttpApp
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.{Logger => Log}
 import org.slf4j.impl.StaticLoggerBinder
-import pureconfig.ConfigSource
-import pureconfig.generic.auto._
-import pureconfig.module.catseffect.syntax._
 
 object Main extends IOApp {
 
@@ -24,7 +21,7 @@ object Main extends IOApp {
   private def runF[F[_]: Sync: ContextShift: ConcurrentEffect: Timer: Logger]: F[ExitCode] =
     for {
       _        <- Logger[F].info(startMessage)
-      config   <- Blocker[F].use(ConfigSource.default.loadF[F, Configuration])
+      config   <- app.config.load[F]
       httpApp   = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
       exitCode <- serve[F](config.port, httpApp).as(ExitCode.Success)
     } yield exitCode
