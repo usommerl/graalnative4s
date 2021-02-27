@@ -34,6 +34,7 @@ lazy val graalnative4s = project
       "io.circe"                    %% "circe-literal"            % v.circe,
       "io.circe"                    %% "circe-generic-extras"     % v.circe,
       "is.cir"                      %% "ciris"                    % v.ciris,
+      "is.cir"                      %% "ciris-refined"            % v.ciris,
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,

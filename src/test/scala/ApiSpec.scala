@@ -3,14 +3,17 @@ package server
 import cats.data.Kleisli
 import cats.effect.IO
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.auto._
 import io.circe.Json
 import io.circe.literal._
 import munit.CatsEffectSuite
-import org.http4s.{Charset, Request, Response, Status, Uri}
+import org.http4s.{Charset, Request, Response, Status}
 import org.http4s.MediaType._
 import org.http4s.dsl.io._
 import org.http4s.headers.{`Content-Type`, `Location`}
 import org.http4s.implicits._
+
+import app.ServerUrl
 
 class ApiSpec extends ApiSuite {
 
@@ -50,8 +53,8 @@ class ApiSpec extends ApiSuite {
 }
 
 trait ApiSuite extends CatsEffectSuite {
-  def api(serverUri: Uri = Uri.unsafeFromString("http://localhost:8080")): Kleisli[IO, Request[IO], Response[IO]] =
-    Api[IO](ApiDocsConfig(serverUri, None))
+  def api(serverUrl: ServerUrl = "http://localhost:8080"): Kleisli[IO, Request[IO], Response[IO]] =
+    Api[IO](ApiDocsConfig(serverUrl, None))
 
   def check(responseIO: IO[Response[IO]], expectedStatus: Status, expectedBody: Json): IO[Unit] =
     check(responseIO, expectedStatus, Some(expectedBody.noSpaces), Some(`Content-Type`(application.json)))

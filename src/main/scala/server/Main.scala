@@ -5,6 +5,8 @@ import scala.concurrent.ExecutionContext.global
 import cats.effect._
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.auto._
+import eu.timepit.refined.types.net.PortNumber
 import io.odin._
 import org.http4s.HttpApp
 import org.http4s.server.blaze.BlazeServerBuilder
@@ -26,7 +28,7 @@ object Main extends IOApp {
       exitCode <- serve[F](config.port, httpApp).as(ExitCode.Success)
     } yield exitCode
 
-  private def serve[F[_]: ConcurrentEffect: Timer](port: Int, httpApp: HttpApp[F]): F[Unit] =
+  private def serve[F[_]: ConcurrentEffect: Timer](port: PortNumber, httpApp: HttpApp[F]): F[Unit] =
     BlazeServerBuilder[F](global)
       .bindHttp(port, "0.0.0.0")
       .withHttpApp(httpApp)

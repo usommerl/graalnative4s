@@ -5,6 +5,7 @@ import cats.data.Kleisli
 import cats.effect.{Concurrent, ContextShift, Sync, Timer}
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.auto._
 import io.circe.generic.auto._
 import org.http4s.{HttpRoutes, Request, Response}
 import org.http4s.dsl.Http4sDsl
@@ -33,7 +34,7 @@ object Api {
 
     val docs: OpenAPI = OpenAPIDocsInterpreter
       .toOpenAPI(apis.flatMap(_.endpoints), openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
-      .servers(List(Server(config.serverUri.toString)))
+      .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
     val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
