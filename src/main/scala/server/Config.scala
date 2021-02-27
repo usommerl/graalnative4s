@@ -2,21 +2,26 @@ package server
 
 import cats.implicits._
 import ciris._
-import org.http4s.Uri
+import ciris.refined._
+import eu.timepit.refined.api.Refined
+import eu.timepit.refined.auto._
+import eu.timepit.refined.string.Url
+import eu.timepit.refined.types.net.PortNumber
 
-case class Config(port: Int, apiDocs: ApiDocsConfig)
-case class ApiDocsConfig(serverUri: Uri, description: Option[String])
+import app.ServerUrl
+
+case class Config(port: PortNumber, apiDocs: ApiDocsConfig)
+case class ApiDocsConfig(serverUrl: ServerUrl, description: Option[String])
 
 package object app {
 
-  implicit private val uriConfigDecoder: ConfigDecoder[String, Uri] =
-    ConfigDecoder[String, String].mapEither { case (_, v) => Uri.fromString(v).leftMap(e => ConfigError(e.details)) }
+  type ServerUrl = String Refined Url
 
-  val config: ConfigValue[Config]                                   =
+  val config: ConfigValue[Config] =
     (
-      env("PORT").as[Int].default(8080),
-      env("APIDOCS_SERVER_URI").as[Uri].default(Uri.unsafeFromString("http://localhost:8080")),
+      env("PORT").as[PortNumber].default(8080),
+      env("APIDOCS_SERVER_URL").as[ServerUrl].default("http://localhost:8080"),
       env("APIDOCS_DESCRIPTION").option
-    ).parMapN { case (port, uri, description) => Config(port, ApiDocsConfig(uri, description)) }
+    ).parMapN { case (port, url, description) => Config(port, ApiDocsConfig(url, description)) }
 
 }
