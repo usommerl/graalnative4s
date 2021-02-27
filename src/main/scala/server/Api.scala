@@ -5,6 +5,7 @@ import cats.data.Kleisli
 import cats.effect.{Concurrent, ContextShift, Sync, Timer}
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.auto._
 import io.circe.generic.auto._
 import org.http4s.{HttpRoutes, Request, Response}
 import org.http4s.dsl.Http4sDsl
@@ -24,7 +25,7 @@ import sttp.tapir.server.http4s._
 import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
-  def apply[F[_]: Sync: Concurrent: ContextShift: Timer](config: ApiDocsConfiguration): Kleisli[F, Request[F], Response[F]] = {
+  def apply[F[_]: Sync: Concurrent: ContextShift: Timer](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
 
     val dsl = Http4sDsl[F]
     import dsl._
@@ -61,6 +62,7 @@ object Examples {
             Info(
               BuildInfo.name,
               BuildInfo.version,
+              System.getProperty("java.vm.version"),
               BuildInfo.scalaVersion,
               BuildInfo.sbtVersion,
               BuildInfo.builtAtString,
@@ -82,6 +84,7 @@ object Examples {
     case class Info(
       name: String,
       version: String,
+      vmVersion: String,
       scalaVersion: String,
       sbtVersion: String,
       builtAt: String,

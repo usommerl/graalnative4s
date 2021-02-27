@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/graalvm-ce:java11-21.0.0 as builder
+FROM ghcr.io/graalvm/graalvm-ce:java11-21.0.0.2 as builder
 ARG upx_compression
 RUN gu install native-image
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && microdnf install sbt git xz

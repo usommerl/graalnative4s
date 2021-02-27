@@ -1,15 +1,15 @@
-ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / scalaVersion := "2.13.4"
 ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s     = "0.21.16"
-  val circe      = "0.13.0"
-  val tapir      = "0.17.8"
-  val odin       = "0.10.0"
-  val pureconfig = "0.14.0"
-  val munit      = "0.7.21"
-  val munitCE    = "0.13.0"
+  val http4s  = "0.21.19"
+  val circe   = "0.13.0"
+  val ciris   = "1.2.1"
+  val tapir   = "0.17.13"
+  val odin    = "0.11.0"
+  val munit   = "0.7.22"
+  val munitCE = "0.13.1"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -20,8 +20,6 @@ lazy val graalnative4s = project
   .settings(
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
-      "com.github.pureconfig"       %% "pureconfig"               % v.pureconfig,
-      "com.github.pureconfig"       %% "pureconfig-cats-effect"   % v.pureconfig,
       "com.softwaremill.sttp.tapir" %% "tapir-core"               % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-http4s-server"      % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-json-circe"         % v.tapir,
@@ -35,6 +33,8 @@ lazy val graalnative4s = project
       "io.circe"                    %% "circe-parser"             % v.circe,
       "io.circe"                    %% "circe-literal"            % v.circe,
       "io.circe"                    %% "circe-generic-extras"     % v.circe,
+      "is.cir"                      %% "ciris"                    % v.ciris,
+      "is.cir"                      %% "ciris-refined"            % v.ciris,
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
@@ -42,7 +42,7 @@ lazy val graalnative4s = project
       "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion) ++ Seq[BuildInfoKey](Test / libraryDependencies),
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
     buildInfoPackage := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
     semanticdbEnabled := true,
@@ -53,7 +53,7 @@ lazy val graalnative4s = project
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
-      case x =>
+      case x                                                      =>
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
     }

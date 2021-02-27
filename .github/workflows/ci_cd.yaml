@@ -43,7 +43,7 @@ jobs:
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
     - name: Deploy to Cloud Run
-      uses: stefda/action-cloud-run@v1.0
+      uses: stefda/action-cloud-run@v1.2
       with:
         image: ${{ env.image_gcr }}
         service: graalnative4s
@@ -70,10 +70,9 @@ jobs:
         filterByMilestone: true
         unreleased: true
     - name: Create GitHub release
-      uses: actions/create-release@v1
+      uses: release-drafter/release-drafter@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: ${{ steps.generate-release-changelog.outputs.changelog }}
+        tag: ${{ github.ref }}
+        version: ${{ github.ref }}

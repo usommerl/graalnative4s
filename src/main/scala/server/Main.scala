@@ -5,14 +5,13 @@ import scala.concurrent.ExecutionContext.global
 import cats.effect._
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.auto._
+import eu.timepit.refined.types.net.PortNumber
 import io.odin._
 import org.http4s.HttpApp
 import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.{Logger => Log}
 import org.slf4j.impl.StaticLoggerBinder
-import pureconfig.ConfigSource
-import pureconfig.generic.auto._
-import pureconfig.module.catseffect.syntax._
 
 object Main extends IOApp {
 
@@ -24,12 +23,12 @@ object Main extends IOApp {
   private def runF[F[_]: Sync: ContextShift: ConcurrentEffect: Timer: Logger]: F[ExitCode] =
     for {
       _        <- Logger[F].info(startMessage)
-      config   <- Blocker[F].use(ConfigSource.default.loadF[F, Configuration])
+      config   <- app.config.load[F]
       httpApp   = Log.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs))
       exitCode <- serve[F](config.port, httpApp).as(ExitCode.Success)
     } yield exitCode
 
-  private def serve[F[_]: ConcurrentEffect: Timer](port: Int, httpApp: HttpApp[F]): F[Unit] =
+  private def serve[F[_]: ConcurrentEffect: Timer](port: PortNumber, httpApp: HttpApp[F]): F[Unit] =
     BlazeServerBuilder[F](global)
       .bindHttp(port, "0.0.0.0")
       .withHttpApp(httpApp)
@@ -38,9 +37,10 @@ object Main extends IOApp {
       .drain
 
   private lazy val startMessage: String =
-    "STARTED [ name: %s, version: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
+    "STARTED [ name: %s, version: %s, vmVersion: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
       BuildInfo.name,
       BuildInfo.version,
+      System.getProperty("java.vm.version"),
       BuildInfo.scalaVersion,
       BuildInfo.sbtVersion,
       BuildInfo.builtAtString
