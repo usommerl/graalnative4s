@@ -70,10 +70,9 @@ jobs:
         filterByMilestone: true
         unreleased: true
     - name: Create GitHub release
-      uses: actions/create-release@v1
+    - uses: release-drafter/release-drafter@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: ${{ steps.generate-release-changelog.outputs.changelog }}
+        tag: ${{ github.ref }}
+        version: ${{ github.ref }}
