@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.13.4"
+ThisBuild / scalaVersion := "2.13.5"
 ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
