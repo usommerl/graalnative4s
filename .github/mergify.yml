@@ -19,7 +19,7 @@ pull_request_rules:
         add: [dependency-update]
   - name: Automatically merge dependency update PRs on CI success
     conditions:
-      - author~=^(scala-steward|dependabot)$
+      - author~=^(scala-steward|dependabot)
       - status-success=ci
     actions:
       merge:
