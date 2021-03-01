@@ -43,7 +43,7 @@ jobs:
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
     - name: Deploy to Cloud Run
-      uses: stefda/action-cloud-run@v1.2
+      uses: stefda/action-cloud-run@v1.3
       with:
         image: ${{ env.image_gcr }}
         service: graalnative4s
