@@ -1,4 +1,4 @@
-package server
+package app
 
 import cats.data.Kleisli
 import cats.effect.IO
