@@ -27,6 +27,7 @@ lazy val graalnative4s = project
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s"  % v.tapir,
       "com.github.valskalla"        %% "odin-core"                % v.odin,
+      "com.github.valskalla"        %% "odin-json"                % v.odin,
       "com.github.valskalla"        %% "odin-slf4j"               % v.odin,
       "io.circe"                    %% "circe-core"               % v.circe,
       "io.circe"                    %% "circe-generic"            % v.circe,

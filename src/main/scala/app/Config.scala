@@ -7,10 +7,11 @@ import eu.timepit.refined.api.Refined
 import eu.timepit.refined.auto._
 import eu.timepit.refined.string.Url
 import eu.timepit.refined.types.net.PortNumber
-
-import app.ServerUrl
 import io.odin.Level
 import io.odin.formatter.Formatter
+import io.odin.json.{Formatter => JFormatter}
+
+import app.ServerUrl
 
 case class Config(server: ServerConfig, logger: LoggerConfig)
 case class ServerConfig(port: PortNumber, apiDocs: ApiDocsConfig)
@@ -35,6 +36,7 @@ package object app {
     ConfigDecoder[String, String].mapOption("Formatter")(_.toLowerCase match {
       case "default"  => Formatter.default.some
       case "colorful" => Formatter.colorful.some
+      case "json"     => JFormatter.json.some
       case _          => None
     })
 
