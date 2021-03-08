@@ -25,7 +25,7 @@ object Main extends IOApp {
 
   private def createLogger[F[_]: ConcurrentEffect: Timer](config: LoggerConfig): Resource[F, Logger[F]] =
     Resource
-      .pure[F, Logger[F]](consoleLogger[F](config.formatter).withMinimalLevel(config.level))
+      .pure[F, Logger[F]](consoleLogger[F](config.formatter, config.level))
       .evalTap(logger => Sync[F].delay(OdinInterop.globalLogger.set(logger.mapK(Effect.toIOK).some)))
 
   private def serve[F[_]: ContextShift: ConcurrentEffect: Timer](config: ServerConfig): Resource[F, Server[F]] =
