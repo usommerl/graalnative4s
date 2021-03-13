@@ -5,7 +5,9 @@ import cats.data.Kleisli
 import cats.effect.{Concurrent, ContextShift, Sync, Timer}
 import cats.implicits._
 import dev.usommerl.BuildInfo
+import eu.timepit.refined.api.Refined
 import eu.timepit.refined.auto._
+import eu.timepit.refined.collection._
 import io.circe.generic.auto._
 import org.http4s.{HttpRoutes, Request, Response}
 import org.http4s.dsl.Http4sDsl
@@ -15,6 +17,7 @@ import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
 import sttp.tapir._
 import sttp.tapir.apispec.Tag
+import sttp.tapir.codec.refined._
 import sttp.tapir.docs.openapi._
 import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe.jsonBody
@@ -49,6 +52,7 @@ object Examples {
   def apply[F[_]: Sync: Concurrent: ContextShift: Timer]()(implicit F: Applicative[F]) = new TapirApi[F] {
     override val tag                  = Tag("Getting started", None)
     override lazy val serverEndpoints = List(info, hello)
+    type NonEmptyString = String Refined NonEmpty
 
     private val info: ServerEndpoint[Unit, StatusCode, Info, Any, F] =
       endpoint.get
@@ -71,12 +75,12 @@ object Examples {
           )
         )
 
-    private val hello: ServerEndpoint[Option[String], StatusCode, String, Any, F] =
+    private val hello: ServerEndpoint[Option[NonEmptyString], StatusCode, String, Any, F] =
       endpoint.get
         .summary("The infamous hello world endpoint")
         .tag(tag.name)
         .in("hello")
-        .in(query[Option[String]]("name").description("Optional name to greet"))
+        .in(query[Option[NonEmptyString]]("name").description("Optional name to greet"))
         .out(stringBody)
         .errorOut(statusCode)
         .serverLogic(name => F.pure(s"Hello ${name.getOrElse("World")}!".asRight))
