@@ -17,10 +17,10 @@ object Main extends IOApp {
 
   private def runF[F[_]: ContextShift: ConcurrentEffect: Timer]: Resource[F, Unit] =
     for {
-      config                       <- app.config.resource[F]
-      implicit0(logger: Logger[F]) <- createLogger[F](config.logger)
-      _                            <- Resource.liftF(logger.info(startMessage))
-      _                            <- serve[F](config.server)
+      config <- app.config.resource[F]
+      logger <- createLogger[F](config.logger)
+      _      <- Resource.liftF(logger.info(startMessage))
+      _      <- serve[F](config.server)
     } yield ()
 
   private def createLogger[F[_]: ConcurrentEffect: Timer](config: LoggerConfig): Resource[F, Logger[F]] =
