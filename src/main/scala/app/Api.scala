@@ -2,7 +2,7 @@ package app
 
 import cats.Applicative
 import cats.data.Kleisli
-import cats.effect.{Concurrent, ContextShift, Sync, Timer}
+import cats.effect.{Concurrent, ContextShift, Timer}
 import cats.implicits._
 import dev.usommerl.BuildInfo
 import eu.timepit.refined.api.Refined
@@ -28,7 +28,7 @@ import sttp.tapir.server.http4s._
 import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
-  def apply[F[_]: Sync: Concurrent: ContextShift: Timer](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
+  def apply[F[_]: Concurrent: ContextShift: Timer](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
 
     val dsl = Http4sDsl[F]
     import dsl._
@@ -49,7 +49,7 @@ object Api {
 }
 
 object Examples {
-  def apply[F[_]: Sync: Concurrent: ContextShift: Timer]()(implicit F: Applicative[F]) = new TapirApi[F] {
+  def apply[F[_]: Concurrent: ContextShift: Timer]()(implicit F: Applicative[F]) = new TapirApi[F] {
     override val tag                  = Tag("Getting started", None)
     override lazy val serverEndpoints = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
@@ -97,7 +97,7 @@ object Examples {
   }
 }
 
-abstract class TapirApi[F[_]: Sync: Concurrent: ContextShift: Timer] {
+abstract class TapirApi[F[_]: Concurrent: ContextShift: Timer] {
   def tag: Tag
   def serverEndpoints: List[ServerEndpoint[_, _, _, Any, F]]
   def endpoints: List[Endpoint[_, _, _, _]] = serverEndpoints.map(_.endpoint)
