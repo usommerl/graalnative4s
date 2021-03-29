@@ -9,7 +9,7 @@ val v = new {
   val tapir   = "0.17.19"
   val odin    = "0.11.0"
   val munit   = "0.7.22"
-  val munitCE = "0.13.1"
+  val munitCE = "1.0.0"
 }
 
 val upx = "UPX_COMPRESSION"
