@@ -48,7 +48,7 @@ lazy val graalnative4s = project
     buildInfoPackage := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
     semanticdbEnabled := true,
-    semanticdbVersion := "4.4.10",
+    semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
     docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
     docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
