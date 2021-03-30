@@ -19,7 +19,7 @@ object Main extends IOApp {
     for {
       config <- app.config.resource[F]
       logger <- createLogger[F](config.logger)
-      _      <- Resource.liftF(logger.info(startMessage))
+      _      <- Resource.eval(logger.info(startMessage))
       _      <- serve[F](config.server)
     } yield ()
 
