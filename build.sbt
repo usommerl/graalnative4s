@@ -55,9 +55,7 @@ lazy val graalnative4s = project
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
-      case x                                                      =>
-        val oldStrategy = (assembly / assemblyMergeStrategy).value
-        oldStrategy(x)
+      case x                                                      => (assembly / assemblyMergeStrategy).value(x)
     }
   )
 
