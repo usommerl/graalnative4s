@@ -11,7 +11,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        distribution: 'adopt'
+        java-version: 11
     - name: Run tests
       run: sbt testCovered
   cd:
@@ -24,7 +25,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        distribution: 'adopt'
+        java-version: 11
     - name: Docker login
       env:
         TOKEN: ${{ secrets.PAT_GHCR }}
