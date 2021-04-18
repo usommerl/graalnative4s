@@ -1,4 +1,4 @@
-package server
+package app
 
 import cats.data.Kleisli
 import cats.effect.IO
@@ -25,6 +25,11 @@ class ApiSpec extends ApiSuite {
   test("GET /hello should greet with the name that was provided via the corresponding query parameter") {
     val response = api().run(Request[IO](method = GET, uri = uri"/hello?name=John%20Doe"))
     check(response, Ok, "Hello John Doe!")
+  }
+
+  test("GET /hello not accept empty string as name parameter") {
+    val response = api().run(Request[IO](method = GET, uri = uri"/hello?name="))
+    check(response, BadRequest, evaluateBody = false)
   }
 
   test("GET /info should respond with application information") {
@@ -66,10 +71,15 @@ trait ApiSuite extends CatsEffectSuite {
     io: IO[Response[IO]],
     expectedStatus: Status,
     expectedBody: Option[String] = None,
-    expectedContentType: Option[`Content-Type`] = None
+    expectedContentType: Option[`Content-Type`] = None,
+    evaluateBody: Boolean = true
   ): IO[Unit] = io.flatMap { response =>
     assertEquals(response.status, expectedStatus)
-    assertEquals(response.headers.get(`Content-Type`), expectedContentType)
-    response.as[String].assertEquals(expectedBody.getOrElse(""))
+    if (evaluateBody) {
+      assertEquals(response.headers.get(`Content-Type`), expectedContentType)
+      response.as[String].assertEquals(expectedBody.getOrElse(""))
+    } else {
+      IO.unit
+    }
   }
 }

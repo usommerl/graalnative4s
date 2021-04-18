@@ -1,4 +1,4 @@
-name-template: '$RESOLVED_VERSION'
+name-template: 'v$RESOLVED_VERSION'
 categories:
   - title: 'Enhancements'
     label: 'enhancement'

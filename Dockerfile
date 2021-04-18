@@ -1,4 +1,5 @@
 FROM ghcr.io/graalvm/graalvm-ce:java11-21.0.0.2 as builder
+
 ARG upx_compression
 RUN gu install native-image
 RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && microdnf install sbt git xz
@@ -38,8 +39,12 @@ RUN if [ -n "${upx_compression}" ]; then \
       upx-3.96-amd64_linux/upx "$upx_compression" /build/target/graalvm-native-image/graalnative4s; \
     fi
 
+RUN echo 'unprivileged:x:65534:65534:unprivileged:/:' > /etc/passwd.minimal
+
 FROM scratch
 COPY --from=builder /build/target/graalvm-native-image/graalnative4s /server
+COPY --from=builder /etc/passwd.minimal /etc/passwd
+USER unprivileged
 ENV PATH "/"
 EXPOSE 8080
 ENTRYPOINT [ "/server" ]

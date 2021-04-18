@@ -9,9 +9,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Set up JDK
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        distribution: 'adopt'
+        java-version: 11
     - name: Run tests
       run: sbt testCovered
   cd:
@@ -22,14 +23,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Set up JDK
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
-    - name: Docker login
-      env:
-        TOKEN: ${{ secrets.PAT_GHCR }}
-        USERNAME: ${{ github.repository_owner }}
-      run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+        distribution: 'adopt'
+        java-version: 11
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Create and publish a docker image with a UPX compressed executable
       run: export UPX_COMPRESSION='--best'; sbt ';docker;dockerPush'
     - name: Create and publish a docker image without compression
@@ -43,7 +46,7 @@ jobs:
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
     - name: Deploy to Cloud Run
-      uses: stefda/action-cloud-run@v1.2
+      uses: stefda/action-cloud-run@v1.4
       with:
         image: ${{ env.image_gcr }}
         service: graalnative4s

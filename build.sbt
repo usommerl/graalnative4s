@@ -1,15 +1,15 @@
-ThisBuild / scalaVersion := "2.13.4"
+ThisBuild / scalaVersion := "2.13.5"
 ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s  = "0.21.19"
+  val http4s  = "0.21.22"
   val circe   = "0.13.0"
   val ciris   = "1.2.1"
-  val tapir   = "0.17.13"
+  val tapir   = "0.17.19"
   val odin    = "0.11.0"
-  val munit   = "0.7.22"
-  val munitCE = "0.13.1"
+  val munit   = "0.7.23"
+  val munitCE = "1.0.1"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -25,8 +25,10 @@ lazy val graalnative4s = project
       "com.softwaremill.sttp.tapir" %% "tapir-json-circe"         % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs"       % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % v.tapir,
+      "com.softwaremill.sttp.tapir" %% "tapir-refined"            % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s"  % v.tapir,
       "com.github.valskalla"        %% "odin-core"                % v.odin,
+      "com.github.valskalla"        %% "odin-json"                % v.odin,
       "com.github.valskalla"        %% "odin-slf4j"               % v.odin,
       "io.circe"                    %% "circe-core"               % v.circe,
       "io.circe"                    %% "circe-generic"            % v.circe,
@@ -53,9 +55,7 @@ lazy val graalnative4s = project
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
-      case x                                                      =>
-        val oldStrategy = (assemblyMergeStrategy in assembly).value
-        oldStrategy(x)
+      case x                                                      => (assembly / assemblyMergeStrategy).value(x)
     }
   )
 
