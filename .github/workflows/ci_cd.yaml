@@ -27,11 +27,12 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: 11
-    - name: Docker login
-      env:
-        TOKEN: ${{ secrets.PAT_GHCR }}
-        USERNAME: ${{ github.repository_owner }}
-      run: echo $TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Create and publish a docker image with a UPX compressed executable
       run: export UPX_COMPRESSION='--best'; sbt ';docker;dockerPush'
     - name: Create and publish a docker image without compression
