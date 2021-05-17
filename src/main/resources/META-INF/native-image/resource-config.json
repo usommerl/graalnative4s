@@ -1,12 +1,8 @@
 {
   "resources":{
   "includes":[
-    {"pattern":".*swagger-ui/.*"}, 
-    {"pattern":"\\QMETA-INF/maven/org.webjars/swagger-ui/pom.properties\\E"}, 
-    {"pattern":"\\QMETA-INF/resources/webjars/swagger-ui/3.43.0/swagger-ui-bundle.js\\E"}, 
-    {"pattern":"\\QMETA-INF/resources/webjars/swagger-ui/3.43.0/swagger-ui-standalone-preset.js\\E"}, 
-    {"pattern":"\\QMETA-INF/resources/webjars/swagger-ui/3.43.0/swagger-ui.css\\E"}, 
-    {"pattern":"\\Qlibrary.properties\\E"}, 
+    {"pattern":".*swagger-ui/.*"},
+    {"pattern":"\\Qlibrary.properties\\E"},
     {"pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"}
   ]},
   "bundles":[]
