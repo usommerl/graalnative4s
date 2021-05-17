@@ -3,7 +3,7 @@ ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s  = "0.21.22"
+  val http4s  = "0.21.23"
   val circe   = "0.13.0"
   val ciris   = "1.2.1"
   val tapir   = "0.17.19"
