@@ -4,7 +4,7 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 
 val v = new {
   val http4s  = "0.21.23"
-  val circe   = "0.13.0"
+  val circe   = "0.14.0"
   val ciris   = "1.2.1"
   val tapir   = "0.17.19"
   val odin    = "0.11.0"
@@ -34,7 +34,6 @@ lazy val graalnative4s = project
       "io.circe"                    %% "circe-generic"            % v.circe,
       "io.circe"                    %% "circe-parser"             % v.circe,
       "io.circe"                    %% "circe-literal"            % v.circe,
-      "io.circe"                    %% "circe-generic-extras"     % v.circe,
       "is.cir"                      %% "ciris"                    % v.ciris,
       "is.cir"                      %% "ciris-refined"            % v.ciris,
       "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
