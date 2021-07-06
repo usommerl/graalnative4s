@@ -5,11 +5,11 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 val v = new {
   val http4s  = "0.21.24"
   val circe   = "0.14.1"
-  val ciris   = "2.0.1"
-  val tapir   = "0.17.19"
+  val ciris   = "1.2.1"
+  val tapir   = "0.17.20"
   val odin    = "0.11.0"
-  val munit   = "0.7.26"
-  val munitCE = "1.0.3"
+  val munit   = "0.7.27"
+  val munitCE = "1.0.5"
 }
 
 val upx = "UPX_COMPRESSION"
