@@ -7,7 +7,7 @@ val v = new {
   val circe   = "0.14.1"
   val ciris   = "1.2.1"
   val tapir   = "0.17.20"
-  val odin    = "0.11.0"
+  val odin    = "0.12.0"
   val munit   = "0.7.27"
   val munitCE = "1.0.5"
 }
