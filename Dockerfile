@@ -2,7 +2,7 @@ FROM ghcr.io/graalvm/graalvm-ce:java11-21.2.0 as builder
 
 ARG upx_compression
 RUN gu install native-image
-RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && microdnf install sbt git xz
+RUN curl -L https://www.scala-sbt.org/sbt-rpm.repo | tee /etc/yum.repos.d/sbt-rpm.repo && microdnf install sbt git xz
 
 # BEGIN INSTALL PRE-REQUISITES FOR STATIC NATIVE IMAGES WITH GRAAL >= 20.2.0
 # See:
