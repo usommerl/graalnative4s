@@ -8,7 +8,7 @@ import dev.usommerl.BuildInfo
 import eu.timepit.refined.auto._
 import io.odin._
 import org.http4s.server.{middleware, Server}
-import org.http4s.server.blaze.BlazeServerBuilder
+import org.http4s.blaze.server.BlazeServerBuilder
 
 object Main extends IOApp {
 
