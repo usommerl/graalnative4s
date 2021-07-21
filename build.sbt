@@ -3,11 +3,11 @@ ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s  = "0.21.25"
   val circe   = "0.14.1"
-  val ciris   = "1.2.1"
-  val tapir   = "0.17.20"
-  val odin    = "0.11.0"
+  val ciris   = "2.0.0"
+  val http4s  = "0.23.0-RC1"
+  val odin    = "0.12.0"
+  val tapir   = "0.19.0-M2"
   val munit   = "0.7.27"
   val munitCE = "1.0.5"
 }
@@ -40,7 +40,7 @@ lazy val graalnative4s = project
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
       "org.scalameta"               %% "munit"                    % v.munit   % Test,
-      "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
+      "org.typelevel"               %% "munit-cats-effect-3"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),

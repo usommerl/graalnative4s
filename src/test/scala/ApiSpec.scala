@@ -53,7 +53,7 @@ class ApiSpec extends ApiSuite {
   test("GET / should redirect to /docs endpoint") {
     val response = api().run(Request[IO](method = GET, uri = uri"/"))
     check(response, PermanentRedirect)
-    response.map(r => assertEquals(r.headers.get(`Location`), Some(Location(uri"/docs"))))
+    response.map(r => assertEquals(r.headers.get[`Location`], Some(Location(uri"/docs"))))
   }
 }
 
@@ -76,7 +76,7 @@ trait ApiSuite extends CatsEffectSuite {
   ): IO[Unit] = io.flatMap { response =>
     assertEquals(response.status, expectedStatus)
     if (evaluateBody) {
-      assertEquals(response.headers.get(`Content-Type`), expectedContentType)
+      assertEquals(response.headers.get[`Content-Type`], expectedContentType)
       response.as[String].assertEquals(expectedBody.getOrElse(""))
     } else {
       IO.unit
