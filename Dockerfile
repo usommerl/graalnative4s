@@ -31,7 +31,7 @@ RUN curl -L -o zlib.tar.gz https://zlib.net/zlib-1.2.11.tar.gz && \
 COPY . /build
 WORKDIR /build
 RUN sbt graalvm-native-image:packageBin
-RUN for f in target/graalvm-native-image/reports/*.txt; do printf '#%.0s' {1..80}; printf "\n$f\n\n"; cat $f; done
+RUN for f in target/graalvm-native-image/reports/*.csv; do printf '#%.0s' {1..80}; printf "\n$f\n\n"; cat $f; done ||:
 
 RUN if [ -n "${upx_compression}" ]; then \
       curl -L -o upx-3.96-amd64_linux.tar.xz https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && \
