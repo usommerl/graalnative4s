@@ -1,8 +1,8 @@
-FROM ghcr.io/graalvm/graalvm-ce:java11-21.1.0 as builder
+FROM ghcr.io/graalvm/graalvm-ce:java11-21.2.0 as builder
 
 ARG upx_compression
 RUN gu install native-image
-RUN curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && microdnf install sbt git xz
+RUN curl -L https://www.scala-sbt.org/sbt-rpm.repo | tee /etc/yum.repos.d/sbt-rpm.repo && microdnf install sbt git xz
 
 # BEGIN INSTALL PRE-REQUISITES FOR STATIC NATIVE IMAGES WITH GRAAL >= 20.2.0
 # See:
@@ -31,7 +31,7 @@ RUN curl -L -o zlib.tar.gz https://zlib.net/zlib-1.2.11.tar.gz && \
 COPY . /build
 WORKDIR /build
 RUN sbt graalvm-native-image:packageBin
-RUN for f in target/graalvm-native-image/reports/*.txt; do printf '#%.0s' {1..80}; printf "\n$f\n\n"; cat $f; done
+RUN for f in target/graalvm-native-image/reports/*.csv; do printf '#%.0s' {1..80}; printf "\n$f\n\n"; cat $f; done ||:
 
 RUN if [ -n "${upx_compression}" ]; then \
       curl -L -o upx-3.96-amd64_linux.tar.xz https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && \
