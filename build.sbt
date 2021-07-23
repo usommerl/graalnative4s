@@ -51,6 +51,7 @@ lazy val graalnative4s = project
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
     docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
     docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
+    assembly / test := (Test / test).value,
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
