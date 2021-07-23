@@ -1,14 +1,12 @@
 package app
 
-import scala.concurrent.ExecutionContext.global
-
 import cats.effect.{Resource, _}
 import cats.implicits._
 import dev.usommerl.BuildInfo
 import eu.timepit.refined.auto._
 import io.odin._
 import org.http4s.server.{middleware, Server}
-import org.http4s.server.blaze.BlazeServerBuilder
+import org.http4s.ember.server.EmberServerBuilder
 
 object Main extends IOApp {
 
@@ -29,10 +27,12 @@ object Main extends IOApp {
       .evalTap(logger => Sync[F].delay(OdinInterop.globalLogger.set(logger.mapK(Effect.toIOK).some)))
 
   private def serve[F[_]: ContextShift: ConcurrentEffect: Timer](config: ServerConfig): Resource[F, Server[F]] =
-    BlazeServerBuilder[F](global)
-      .bindHttp(config.port, "0.0.0.0")
+    EmberServerBuilder
+      .default[F]
+      .withHost("0.0.0.0")
+      .withPort(config.port)
       .withHttpApp(middleware.Logger.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs)))
-      .resource
+      .build
 
   private lazy val startMessage: String =
     "STARTED [ name: %s, version: %s, vmVersion: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
