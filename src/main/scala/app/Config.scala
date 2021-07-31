@@ -1,12 +1,12 @@
 package app
 
 import cats.implicits._
-import ciris._
+import ciris.{Effect, _}
 import ciris.refined._
+import com.comcast.ip4s.{Host, Port}
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.auto._
 import eu.timepit.refined.string.Url
-import eu.timepit.refined.types.net.PortNumber
 import io.odin.Level
 import io.odin.formatter.Formatter
 import io.odin.json.{Formatter => JFormatter}
@@ -14,13 +14,19 @@ import io.odin.json.{Formatter => JFormatter}
 import app.ServerUrl
 
 case class Config(server: ServerConfig, logger: LoggerConfig)
-case class ServerConfig(port: PortNumber, apiDocs: ApiDocsConfig)
+case class ServerConfig(host: Host, port: Port, apiDocs: ApiDocsConfig)
 case class ApiDocsConfig(serverUrl: ServerUrl, description: Option[String])
 case class LoggerConfig(level: Level, formatter: Formatter)
 
 package object app {
 
   type ServerUrl = String Refined Url
+
+  implicit val portDecoder: ConfigDecoder[String, Port] =
+    ConfigDecoder[String, String].mapOption("Port")(Port.fromString)
+
+  implicit val hostDecoder: ConfigDecoder[String, Host] =
+    ConfigDecoder[String, String].mapOption("Host")(Host.fromString)
 
   implicit val logLevelDecoder: ConfigDecoder[String, Level] =
     ConfigDecoder[String, String].mapOption("Level")(_.toLowerCase match {
@@ -40,22 +46,23 @@ package object app {
       case _          => None
     })
 
-  private val loggerConfig: ConfigValue[LoggerConfig] = (
+  private val loggerConfig: ConfigValue[Effect, LoggerConfig] = (
     env("LOG_LEVEL").as[Level].default(Level.Info),
     env("LOG_FORMATTER").as[Formatter].default(Formatter.colorful)
   ).parMapN(LoggerConfig)
 
-  private val apiDocsConfig: ConfigValue[ApiDocsConfig] = (
+  private val apiDocsConfig: ConfigValue[Effect, ApiDocsConfig] = (
     env("APIDOCS_SERVER_URL").as[ServerUrl].default("http://localhost:8080"),
     env("APIDOCS_DESCRIPTION").option
   ).parMapN(ApiDocsConfig)
 
-  private val serverConfig: ConfigValue[ServerConfig] = (
-    env("PORT").as[PortNumber].default(8080),
+  private val serverConfig: ConfigValue[Effect, ServerConfig] = (
+    env("HOST").as[Host].default(Host.fromString("0.0.0.0").get),
+    env("PORT").as[Port].default(Port.fromInt(8080).get),
     apiDocsConfig
   ).parMapN(ServerConfig)
 
-  val config: ConfigValue[Config] = (
+  val config: ConfigValue[Effect, Config] = (
     serverConfig,
     loggerConfig
   ).parMapN(Config)

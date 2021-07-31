@@ -2,7 +2,7 @@ package app
 
 import cats.Applicative
 import cats.data.Kleisli
-import cats.effect.{Concurrent, ContextShift, Timer}
+import cats.effect.kernel.Async
 import cats.implicits._
 import dev.usommerl.BuildInfo
 import eu.timepit.refined.api.Refined
@@ -28,14 +28,14 @@ import sttp.tapir.server.http4s._
 import sttp.tapir.swagger.http4s.SwaggerHttp4s
 
 object Api {
-  def apply[F[_]: Concurrent: ContextShift: Timer](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
+  def apply[F[_]: Async](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
 
     val dsl = Http4sDsl[F]
     import dsl._
 
     val apis: List[TapirApi[F]] = List(Examples())
 
-    val docs: OpenAPI = OpenAPIDocsInterpreter
+    val docs: OpenAPI = OpenAPIDocsInterpreter()
       .toOpenAPI(apis.flatMap(_.endpoints), openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
@@ -49,7 +49,7 @@ object Api {
 }
 
 object Examples {
-  def apply[F[_]: Concurrent: ContextShift: Timer]()(implicit F: Applicative[F]) = new TapirApi[F] {
+  def apply[F[_]: Async]()(implicit F: Applicative[F]) = new TapirApi[F] {
     override val tag                  = Tag("Getting started", None)
     override lazy val serverEndpoints = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
@@ -97,9 +97,9 @@ object Examples {
   }
 }
 
-abstract class TapirApi[F[_]: Concurrent: ContextShift: Timer] {
+abstract class TapirApi[F[_]: Async] {
   def tag: Tag
   def serverEndpoints: List[ServerEndpoint[_, _, _, Any, F]]
   def endpoints: List[Endpoint[_, _, _, _]] = serverEndpoints.map(_.endpoint)
-  def routes: HttpRoutes[F]                 = Http4sServerInterpreter.toRoutes(serverEndpoints)
+  def routes: HttpRoutes[F]                 = Http4sServerInterpreter().toRoutes(serverEndpoints)
 }
