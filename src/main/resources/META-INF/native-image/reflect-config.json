@@ -857,10 +857,6 @@
   "name":"scala.reflect.internal.annotations.uncheckedBounds"
 },
 {
-  "name":"scala.reflect.internal.util.AlmostFinalValue$AlmostFinalCallSite",
-  "methods":[{"name":"fallback","parameterTypes":[] }]
-},
-{
   "name":"scala.reflect.macros.blackbox.Context"
 },
 {
@@ -1111,14 +1107,6 @@
 },
 {
   "name":"scala.xml.package"
-},
-{
-  "name":"server.app.package$$typecreator1$1",
-  "allDeclaredFields":true
-},
-{
-  "name":"server.app.package$$typecreator2$1",
-  "allDeclaredFields":true
 },
 {
   "name":"sun.security.provider.MD5",

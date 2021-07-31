@@ -3,11 +3,11 @@ ThisBuild / organization := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s  = "0.21.25"
   val circe   = "0.14.1"
-  val ciris   = "1.2.1"
-  val tapir   = "0.17.20"
-  val odin    = "0.11.0"
+  val ciris   = "2.0.0"
+  val http4s  = "0.23.0-RC1"
+  val odin    = "0.12.0"
+  val tapir   = "0.19.0-M2"
   val munit   = "0.7.27"
   val munitCE = "1.0.5"
 }
@@ -18,6 +18,7 @@ lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
+    scalacOptions ++= Seq("-Xsource:3"),
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       "com.softwaremill.sttp.tapir" %% "tapir-core"               % v.tapir,
@@ -40,7 +41,7 @@ lazy val graalnative4s = project
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
       "org.scalameta"               %% "munit"                    % v.munit   % Test,
-      "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
+      "org.typelevel"               %% "munit-cats-effect-3"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
@@ -50,7 +51,7 @@ lazy val graalnative4s = project
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
     docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
-    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
+    docker / dockerBuildArguments := dockerBuildArgs,
     assembly / test := (Test / test).value,
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
@@ -67,3 +68,8 @@ def dockerImageTag: String = {
   val upxSuffix   = sys.env.get(upx).map(s => s"-upx${s.replace("--", "-")}").getOrElse("")
   s"$version$upxSuffix"
 }
+
+def dockerBuildArgs: Map[String, String] =
+  sys.env.foldLeft(Map.empty[String, String]) { case (acc, (k, v)) =>
+    if (Set("UPX_COMPRESSION", "PRINT_REPORTS").contains(k)) acc + (k.toLowerCase -> v) else acc
+  }
