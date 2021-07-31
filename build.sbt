@@ -4,7 +4,7 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 
 val v = new {
   val circe   = "0.14.1"
-  val ciris   = "2.0.0"
+  val ciris   = "2.0.1"
   val http4s  = "0.23.0-RC1"
   val odin    = "0.12.0"
   val tapir   = "0.19.0-M3"
