@@ -50,7 +50,7 @@ lazy val graalnative4s = project
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
     docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
-    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
+    docker / dockerBuildArguments := dockerBuildArgs,
     assembly / test := (Test / test).value,
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
@@ -67,3 +67,8 @@ def dockerImageTag: String = {
   val upxSuffix   = sys.env.get(upx).map(s => s"-upx${s.replace("--", "-")}").getOrElse("")
   s"$version$upxSuffix"
 }
+
+def dockerBuildArgs: Map[String, String] =
+  sys.env.foldLeft(Map.empty[String, String]) { case (acc, (k, v)) =>
+    if (Set("UPX_COMPRESSION", "PRINT_REPORTS").contains(k)) acc + (k.toLowerCase -> v) else acc
+  }
