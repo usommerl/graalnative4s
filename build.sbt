@@ -5,9 +5,9 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 val v = new {
   val circe   = "0.14.1"
   val ciris   = "2.0.1"
-  val http4s  = "0.23.0-RC1"
+  val http4s  = "0.23.0"
   val odin    = "0.12.0"
-  val tapir   = "0.19.0-M3"
+  val tapir   = "0.19.0-M4"
   val munit   = "0.7.27"
   val munitCE = "1.0.5"
 }
