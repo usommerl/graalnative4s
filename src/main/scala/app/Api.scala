@@ -24,8 +24,8 @@ import sttp.tapir.json.circe.jsonBody
 import sttp.tapir.openapi.{OpenAPI, Server}
 import sttp.tapir.openapi.circe.yaml._
 import sttp.tapir.server.ServerEndpoint
-import sttp.tapir.server.http4s._
-import sttp.tapir.swagger.http4s.SwaggerHttp4s
+import sttp.tapir.server.http4s.Http4sServerInterpreter
+import sttp.tapir.swagger.SwaggerUI
 
 object Api {
   def apply[F[_]: Async](config: ApiDocsConfig): Kleisli[F, Request[F], Response[F]] = {
@@ -40,9 +40,10 @@ object Api {
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
+    val swaggerUi          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
     val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
 
-    val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(new SwaggerHttp4s(docs.toYaml).routes, redirectRootToDocs)
+    val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
 
     CORS(routes.reduce(_ <+> _)).orNotFound
   }
