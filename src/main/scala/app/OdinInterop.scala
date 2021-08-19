@@ -9,8 +9,7 @@ import io.odin.slf4j.OdinLoggerBinder
 
 import java.util.concurrent.atomic.AtomicReference
 
-/** This implementation was stolen from:
-  * https://github.com/pitgull/pitgull/blob/v0.1.0/src/main/scala/io/pg/OdinInterop.scala
+/** This implementation was stolen from: https://github.com/pitgull/pitgull/blob/v0.1.0/src/main/scala/io/pg/OdinInterop.scala
   */
 class OdinInterop extends OdinLoggerBinder[IO] {
 
