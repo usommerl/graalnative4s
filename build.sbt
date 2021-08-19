@@ -1,5 +1,5 @@
-ThisBuild / scalaVersion := "2.13.6"
-ThisBuild / organization := "dev.usommerl"
+ThisBuild / scalaVersion                                   := "2.13.6"
+ThisBuild / organization                                   := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
@@ -44,15 +44,15 @@ lazy val graalnative4s = project
       "org.typelevel"               %% "munit-cats-effect-3"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
-    buildInfoPackage := organization.value,
+    buildInfoKeys                    := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
+    buildInfoPackage                 := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
-    semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
-    docker / dockerfile := NativeDockerfile(file("Dockerfile")),
-    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
-    docker / dockerBuildArguments := dockerBuildArgs,
-    assembly / test := (Test / test).value,
+    semanticdbEnabled                := true,
+    semanticdbVersion                := scalafixSemanticdb.revision,
+    docker / dockerfile              := NativeDockerfile(file("Dockerfile")),
+    docker / imageNames              := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:$dockerImageTag")),
+    docker / dockerBuildArguments    := dockerBuildArgs,
+    assembly / test                  := (Test / test).value,
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
