@@ -45,7 +45,7 @@ object Api {
 
     val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
 
-    CORS(routes.reduce(_ <+> _)).orNotFound
+    CORS.policy(routes.reduce(_ <+> _)).orNotFound
   }
 }
 
