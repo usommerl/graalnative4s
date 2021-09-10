@@ -1,19 +1,20 @@
 package app
 
-import java.util.concurrent.atomic.AtomicReference
-
-import cats.effect.Clock
-import cats.effect.Effect
 import cats.effect.IO
+import cats.effect.kernel.Sync
+import cats.effect.std.Dispatcher
+import cats.effect.unsafe.implicits._
 import io.odin.Logger
 import io.odin.slf4j.OdinLoggerBinder
 
-/** This implementation was stolen from here:
-  * https://github.com/pitgull/pitgull/blob/v0.0.7/src/main/scala/io/pg/OdinInterop.scala
+import java.util.concurrent.atomic.AtomicReference
+
+/** This implementation was stolen from: https://github.com/pitgull/pitgull/blob/v0.1.0/src/main/scala/io/pg/OdinInterop.scala
   */
 class OdinInterop extends OdinLoggerBinder[IO] {
-  implicit val F: Effect[IO]    = IO.ioEffect
-  implicit val clock: Clock[IO] = Clock.create[IO]
+
+  implicit def F: Sync[IO]                = IO.asyncForIO
+  implicit def dispatcher: Dispatcher[IO] = Dispatcher[IO].allocated.unsafeRunSync()._1
 
   val loggers: PartialFunction[String, Logger[IO]] = {
     val theLogger: String => Option[Logger[IO]] = _ => OdinInterop.globalLogger.get()

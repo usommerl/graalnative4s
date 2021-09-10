@@ -1,15 +1,15 @@
-ThisBuild / scalaVersion := "2.13.5"
-ThisBuild / organization := "dev.usommerl"
+ThisBuild / scalaVersion                                   := "2.13.6"
+ThisBuild / organization                                   := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 
 val v = new {
-  val http4s  = "0.21.23"
-  val circe   = "0.13.0"
-  val ciris   = "1.2.1"
-  val tapir   = "0.17.19"
-  val odin    = "0.11.0"
-  val munit   = "0.7.26"
-  val munitCE = "1.0.3"
+  val circe   = "0.14.1"
+  val ciris   = "2.1.1"
+  val http4s  = "0.23.3"
+  val odin    = "0.12.0"
+  val tapir   = "0.19.0-M8"
+  val munit   = "0.7.29"
+  val munitCE = "1.0.5"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -18,6 +18,7 @@ lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
+    scalacOptions ++= Seq("-Xsource:3"),
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       "com.softwaremill.sttp.tapir" %% "tapir-core"               % v.tapir,
@@ -26,7 +27,7 @@ lazy val graalnative4s = project
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs"       % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % v.tapir,
       "com.softwaremill.sttp.tapir" %% "tapir-refined"            % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s"  % v.tapir,
+      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui"         % v.tapir,
       "com.github.valskalla"        %% "odin-core"                % v.odin,
       "com.github.valskalla"        %% "odin-json"                % v.odin,
       "com.github.valskalla"        %% "odin-slf4j"               % v.odin,
@@ -34,24 +35,24 @@ lazy val graalnative4s = project
       "io.circe"                    %% "circe-generic"            % v.circe,
       "io.circe"                    %% "circe-parser"             % v.circe,
       "io.circe"                    %% "circe-literal"            % v.circe,
-      "io.circe"                    %% "circe-generic-extras"     % v.circe,
       "is.cir"                      %% "ciris"                    % v.ciris,
       "is.cir"                      %% "ciris-refined"            % v.ciris,
-      "org.http4s"                  %% "http4s-blaze-server"      % v.http4s,
+      "org.http4s"                  %% "http4s-ember-server"      % v.http4s,
       "org.http4s"                  %% "http4s-circe"             % v.http4s,
       "org.http4s"                  %% "http4s-dsl"               % v.http4s,
       "org.scalameta"               %% "munit"                    % v.munit   % Test,
-      "org.typelevel"               %% "munit-cats-effect-2"      % v.munitCE % Test
+      "org.typelevel"               %% "munit-cats-effect-3"      % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
-    buildInfoPackage := organization.value,
+    buildInfoKeys                    := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
+    buildInfoPackage                 := organization.value,
     buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
-    semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
-    docker / dockerfile := NativeDockerfile(file("Dockerfile")),
-    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}")),
-    docker / dockerBuildArguments := sys.env.get(upx).map(s => Map("upx_compression" -> s)).getOrElse(Map.empty),
+    semanticdbEnabled                := true,
+    semanticdbVersion                := scalafixSemanticdb.revision,
+    docker / dockerfile              := NativeDockerfile(file("Dockerfile")),
+    docker / imageNames              := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:$dockerImageTag")),
+    docker / dockerBuildArguments    := dockerBuildArgs,
+    assembly / test                  := (Test / test).value,
     assembly / assemblyMergeStrategy := {
       case "META-INF/maven/org.webjars/swagger-ui/pom.properties" => MergeStrategy.singleOrError
       case x if x.endsWith("module-info.class")                   => MergeStrategy.discard
@@ -67,3 +68,8 @@ def dockerImageTag: String = {
   val upxSuffix   = sys.env.get(upx).map(s => s"-upx${s.replace("--", "-")}").getOrElse("")
   s"$version$upxSuffix"
 }
+
+def dockerBuildArgs: Map[String, String] =
+  sys.env.foldLeft(Map.empty[String, String]) { case (acc, (k, v)) =>
+    if (Set("UPX_COMPRESSION", "PRINT_REPORTS").contains(k)) acc + (k.toLowerCase -> v) else acc
+  }

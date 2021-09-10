@@ -32,7 +32,7 @@ I have taken a lot of inspiration and knowledge from [this blog post by James Wa
 [ciris]: https://github.com/vlovgr/ciris
 
 [image]: https://github.com/users/usommerl/packages/container/package/graalnative4s
-[workflow]: .github/workflows/ci_cd.yaml
+[workflow]: https://github.com/usommerl/graalnative4s/blob/deploy-gcp/.github/workflows/deploy.yaml
 [inspiration]: https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 [uzhttp]: https://github.com/jamesward/hello-uzhttp
 [docker-stats-monitor]: https://github.com/vasilmkd/docker-stats-monitor
