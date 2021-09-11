@@ -52,7 +52,7 @@ jobs:
       run: sbt ';docker;dockerPush'
     - name: Remove image with UPX compressed executable
       run: docker rmi $(docker images -q 'ghcr.io/usommerl/graalnative4s*upx*')
-    - name: Tag remaining image for gcr.io
+    - name: Tag remaining image for Google Container Registry
       run: |
         export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
         export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io\/usommerl/eu.gcr.io\/usommerl-02/')
