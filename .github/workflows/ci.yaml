@@ -55,6 +55,14 @@ jobs:
     - name: Tag remaining image for gcr.io
       run: |
         export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
-        export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io/eu.gcr.io/')
+        export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io\/usommerl/eu.gcr.io\/usommerl-02/')
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
+    - name: Login to Google Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: gcr.io
+        username: _json_key
+        password: ${{ secrets.GCP_SA_KEY_JSON }}
+    - name: Push image to Google Container Registry
+      run: docker push ${{ env.image_gcr }}
