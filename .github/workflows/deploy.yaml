@@ -11,9 +11,9 @@ jobs:
     - name: Deploy to Cloud Run
       uses: stefda/action-cloud-run@v2.0
       with:
-        image: eu.gcr.io/usommerl-02/graalnative4s:0.6.3
+        image: eu.gcr.io/usommerl-02/graalnative4s:0.7.1
         service: graalnative4s
         project: usommerl-02
         region: europe-west1
         env: .github/workflows/cloud_run_env_vars
-        service key: ${{ secrets.GCP_SA_KEY }}
+        service key: ${{ secrets.GCP_SA_KEY_BASE64 }}
