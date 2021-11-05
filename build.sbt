@@ -1,6 +1,6 @@
 ThisBuild / scalaVersion                                   := "2.13.6"
 ThisBuild / organization                                   := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
 val v = new {
   val circe   = "0.14.1"
