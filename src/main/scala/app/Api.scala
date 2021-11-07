@@ -55,7 +55,7 @@ object Examples {
     override lazy val serverEndpoints = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
 
-    private val info: ServerEndpoint[Unit, StatusCode, Info, Any, F] =
+    private val info: ServerEndpoint.Full[Unit, Unit, Unit, StatusCode, Info, Any, F] =
       endpoint.get
         .summary("Fetch general information about the application")
         .tag(tag.name)
@@ -76,7 +76,7 @@ object Examples {
           )
         )
 
-    private val hello: ServerEndpoint[Option[NonEmptyString], StatusCode, String, Any, F] =
+    private val hello: ServerEndpoint.Full[Unit, Unit, Option[NonEmptyString], StatusCode, String, Any, F] =
       endpoint.get
         .summary("The infamous hello world endpoint")
         .tag(tag.name)
@@ -100,7 +100,7 @@ object Examples {
 
 abstract class TapirApi[F[_]: Async] {
   def tag: Tag
-  def serverEndpoints: List[ServerEndpoint[_, _, _, Any, F]]
-  def endpoints: List[Endpoint[_, _, _, _]] = serverEndpoints.map(_.endpoint)
+  def serverEndpoints: List[ServerEndpoint[Any, F]]
+  def endpoints: List[Endpoint[_ ,_, _, _, _]] = serverEndpoints.map(_.endpoint)
   def routes: HttpRoutes[F]                 = Http4sServerInterpreter().toRoutes(serverEndpoints)
 }
