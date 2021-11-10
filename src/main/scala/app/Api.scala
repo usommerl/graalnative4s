@@ -101,6 +101,6 @@ object Examples {
 abstract class TapirApi[F[_]: Async] {
   def tag: Tag
   def serverEndpoints: List[ServerEndpoint[Any, F]]
-  def endpoints: List[Endpoint[_ ,_, _, _, _]] = serverEndpoints.map(_.endpoint)
-  def routes: HttpRoutes[F]                 = Http4sServerInterpreter().toRoutes(serverEndpoints)
+  def endpoints: List[Endpoint[_, _, _, _, _]] = serverEndpoints.map(_.endpoint)
+  def routes: HttpRoutes[F]                    = Http4sServerInterpreter().toRoutes(serverEndpoints)
 }
