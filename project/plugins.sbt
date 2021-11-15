@@ -1,4 +1,4 @@
-addSbtPlugin("ch.epfl.scala"             % "sbt-scalafix"        % "0.9.31")
+addSbtPlugin("ch.epfl.scala"             % "sbt-scalafix"        % "0.9.32")
 addSbtPlugin("com.alejandrohdezma"       % "sbt-codecov"         % "0.2.1")
 addSbtPlugin("com.dwijnand"              % "sbt-dynver"          % "4.1.1")
 addSbtPlugin("com.eed3si9n"              % "sbt-assembly"        % "1.1.0")
