@@ -12,7 +12,7 @@ RUN curl -L https://www.scala-sbt.org/sbt-rpm.repo | tee /etc/yum.repos.d/sbt-rp
 ARG TOOLCHAIN_DIR="/toolchain"
 
 RUN mkdir ${TOOLCHAIN_DIR} && \
-    curl -L -o musl.tar.gz http://musl.cc/x86_64-linux-musl-native.tgz && \
+    curl -L -o musl.tar.gz https://more.musl.cc/10.2.1/x86_64-linux-musl/x86_64-linux-musl-native.tgz && \
     tar -xvzf musl.tar.gz -C ${TOOLCHAIN_DIR} --strip-components 1 && \
     rm -f /musl.tar.gz
 
