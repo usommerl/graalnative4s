@@ -40,10 +40,9 @@ object Api {
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
-    val swaggerUi          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
-    val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
-
-    val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
+    val swaggerUi: HttpRoutes[F]          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
+    val redirectRootToDocs: HttpRoutes[F] = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
+    val routes: List[HttpRoutes[F]]       = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
 
     CORS.policy(routes.reduce(_ <+> _)).orNotFound
   }
