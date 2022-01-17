@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2.4.0
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2.4.0
     - name: Create GitHub release draft
       uses: release-drafter/release-drafter@v5
       env:
@@ -34,14 +34,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2.4.0
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
         distribution: 'adopt'
         java-version: 11
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1.10.0
+      uses: docker/login-action@v1.12.0
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
@@ -52,16 +52,16 @@ jobs:
       run: sbt ';docker;dockerPush'
     - name: Remove image with UPX compressed executable
       run: docker rmi $(docker images -q 'ghcr.io/usommerl/graalnative4s*upx*')
-    - name: Tag remaining image for gcr.io
+    - name: Tag remaining image for Google Container Registry
       run: |
         export IMAGE_GHCR=$(docker images ghcr.io/usommerl/graalnative4s --format "{{.Repository}}:{{.Tag}}")
         export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io\/usommerl/eu.gcr.io\/usommerl-02/')
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
     - name: Login to Google Container Registry
-      uses: docker/login-action@v1
+      uses: docker/login-action@v1.12.0
       with:
-        registry: gcr.io
+        registry: eu.gcr.io
         username: _json_key
         password: ${{ secrets.GCP_SA_KEY_JSON }}
     - name: Push image to Google Container Registry

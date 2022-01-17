@@ -40,10 +40,9 @@ object Api {
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
-    val swaggerUi          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
-    val redirectRootToDocs = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
-
-    val routes: List[HttpRoutes[F]] = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
+    val swaggerUi: HttpRoutes[F]          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
+    val redirectRootToDocs: HttpRoutes[F] = HttpRoutes.of[F] { case path @ GET -> Root => PermanentRedirect(Location(path.uri / "docs")) }
+    val routes: List[HttpRoutes[F]]       = apis.map(_.routes) ++ List(swaggerUi, redirectRootToDocs)
 
     CORS.policy(routes.reduce(_ <+> _)).orNotFound
   }
@@ -55,7 +54,7 @@ object Examples {
     override lazy val serverEndpoints = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
 
-    private val info: ServerEndpoint[Unit, StatusCode, Info, Any, F] =
+    private val info: ServerEndpoint.Full[Unit, Unit, Unit, StatusCode, Info, Any, F] =
       endpoint.get
         .summary("Fetch general information about the application")
         .tag(tag.name)
@@ -76,7 +75,7 @@ object Examples {
           )
         )
 
-    private val hello: ServerEndpoint[Option[NonEmptyString], StatusCode, String, Any, F] =
+    private val hello: ServerEndpoint.Full[Unit, Unit, Option[NonEmptyString], StatusCode, String, Any, F] =
       endpoint.get
         .summary("The infamous hello world endpoint")
         .tag(tag.name)
@@ -100,7 +99,7 @@ object Examples {
 
 abstract class TapirApi[F[_]: Async] {
   def tag: Tag
-  def serverEndpoints: List[ServerEndpoint[_, _, _, Any, F]]
-  def endpoints: List[Endpoint[_, _, _, _]] = serverEndpoints.map(_.endpoint)
-  def routes: HttpRoutes[F]                 = Http4sServerInterpreter().toRoutes(serverEndpoints)
+  def serverEndpoints: List[ServerEndpoint[Any, F]]
+  def endpoints: List[Endpoint[_, _, _, _, _]] = serverEndpoints.map(_.endpoint)
+  def routes: HttpRoutes[F]                    = Http4sServerInterpreter().toRoutes(serverEndpoints)
 }

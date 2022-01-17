@@ -1,15 +1,15 @@
-ThisBuild / scalaVersion                                   := "2.13.6"
+ThisBuild / scalaVersion                                   := "2.13.8"
 ThisBuild / organization                                   := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
 val v = new {
   val circe   = "0.14.1"
-  val ciris   = "2.1.1"
-  val http4s  = "0.23.3"
-  val odin    = "0.12.0"
-  val tapir   = "0.19.0-M8"
+  val ciris   = "2.3.2"
+  val http4s  = "0.23.7"
+  val odin    = "0.13.0"
+  val tapir   = "0.19.3"
   val munit   = "0.7.29"
-  val munitCE = "1.0.5"
+  val munitCE = "1.0.7"
 }
 
 val upx = "UPX_COMPRESSION"
