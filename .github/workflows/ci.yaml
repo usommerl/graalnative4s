@@ -45,7 +45,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.GHCR_WRITE_PACKAGES }}
     - name: Create and publish a docker image with a UPX compressed executable
       run: export UPX_COMPRESSION='--best'; sbt ';docker;dockerPush'
     - name: Create and publish a docker image without compression
