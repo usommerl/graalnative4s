@@ -1,8 +1,9 @@
-FROM ghcr.io/graalvm/graalvm-ce:java11-21.3.0 as builder
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.0.0.2 as builder
 
 ARG upx_compression
 ARG print_reports
 RUN gu install native-image
+RUN find /opt/ -regex '.*bin/native-image' | head -1 | xargs -I {} ln -s {} /bin/
 RUN curl -L https://www.scala-sbt.org/sbt-rpm.repo | tee /etc/yum.repos.d/sbt-rpm.repo && microdnf install sbt git xz
 
 # BEGIN INSTALL PRE-REQUISITES FOR STATIC NATIVE IMAGES WITH GRAAL >= 20.2.0
