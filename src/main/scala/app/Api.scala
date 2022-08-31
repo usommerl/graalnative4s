@@ -15,14 +15,16 @@ import org.http4s.headers.Location
 import org.http4s.implicits._
 import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
+import sttp.apispec.openapi.OpenAPI
+import sttp.apispec.Tag
+import sttp.apispec.openapi.Info as OpenApiInfo
+import sttp.apispec.openapi.Server
+import sttp.apispec.openapi.circe.yaml._
 import sttp.tapir._
-import sttp.tapir.apispec.Tag
 import sttp.tapir.codec.refined._
 import sttp.tapir.docs.openapi._
 import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe.jsonBody
-import sttp.tapir.openapi.{OpenAPI, Server}
-import sttp.tapir.openapi.circe.yaml._
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.server.http4s.Http4sServerInterpreter
 import sttp.tapir.swagger.SwaggerUI
@@ -36,7 +38,7 @@ object Api {
     val apis: List[TapirApi[F]] = List(Examples())
 
     val docs: OpenAPI = OpenAPIDocsInterpreter()
-      .toOpenAPI(apis.flatMap(_.endpoints), openapi.Info(BuildInfo.name, BuildInfo.version, config.description))
+      .toOpenAPI(apis.flatMap(_.endpoints), OpenApiInfo(BuildInfo.name, BuildInfo.version, config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 

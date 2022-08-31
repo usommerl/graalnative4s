@@ -3,11 +3,12 @@ ThisBuild / organization                                   := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
 val v = new {
-  val circe   = "0.14.1"
-  val ciris   = "2.3.2"
-  val http4s  = "0.23.10"
+  val apispec = "0.2.1"
+  val circe   = "0.14.2"
+  val ciris   = "2.3.3"
+  val http4s  = "0.23.15"
   val odin    = "0.13.0"
-  val tapir   = "0.19.4"
+  val tapir   = "1.0.6"
   val munit   = "0.7.29"
   val munitCE = "1.0.7"
 }
@@ -21,27 +22,27 @@ lazy val graalnative4s = project
     scalacOptions ++= Seq("-Xsource:3"),
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
-      "com.softwaremill.sttp.tapir" %% "tapir-core"               % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-http4s-server"      % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-json-circe"         % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs"       % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-refined"            % v.tapir,
-      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui"         % v.tapir,
-      "com.github.valskalla"        %% "odin-core"                % v.odin,
-      "com.github.valskalla"        %% "odin-json"                % v.odin,
-      "com.github.valskalla"        %% "odin-slf4j"               % v.odin,
-      "io.circe"                    %% "circe-core"               % v.circe,
-      "io.circe"                    %% "circe-generic"            % v.circe,
-      "io.circe"                    %% "circe-parser"             % v.circe,
-      "io.circe"                    %% "circe-literal"            % v.circe,
-      "is.cir"                      %% "ciris"                    % v.ciris,
-      "is.cir"                      %% "ciris-refined"            % v.ciris,
-      "org.http4s"                  %% "http4s-ember-server"      % v.http4s,
-      "org.http4s"                  %% "http4s-circe"             % v.http4s,
-      "org.http4s"                  %% "http4s-dsl"               % v.http4s,
-      "org.scalameta"               %% "munit"                    % v.munit   % Test,
-      "org.typelevel"               %% "munit-cats-effect-3"      % v.munitCE % Test
+      "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml"  % v.apispec,
+      "com.softwaremill.sttp.tapir"   %% "tapir-core"          % v.tapir,
+      "com.softwaremill.sttp.tapir"   %% "tapir-http4s-server" % v.tapir,
+      "com.softwaremill.sttp.tapir"   %% "tapir-json-circe"    % v.tapir,
+      "com.softwaremill.sttp.tapir"   %% "tapir-openapi-docs"  % v.tapir,
+      "com.softwaremill.sttp.tapir"   %% "tapir-refined"       % v.tapir,
+      "com.softwaremill.sttp.tapir"   %% "tapir-swagger-ui"    % v.tapir,
+      "com.github.valskalla"          %% "odin-core"           % v.odin,
+      "com.github.valskalla"          %% "odin-json"           % v.odin,
+      "com.github.valskalla"          %% "odin-slf4j"          % v.odin,
+      "io.circe"                      %% "circe-core"          % v.circe,
+      "io.circe"                      %% "circe-generic"       % v.circe,
+      "io.circe"                      %% "circe-parser"        % v.circe,
+      "io.circe"                      %% "circe-literal"       % v.circe,
+      "is.cir"                        %% "ciris"               % v.ciris,
+      "is.cir"                        %% "ciris-refined"       % v.ciris,
+      "org.http4s"                    %% "http4s-ember-server" % v.http4s,
+      "org.http4s"                    %% "http4s-circe"        % v.http4s,
+      "org.http4s"                    %% "http4s-dsl"          % v.http4s,
+      "org.scalameta"                 %% "munit"               % v.munit   % Test,
+      "org.typelevel"                 %% "munit-cats-effect-3" % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys                    := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),

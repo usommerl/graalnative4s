@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.0.0.2 as builder
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.2.0 as builder
 
 ARG upx_compression
 ARG print_reports
@@ -18,8 +18,8 @@ RUN mkdir ${TOOLCHAIN_DIR} && \
 
 ENV PATH="$PATH:${TOOLCHAIN_DIR}/bin"
 ENV CC="${TOOLCHAIN_DIR}/bin/gcc"
-
-RUN curl -L -o zlib.tar.gz https://zlib.net/zlib-1.2.11.tar.gz && \
+ 
+RUN curl -L -o zlib.tar.gz https://zlib.net/fossils/zlib-1.2.12.tar.gz && \
    mkdir zlib && tar -xvzf zlib.tar.gz -C zlib --strip-components 1 && cd zlib && \
    ./configure --static --prefix=${TOOLCHAIN_DIR} && \
     make && make install && \

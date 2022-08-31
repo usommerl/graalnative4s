@@ -13,13 +13,17 @@ pull_request_rules:
         add: [bug]
   - name: Add label to scala-steward PRs
     conditions:
-      - author=scala-steward
+      - author=usommerl
+      - title~=(?i)Update
+      - body~=(?i)Configure Scala Steward for your repository
     actions:
       label:
         add: [dependency-update]
   - name: Automatically merge Scala Steward PRs on CI success
     conditions:
-      - author=scala-steward
+      - author=usommerl
+      - title~=(?i)Update
+      - body~=(?i)Configure Scala Steward for your repository
       - status-success=ci
     actions:
       merge:
