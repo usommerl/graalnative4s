@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v3.0.2
     - name: Deploy to Cloud Run
       uses: stefda/action-cloud-run@v2.0
       with:
-        image: eu.gcr.io/usommerl-02/graalnative4s:0.8.2
+        image: eu.gcr.io/usommerl-02/graalnative4s:0.8.3
         service: graalnative4s
         project: usommerl-02
         region: europe-west1
