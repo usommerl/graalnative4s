@@ -1,6 +1,6 @@
 # graalnative4s
 
-![build](https://img.shields.io/github/workflow/status/usommerl/graalnative4s/CI?style=for-the-badge)
+![build](https://img.shields.io/github/workflow/status/usommerl/graalnative4s/ci?style=for-the-badge)
 [![codecov](https://img.shields.io/codecov/c/github/usommerl/graalnative4s?style=for-the-badge)](https://codecov.io/gh/usommerl/graalnative4s)
 [![Scala Steward badge](https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=for-the-badge)](https://scala-steward.org)
 
