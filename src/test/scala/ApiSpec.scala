@@ -52,8 +52,8 @@ class ApiSpec extends ApiSuite {
 
   test("GET / should redirect to /docs endpoint") {
     val response = api().run(Request[IO](method = GET, uri = uri"/"))
-    check(response, PermanentRedirect)
-    response.map(r => assertEquals(r.headers.get[`Location`], Some(Location(uri"/docs"))))
+    check(response, PermanentRedirect) *>
+      response.map(r => assertEquals(r.headers.get[`Location`], Some(Location(uri"/docs"))))
   }
 }
 
