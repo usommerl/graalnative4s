@@ -2,8 +2,11 @@ ThisBuild / scalaVersion                                   := "2.13.10"
 ThisBuild / organization                                   := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
+ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "openapi-model" % "early-semver"
+ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apispec-model" % "early-semver"
+
 val v = new {
-  val apispec = "0.3.1"
+  val apispec = "0.3.2"
   val circe   = "0.14.3"
   val ciris   = "3.0.0"
   val http4s  = "0.23.17"
