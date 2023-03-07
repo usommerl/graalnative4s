@@ -11,7 +11,7 @@ jobs:
     - name: Deploy to Cloud Run
       uses: stefda/action-cloud-run@v2.0
       with:
-        image: eu.gcr.io/usommerl-02/graalnative4s:0.8.4
+        image: eu.gcr.io/usommerl-02/graalnative4s:0.8.5
         service: graalnative4s
         project: usommerl-02
         region: europe-west1
