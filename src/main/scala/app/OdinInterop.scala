@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicReference
 class OdinInterop extends OdinLoggerBinder[IO] {
 
   implicit def F: Sync[IO]                = IO.asyncForIO
-  implicit def dispatcher: Dispatcher[IO] = Dispatcher[IO].allocated.unsafeRunSync()._1
+  implicit def dispatcher: Dispatcher[IO] = Dispatcher.parallel[IO].allocated.unsafeRunSync()._1
 
   val loggers: PartialFunction[String, Logger[IO]] = {
     val theLogger: String => Option[Logger[IO]] = _ => OdinInterop.globalLogger.get()
