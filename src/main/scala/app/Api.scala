@@ -38,7 +38,7 @@ object Api {
     val apis: List[TapirApi[F]] = List(Examples())
 
     val docs: OpenAPI = OpenAPIDocsInterpreter()
-      .toOpenAPI(apis.flatMap(_.endpoints), OpenApiInfo(BuildInfo.name, BuildInfo.version, config.description))
+      .toOpenAPI(apis.flatMap(_.endpoints), OpenApiInfo(BuildInfo.name, BuildInfo.version, description = config.description))
       .servers(List(Server(config.serverUrl)))
       .tags(apis.map(_.tag))
 
