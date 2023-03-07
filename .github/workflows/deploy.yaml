@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3.0.2
+      uses: actions/checkout@v3.3.0
     - name: Deploy to Cloud Run
       uses: stefda/action-cloud-run@v2.0
       with:
