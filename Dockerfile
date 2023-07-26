@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.3.2 as builder
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.3.3 as builder
 
 ARG upx_compression
 ARG print_reports
