@@ -22,7 +22,7 @@ lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
-    scalacOptions ++= Seq("-Xsource:3"),
+    scalacOptions ++= Seq("-Xsource:3-cross"),
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml"  % v.apispec,

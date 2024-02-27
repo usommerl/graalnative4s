@@ -49,21 +49,21 @@ package object app {
   private val loggerConfig: ConfigValue[Effect, LoggerConfig] = (
     env("LOG_LEVEL").as[Level].default(Level.Info),
     env("LOG_FORMATTER").as[Formatter].default(Formatter.colorful)
-  ).parMapN(LoggerConfig)
+  ).parMapN(LoggerConfig.apply)
 
   private val apiDocsConfig: ConfigValue[Effect, ApiDocsConfig] = (
     env("APIDOCS_SERVER_URL").as[ServerUrl].default("http://localhost:8080"),
     env("APIDOCS_DESCRIPTION").option
-  ).parMapN(ApiDocsConfig)
+  ).parMapN(ApiDocsConfig.apply)
 
   private val serverConfig: ConfigValue[Effect, ServerConfig] = (
     env("HOST").as[Host].default(Host.fromString("0.0.0.0").get),
     env("PORT").as[Port].default(Port.fromInt(8080).get),
     apiDocsConfig
-  ).parMapN(ServerConfig)
+  ).parMapN(ServerConfig.apply)
 
   val config: ConfigValue[Effect, Config] = (
     serverConfig,
     loggerConfig
-  ).parMapN(Config)
+  ).parMapN(Config.apply)
 }
