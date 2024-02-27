@@ -5,7 +5,6 @@ import cats.effect.{Resource, _}
 import cats.implicits._
 import cats.~>
 import dev.usommerl.BuildInfo
-import eu.timepit.refined.auto._
 import fs2.io.net.Network
 import io.odin._
 import org.http4s.ember.server.EmberServerBuilder
