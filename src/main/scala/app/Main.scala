@@ -1,12 +1,12 @@
 package app
 
 import cats.arrow.FunctionK
-import cats.effect.{Resource, _}
-import cats.implicits._
+import cats.effect.{Resource, *}
+import cats.implicits.*
 import cats.~>
 import dev.usommerl.BuildInfo
 import fs2.io.net.Network
-import io.odin._
+import io.odin.*
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.{middleware, Server}
 
