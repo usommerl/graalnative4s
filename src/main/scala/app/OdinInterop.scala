@@ -3,7 +3,7 @@ package app
 import cats.effect.IO
 import cats.effect.kernel.Sync
 import cats.effect.std.Dispatcher
-import cats.effect.unsafe.implicits._
+import cats.effect.unsafe.implicits.*
 import io.odin.Logger
 import io.odin.slf4j.OdinLoggerBinder
 

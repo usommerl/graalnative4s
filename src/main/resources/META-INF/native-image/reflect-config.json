@@ -9,9 +9,6 @@
     "name": "eu.timepit.refined.StringInference"
   },
   {
-    "name": "eu.timepit.refined.api.Refined"
-  },
-  {
     "name": "eu.timepit.refined.boolean"
   },
   {
@@ -823,67 +820,10 @@
     ]
   },
   {
-    "name": "scala.reflect.api.Exprs"
-  },
-  {
-    "name": "scala.reflect.api.JavaUniverse"
-  },
-  {
-    "name": "scala.reflect.api.Mirror"
-  },
-  {
-    "name": "scala.reflect.api.Quasiquotes"
-  },
-  {
-    "name": "scala.reflect.api.TreeCreator"
-  },
-  {
-    "name": "scala.reflect.api.Trees"
-  },
-  {
-    "name": "scala.reflect.api.TypeCreator"
-  },
-  {
-    "name": "scala.reflect.api.TypeTags"
-  },
-  {
-    "name": "scala.reflect.api.Universe"
-  },
-  {
-    "name": "scala.reflect.api.package"
-  },
-  {
-    "name": "scala.reflect.internal.Symbols$Symbol[]"
-  },
-  {
-    "name": "scala.reflect.internal.Types$Type[]"
-  },
-  {
-    "name": "scala.reflect.internal.annotations.package"
-  },
-  {
-    "name": "scala.reflect.internal.annotations.uncheckedBounds"
-  },
-  {
-    "name": "scala.reflect.macros.blackbox.Context"
-  },
-  {
     "name": "scala.reflect.macros.internal.macroImpl"
   },
   {
-    "name": "scala.reflect.macros.package"
-  },
-  {
-    "name": "scala.reflect.macros.whitebox.Context"
-  },
-  {
     "name": "scala.reflect.package"
-  },
-  {
-    "name": "scala.reflect.runtime.JavaMirrors$JavaMirror$JavaAnnotationProxy[]"
-  },
-  {
-    "name": "scala.reflect.runtime.package"
   },
   {
     "name": "scala.runtime.AbstractFunction0"
