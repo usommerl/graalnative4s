@@ -52,8 +52,8 @@ object Api {
 
 object Examples {
   def apply[F[_]: Async]()(implicit F: Applicative[F]) = new TapirApi[F] {
-    override val tag                  = Tag("Getting started", None)
-    override lazy val serverEndpoints = List(info, hello)
+    override val tag: Tag                                           = Tag("Getting started", None)
+    override lazy val serverEndpoints: List[ServerEndpoint[Any, F]] = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
 
     private val info: ServerEndpoint.Full[Unit, Unit, Unit, StatusCode, Info, Any, F] =

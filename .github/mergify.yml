@@ -28,6 +28,13 @@ pull_request_rules:
     actions:
       merge:
         method: merge
+  - name: Automatically merge Dependabot PRs on CI success
+    conditions:
+      - author=dependabot[bot]
+      - status-success=ci
+    actions:
+      merge:
+        method: merge
   - name: Delete head branch after merge
     conditions:
       - merged

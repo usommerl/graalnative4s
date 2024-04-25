@@ -5,17 +5,17 @@ import cats.effect.{Resource, _}
 import cats.implicits._
 import cats.~>
 import dev.usommerl.BuildInfo
-import eu.timepit.refined.auto._
+import fs2.io.net.Network
 import io.odin._
-import org.http4s.server.{middleware, Server}
 import org.http4s.ember.server.EmberServerBuilder
+import org.http4s.server.{middleware, Server}
 
 object Main extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
     app.config.resource[IO].flatMap(runF[IO](_, FunctionK.id)).useForever
 
-  def runF[F[_]: Async](config: Config, functionK: F ~> IO): Resource[F, Unit] =
+  def runF[F[_]: Async: Network](config: Config, functionK: F ~> IO): Resource[F, Unit] =
     for {
       logger <- makeLogger[F](config.logger, functionK)
       _      <- Resource.eval(logger.info(startMessage))
@@ -27,7 +27,7 @@ object Main extends IOApp {
       .pure[F, Logger[F]](consoleLogger[F](config.formatter, config.level))
       .evalTap(logger => Sync[F].delay(OdinInterop.globalLogger.set(logger.mapK(functionK).some)))
 
-  private def makeServer[F[_]: Async](config: ServerConfig): Resource[F, Server] =
+  private def makeServer[F[_]: Async: Network](config: ServerConfig): Resource[F, Server] =
     EmberServerBuilder
       .default[F]
       .withHost(config.host)

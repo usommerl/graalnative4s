@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion                                   := "2.13.10"
+ThisBuild / scalaVersion                                   := "2.13.13"
 ThisBuild / organization                                   := "dev.usommerl"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
@@ -6,12 +6,12 @@ ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "open
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apispec-model" % "early-semver"
 
 val v = new {
-  val apispec = "0.3.2"
-  val circe   = "0.14.5"
-  val ciris   = "3.1.0"
-  val http4s  = "0.23.18"
+  val apispec = "0.9.0"
+  val circe   = "0.14.6"
+  val ciris   = "3.5.0"
+  val http4s  = "0.23.26"
   val odin    = "0.13.0"
-  val tapir   = "1.2.9"
+  val tapir   = "1.10.5"
   val munit   = "0.7.29"
   val munitCE = "1.0.7"
 }
@@ -22,7 +22,7 @@ lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
-    scalacOptions ++= Seq("-Xsource:3"),
+    scalacOptions ++= Seq("-Xsource:3-cross"),
     libraryDependencies ++= Seq(
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml"  % v.apispec,
