@@ -257,16 +257,7 @@
     "name": "java.util.stream.Stream"
   },
   {
-    "name": "jdk.internal.HotSpotIntrinsicCandidate"
-  },
-  {
     "name": "jdk.internal.vm.annotation.Stable"
-  },
-  {
-    "name": "org.http4s.blaze.channel.nio1.SelectorLoop[]"
-  },
-  {
-    "name": "org.http4s.blaze.util.TickWheelExecutor$Bucket[]"
   },
   {
     "name": "scala.$eq$colon$eq"
@@ -1118,12 +1109,6 @@
   },
   {
     "name": "scala.volatile"
-  },
-  {
-    "name": "scala.xml.TopScope"
-  },
-  {
-    "name": "scala.xml.package"
   },
   {
     "name": "sun.security.provider.MD5",
