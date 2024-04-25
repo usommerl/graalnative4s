@@ -1,1115 +1,1137 @@
 [
-{
-  "name":"eu.timepit.refined.BooleanInference0"
-},
-{
-  "name":"eu.timepit.refined.NumericInference"
-},
-{
-  "name":"eu.timepit.refined.StringInference"
-},
-{
-  "name":"eu.timepit.refined.api.Refined"
-},
-{
-  "name":"eu.timepit.refined.boolean"
-},
-{
-  "name":"eu.timepit.refined.numeric"
-},
-{
-  "name":"eu.timepit.refined.package"
-},
-{
-  "name":"eu.timepit.refined.string"
-},
-{
-  "name":"java.io.IOException"
-},
-{
-  "name":"java.io.ObjectInputStream"
-},
-{
-  "name":"java.io.ObjectOutputStream"
-},
-{
-  "name":"java.io.ObjectStreamField"
-},
-{
-  "name":"java.io.PrintStream"
-},
-{
-  "name":"java.io.PrintWriter"
-},
-{
-  "name":"java.io.Serializable",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.io.UnsupportedEncodingException"
-},
-{
-  "name":"java.lang.AbstractStringBuilder"
-},
-{
-  "name":"java.lang.Boolean"
-},
-{
-  "name":"java.lang.Byte"
-},
-{
-  "name":"java.lang.CharSequence"
-},
-{
-  "name":"java.lang.Character"
-},
-{
-  "name":"java.lang.Class"
-},
-{
-  "name":"java.lang.ClassCastException"
-},
-{
-  "name":"java.lang.ClassNotFoundException"
-},
-{
-  "name":"java.lang.CloneNotSupportedException"
-},
-{
-  "name":"java.lang.Cloneable",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.Comparable",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.Deprecated"
-},
-{
-  "name":"java.lang.Double"
-},
-{
-  "name":"java.lang.Enum"
-},
-{
-  "name":"java.lang.Exception",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.Float"
-},
-{
-  "name":"java.lang.FunctionalInterface"
-},
-{
-  "name":"java.lang.IllegalArgumentException"
-},
-{
-  "name":"java.lang.IndexOutOfBoundsException"
-},
-{
-  "name":"java.lang.Integer"
-},
-{
-  "name":"java.lang.InterruptedException"
-},
-{
-  "name":"java.lang.Iterable"
-},
-{
-  "name":"java.lang.Long"
-},
-{
-  "name":"java.lang.NullPointerException"
-},
-{
-  "name":"java.lang.Number"
-},
-{
-  "name":"java.lang.Object",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.RuntimeException",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.Short"
-},
-{
-  "name":"java.lang.StackTraceElement"
-},
-{
-  "name":"java.lang.String",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.StringBuffer"
-},
-{
-  "name":"java.lang.StringBuilder"
-},
-{
-  "name":"java.lang.String[]"
-},
-{
-  "name":"java.lang.Throwable",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allPublicConstructors":true,
-  "allDeclaredClasses":true
-},
-{
-  "name":"java.lang.Void"
-},
-{
-  "name":"java.lang.annotation.Inherited"
-},
-{
-  "name":"java.lang.annotation.Repeatable"
-},
-{
-  "name":"java.lang.annotation.Retention"
-},
-{
-  "name":"java.lang.annotation.RetentionPolicy"
-},
-{
-  "name":"java.lang.invoke.MethodHandle"
-},
-{
-  "name":"java.lang.invoke.VarHandle",
-  "methods":[{"name":"releaseFence","parameterTypes":[] }]
-},
-{
-  "name":"java.lang.ref.SoftReference"
-},
-{
-  "name":"java.lang.reflect.InvocationTargetException"
-},
-{
-  "name":"java.lang.reflect.Method"
-},
-{
-  "name":"java.nio.ByteBuffer[]"
-},
-{
-  "name":"java.nio.charset.Charset"
-},
-{
-  "name":"java.security.MessageDigestSpi"
-},
-{
-  "name":"java.sql.Date"
-},
-{
-  "name":"java.sql.Timestamp"
-},
-{
-  "name":"java.util.Comparator"
-},
-{
-  "name":"java.util.HashMap"
-},
-{
-  "name":"java.util.List"
-},
-{
-  "name":"java.util.Locale"
-},
-{
-  "name":"java.util.Map"
-},
-{
-  "name":"java.util.Set"
-},
-{
-  "name":"java.util.stream.IntStream"
-},
-{
-  "name":"java.util.stream.Stream"
-},
-{
-  "name":"jdk.internal.HotSpotIntrinsicCandidate"
-},
-{
-  "name":"jdk.internal.vm.annotation.Stable"
-},
-{
-  "name":"org.http4s.blaze.channel.nio1.SelectorLoop[]"
-},
-{
-  "name":"org.http4s.blaze.util.TickWheelExecutor$Bucket[]"
-},
-{
-  "name":"scala.$eq$colon$eq"
-},
-{
-  "name":"scala.$less$colon$less"
-},
-{
-  "name":"scala.AnyVal"
-},
-{
-  "name":"scala.AnyValCompanion"
-},
-{
-  "name":"scala.Array"
-},
-{
-  "name":"scala.Boolean"
-},
-{
-  "name":"scala.Byte"
-},
-{
-  "name":"scala.Char"
-},
-{
-  "name":"scala.DelayedInit"
-},
-{
-  "name":"scala.Double"
-},
-{
-  "name":"scala.DummyImplicit"
-},
-{
-  "name":"scala.Dynamic"
-},
-{
-  "name":"scala.Equals"
-},
-{
-  "name":"scala.Float"
-},
-{
-  "name":"scala.Function0"
-},
-{
-  "name":"scala.Function1"
-},
-{
-  "name":"scala.Function10"
-},
-{
-  "name":"scala.Function11"
-},
-{
-  "name":"scala.Function12"
-},
-{
-  "name":"scala.Function13"
-},
-{
-  "name":"scala.Function14"
-},
-{
-  "name":"scala.Function15"
-},
-{
-  "name":"scala.Function16"
-},
-{
-  "name":"scala.Function17"
-},
-{
-  "name":"scala.Function18"
-},
-{
-  "name":"scala.Function19"
-},
-{
-  "name":"scala.Function2"
-},
-{
-  "name":"scala.Function20"
-},
-{
-  "name":"scala.Function21"
-},
-{
-  "name":"scala.Function22"
-},
-{
-  "name":"scala.Function2[]"
-},
-{
-  "name":"scala.Function3"
-},
-{
-  "name":"scala.Function4"
-},
-{
-  "name":"scala.Function5"
-},
-{
-  "name":"scala.Function6"
-},
-{
-  "name":"scala.Function7"
-},
-{
-  "name":"scala.Function8"
-},
-{
-  "name":"scala.Function9"
-},
-{
-  "name":"scala.Int"
-},
-{
-  "name":"scala.Long"
-},
-{
-  "name":"scala.LowPriorityImplicits"
-},
-{
-  "name":"scala.MatchError"
-},
-{
-  "name":"scala.None"
-},
-{
-  "name":"scala.Option"
-},
-{
-  "name":"scala.PartialFunction"
-},
-{
-  "name":"scala.Predef"
-},
-{
-  "name":"scala.Product"
-},
-{
-  "name":"scala.Product1"
-},
-{
-  "name":"scala.Product10"
-},
-{
-  "name":"scala.Product11"
-},
-{
-  "name":"scala.Product12"
-},
-{
-  "name":"scala.Product13"
-},
-{
-  "name":"scala.Product14"
-},
-{
-  "name":"scala.Product15"
-},
-{
-  "name":"scala.Product16"
-},
-{
-  "name":"scala.Product17"
-},
-{
-  "name":"scala.Product18"
-},
-{
-  "name":"scala.Product19"
-},
-{
-  "name":"scala.Product2"
-},
-{
-  "name":"scala.Product20"
-},
-{
-  "name":"scala.Product21"
-},
-{
-  "name":"scala.Product22"
-},
-{
-  "name":"scala.Product3"
-},
-{
-  "name":"scala.Product4"
-},
-{
-  "name":"scala.Product5"
-},
-{
-  "name":"scala.Product6"
-},
-{
-  "name":"scala.Product7"
-},
-{
-  "name":"scala.Product8"
-},
-{
-  "name":"scala.Product9"
-},
-{
-  "name":"scala.SerialVersionUID"
-},
-{
-  "name":"scala.Short"
-},
-{
-  "name":"scala.Some"
-},
-{
-  "name":"scala.Specializable"
-},
-{
-  "name":"scala.StringContext"
-},
-{
-  "name":"scala.Symbol",
-  "methods":[{"name":"apply","parameterTypes":["java.lang.String"] }]
-},
-{
-  "name":"scala.Tuple1"
-},
-{
-  "name":"scala.Tuple10"
-},
-{
-  "name":"scala.Tuple11"
-},
-{
-  "name":"scala.Tuple12"
-},
-{
-  "name":"scala.Tuple13"
-},
-{
-  "name":"scala.Tuple14"
-},
-{
-  "name":"scala.Tuple15"
-},
-{
-  "name":"scala.Tuple16"
-},
-{
-  "name":"scala.Tuple17"
-},
-{
-  "name":"scala.Tuple18"
-},
-{
-  "name":"scala.Tuple19"
-},
-{
-  "name":"scala.Tuple2"
-},
-{
-  "name":"scala.Tuple20"
-},
-{
-  "name":"scala.Tuple21"
-},
-{
-  "name":"scala.Tuple22"
-},
-{
-  "name":"scala.Tuple3"
-},
-{
-  "name":"scala.Tuple4"
-},
-{
-  "name":"scala.Tuple5"
-},
-{
-  "name":"scala.Tuple6"
-},
-{
-  "name":"scala.Tuple7"
-},
-{
-  "name":"scala.Tuple8"
-},
-{
-  "name":"scala.Tuple9"
-},
-{
-  "name":"scala.UninitializedFieldError"
-},
-{
-  "name":"scala.Unit"
-},
-{
-  "name":"scala.ValueOf"
-},
-{
-  "name":"scala.annotation.Annotation"
-},
-{
-  "name":"scala.annotation.ConstantAnnotation"
-},
-{
-  "name":"scala.annotation.StaticAnnotation"
-},
-{
-  "name":"scala.annotation.TypeConstraint"
-},
-{
-  "name":"scala.annotation.compileTimeOnly"
-},
-{
-  "name":"scala.annotation.elidable"
-},
-{
-  "name":"scala.annotation.implicitAmbiguous"
-},
-{
-  "name":"scala.annotation.implicitNotFound"
-},
-{
-  "name":"scala.annotation.meta.beanGetter"
-},
-{
-  "name":"scala.annotation.meta.beanSetter"
-},
-{
-  "name":"scala.annotation.meta.companionClass"
-},
-{
-  "name":"scala.annotation.meta.companionMethod"
-},
-{
-  "name":"scala.annotation.meta.companionObject"
-},
-{
-  "name":"scala.annotation.meta.field"
-},
-{
-  "name":"scala.annotation.meta.getter"
-},
-{
-  "name":"scala.annotation.meta.languageFeature"
-},
-{
-  "name":"scala.annotation.meta.package"
-},
-{
-  "name":"scala.annotation.meta.param"
-},
-{
-  "name":"scala.annotation.meta.setter"
-},
-{
-  "name":"scala.annotation.migration"
-},
-{
-  "name":"scala.annotation.nowarn"
-},
-{
-  "name":"scala.annotation.showAsInfix"
-},
-{
-  "name":"scala.annotation.strictfp"
-},
-{
-  "name":"scala.annotation.switch"
-},
-{
-  "name":"scala.annotation.tailrec"
-},
-{
-  "name":"scala.annotation.unchecked.uncheckedStable"
-},
-{
-  "name":"scala.annotation.unchecked.uncheckedVariance"
-},
-{
-  "name":"scala.annotation.unspecialized"
-},
-{
-  "name":"scala.annotation.unused"
-},
-{
-  "name":"scala.annotation.varargs"
-},
-{
-  "name":"scala.beans.BeanProperty"
-},
-{
-  "name":"scala.beans.BooleanBeanProperty"
-},
-{
-  "name":"scala.collection.ArrayOps"
-},
-{
-  "name":"scala.collection.BufferedIterator"
-},
-{
-  "name":"scala.collection.Factory"
-},
-{
-  "name":"scala.collection.Iterable"
-},
-{
-  "name":"scala.collection.IterableFactory"
-},
-{
-  "name":"scala.collection.IterableFactoryDefaults"
-},
-{
-  "name":"scala.collection.IterableOnce"
-},
-{
-  "name":"scala.collection.IterableOnceExtensionMethods"
-},
-{
-  "name":"scala.collection.Iterator"
-},
-{
-  "name":"scala.collection.Map"
-},
-{
-  "name":"scala.collection.MapFactory"
-},
-{
-  "name":"scala.collection.Seq"
-},
-{
-  "name":"scala.collection.SeqFactory"
-},
-{
-  "name":"scala.collection.SeqOps"
-},
-{
-  "name":"scala.collection.Set"
-},
-{
-  "name":"scala.collection.StringOps"
-},
-{
-  "name":"scala.collection.immutable.$colon$colon"
-},
-{
-  "name":"scala.collection.immutable.AbstractSeq"
-},
-{
-  "name":"scala.collection.immutable.IndexedSeq"
-},
-{
-  "name":"scala.collection.immutable.Iterable"
-},
-{
-  "name":"scala.collection.immutable.LinearSeq"
-},
-{
-  "name":"scala.collection.immutable.LinearSeqOps"
-},
-{
-  "name":"scala.collection.immutable.List"
-},
-{
-  "name":"scala.collection.immutable.Map"
-},
-{
-  "name":"scala.collection.immutable.Nil"
-},
-{
-  "name":"scala.collection.immutable.Seq"
-},
-{
-  "name":"scala.collection.immutable.Stream"
-},
-{
-  "name":"scala.collection.immutable.package"
-},
-{
-  "name":"scala.collection.package"
-},
-{
-  "name":"scala.concurrent.Future"
-},
-{
-  "name":"scala.concurrent.Promise"
-},
-{
-  "name":"scala.concurrent.package"
-},
-{
-  "name":"scala.deprecated"
-},
-{
-  "name":"scala.deprecatedInheritance"
-},
-{
-  "name":"scala.deprecatedName"
-},
-{
-  "name":"scala.deprecatedOverriding"
-},
-{
-  "name":"scala.inline"
-},
-{
-  "name":"scala.languageFeature"
-},
-{
-  "name":"scala.math.ScalaNumber"
-},
-{
-  "name":"scala.math.package"
-},
-{
-  "name":"scala.native"
-},
-{
-  "name":"scala.noinline"
-},
-{
-  "name":"scala.package"
-},
-{
-  "name":"scala.reflect.ClassManifestFactory"
-},
-{
-  "name":"scala.reflect.ClassTag"
-},
-{
-  "name":"scala.reflect.Manifest"
-},
-{
-  "name":"scala.reflect.ManifestFactory"
-},
-{
-  "name":"scala.reflect.NoManifest"
-},
-{
-  "name":"scala.reflect.OptManifest"
-},
-{
-  "name":"scala.reflect.ScalaLongSignature"
-},
-{
-  "name":"scala.reflect.ScalaSignature",
-  "methods":[{"name":"bytes","parameterTypes":[] }]
-},
-{
-  "name":"scala.reflect.api.Exprs"
-},
-{
-  "name":"scala.reflect.api.JavaUniverse"
-},
-{
-  "name":"scala.reflect.api.Mirror"
-},
-{
-  "name":"scala.reflect.api.Quasiquotes"
-},
-{
-  "name":"scala.reflect.api.TreeCreator"
-},
-{
-  "name":"scala.reflect.api.Trees"
-},
-{
-  "name":"scala.reflect.api.TypeCreator"
-},
-{
-  "name":"scala.reflect.api.TypeTags"
-},
-{
-  "name":"scala.reflect.api.Universe"
-},
-{
-  "name":"scala.reflect.api.package"
-},
-{
-  "name":"scala.reflect.internal.Symbols$Symbol[]"
-},
-{
-  "name":"scala.reflect.internal.Types$Type[]"
-},
-{
-  "name":"scala.reflect.internal.annotations.package"
-},
-{
-  "name":"scala.reflect.internal.annotations.uncheckedBounds"
-},
-{
-  "name":"scala.reflect.macros.blackbox.Context"
-},
-{
-  "name":"scala.reflect.macros.internal.macroImpl"
-},
-{
-  "name":"scala.reflect.macros.package"
-},
-{
-  "name":"scala.reflect.macros.whitebox.Context"
-},
-{
-  "name":"scala.reflect.package"
-},
-{
-  "name":"scala.reflect.runtime.JavaMirrors$JavaMirror$JavaAnnotationProxy[]"
-},
-{
-  "name":"scala.reflect.runtime.package"
-},
-{
-  "name":"scala.runtime.AbstractFunction0"
-},
-{
-  "name":"scala.runtime.AbstractFunction1"
-},
-{
-  "name":"scala.runtime.AbstractFunction10"
-},
-{
-  "name":"scala.runtime.AbstractFunction11"
-},
-{
-  "name":"scala.runtime.AbstractFunction12"
-},
-{
-  "name":"scala.runtime.AbstractFunction13"
-},
-{
-  "name":"scala.runtime.AbstractFunction14"
-},
-{
-  "name":"scala.runtime.AbstractFunction15"
-},
-{
-  "name":"scala.runtime.AbstractFunction16"
-},
-{
-  "name":"scala.runtime.AbstractFunction17"
-},
-{
-  "name":"scala.runtime.AbstractFunction18"
-},
-{
-  "name":"scala.runtime.AbstractFunction19"
-},
-{
-  "name":"scala.runtime.AbstractFunction2"
-},
-{
-  "name":"scala.runtime.AbstractFunction20"
-},
-{
-  "name":"scala.runtime.AbstractFunction21"
-},
-{
-  "name":"scala.runtime.AbstractFunction22"
-},
-{
-  "name":"scala.runtime.AbstractFunction3"
-},
-{
-  "name":"scala.runtime.AbstractFunction4"
-},
-{
-  "name":"scala.runtime.AbstractFunction5"
-},
-{
-  "name":"scala.runtime.AbstractFunction6"
-},
-{
-  "name":"scala.runtime.AbstractFunction7"
-},
-{
-  "name":"scala.runtime.AbstractFunction8"
-},
-{
-  "name":"scala.runtime.AbstractFunction9"
-},
-{
-  "name":"scala.runtime.AbstractPartialFunction"
-},
-{
-  "name":"scala.runtime.BooleanRef"
-},
-{
-  "name":"scala.runtime.BoxedUnit"
-},
-{
-  "name":"scala.runtime.BoxesRunTime"
-},
-{
-  "name":"scala.runtime.ByteRef"
-},
-{
-  "name":"scala.runtime.CharRef"
-},
-{
-  "name":"scala.runtime.DoubleRef"
-},
-{
-  "name":"scala.runtime.EmptyMethodCache"
-},
-{
-  "name":"scala.runtime.FloatRef"
-},
-{
-  "name":"scala.runtime.IntRef"
-},
-{
-  "name":"scala.runtime.LazyBoolean"
-},
-{
-  "name":"scala.runtime.LazyByte"
-},
-{
-  "name":"scala.runtime.LazyChar"
-},
-{
-  "name":"scala.runtime.LazyDouble"
-},
-{
-  "name":"scala.runtime.LazyFloat"
-},
-{
-  "name":"scala.runtime.LazyInt"
-},
-{
-  "name":"scala.runtime.LazyLong"
-},
-{
-  "name":"scala.runtime.LazyRef"
-},
-{
-  "name":"scala.runtime.LazyShort"
-},
-{
-  "name":"scala.runtime.LazyUnit"
-},
-{
-  "name":"scala.runtime.LongRef"
-},
-{
-  "name":"scala.runtime.MethodCache"
-},
-{
-  "name":"scala.runtime.ModuleSerializationProxy"
-},
-{
-  "name":"scala.runtime.NonLocalReturnControl"
-},
-{
-  "name":"scala.runtime.Nothing$"
-},
-{
-  "name":"scala.runtime.Null$"
-},
-{
-  "name":"scala.runtime.ObjectRef"
-},
-{
-  "name":"scala.runtime.ScalaRunTime"
-},
-{
-  "name":"scala.runtime.ShortRef"
-},
-{
-  "name":"scala.runtime.Statics"
-},
-{
-  "name":"scala.runtime.StructuralCallSite"
-},
-{
-  "name":"scala.runtime.SymbolLiteral"
-},
-{
-  "name":"scala.runtime.VolatileBooleanRef"
-},
-{
-  "name":"scala.runtime.VolatileByteRef"
-},
-{
-  "name":"scala.runtime.VolatileCharRef"
-},
-{
-  "name":"scala.runtime.VolatileDoubleRef"
-},
-{
-  "name":"scala.runtime.VolatileFloatRef"
-},
-{
-  "name":"scala.runtime.VolatileIntRef"
-},
-{
-  "name":"scala.runtime.VolatileLongRef"
-},
-{
-  "name":"scala.runtime.VolatileObjectRef"
-},
-{
-  "name":"scala.runtime.VolatileShortRef"
-},
-{
-  "name":"scala.specialized"
-},
-{
-  "name":"scala.throws"
-},
-{
-  "name":"scala.transient"
-},
-{
-  "name":"scala.unchecked"
-},
-{
-  "name":"scala.util.Either[]"
-},
-{
-  "name":"scala.util.Failure"
-},
-{
-  "name":"scala.util.Success"
-},
-{
-  "name":"scala.util.Try"
-},
-{
-  "name":"scala.util.control.NonFatal$"
-},
-{
-  "name":"scala.util.package"
-},
-{
-  "name":"scala.volatile"
-},
-{
-  "name":"scala.xml.TopScope"
-},
-{
-  "name":"scala.xml.package"
-},
-{
-  "name":"sun.security.provider.MD5",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-}
+  {
+    "name": "eu.timepit.refined.BooleanInference0"
+  },
+  {
+    "name": "eu.timepit.refined.NumericInference"
+  },
+  {
+    "name": "eu.timepit.refined.StringInference"
+  },
+  {
+    "name": "eu.timepit.refined.api.Refined"
+  },
+  {
+    "name": "eu.timepit.refined.boolean"
+  },
+  {
+    "name": "eu.timepit.refined.numeric"
+  },
+  {
+    "name": "eu.timepit.refined.package"
+  },
+  {
+    "name": "eu.timepit.refined.string"
+  },
+  {
+    "name": "java.io.IOException"
+  },
+  {
+    "name": "java.io.ObjectInputStream"
+  },
+  {
+    "name": "java.io.ObjectOutputStream"
+  },
+  {
+    "name": "java.io.ObjectStreamField"
+  },
+  {
+    "name": "java.io.PrintStream"
+  },
+  {
+    "name": "java.io.PrintWriter"
+  },
+  {
+    "name": "java.io.Serializable",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.io.UnsupportedEncodingException"
+  },
+  {
+    "name": "java.lang.AbstractStringBuilder"
+  },
+  {
+    "name": "java.lang.Boolean"
+  },
+  {
+    "name": "java.lang.Byte"
+  },
+  {
+    "name": "java.lang.CharSequence"
+  },
+  {
+    "name": "java.lang.Character"
+  },
+  {
+    "name": "java.lang.Class"
+  },
+  {
+    "name": "java.lang.ClassCastException"
+  },
+  {
+    "name": "java.lang.ClassNotFoundException"
+  },
+  {
+    "name": "java.lang.CloneNotSupportedException"
+  },
+  {
+    "name": "java.lang.Cloneable",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.Comparable",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.Deprecated"
+  },
+  {
+    "name": "java.lang.Double"
+  },
+  {
+    "name": "java.lang.Enum"
+  },
+  {
+    "name": "java.lang.Exception",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.Float"
+  },
+  {
+    "name": "java.lang.FunctionalInterface"
+  },
+  {
+    "name": "java.lang.IllegalArgumentException"
+  },
+  {
+    "name": "java.lang.IndexOutOfBoundsException"
+  },
+  {
+    "name": "java.lang.Integer"
+  },
+  {
+    "name": "java.lang.InterruptedException"
+  },
+  {
+    "name": "java.lang.Iterable"
+  },
+  {
+    "name": "java.lang.Long"
+  },
+  {
+    "name": "java.lang.NullPointerException"
+  },
+  {
+    "name": "java.lang.Number"
+  },
+  {
+    "name": "java.lang.Object",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.RuntimeException",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.Short"
+  },
+  {
+    "name": "java.lang.StackTraceElement"
+  },
+  {
+    "name": "java.lang.String",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.StringBuffer"
+  },
+  {
+    "name": "java.lang.StringBuilder"
+  },
+  {
+    "name": "java.lang.String[]"
+  },
+  {
+    "name": "java.lang.Throwable",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name": "java.lang.Void"
+  },
+  {
+    "name": "java.lang.annotation.Inherited"
+  },
+  {
+    "name": "java.lang.annotation.Repeatable"
+  },
+  {
+    "name": "java.lang.annotation.Retention"
+  },
+  {
+    "name": "java.lang.annotation.RetentionPolicy"
+  },
+  {
+    "name": "java.lang.invoke.MethodHandle"
+  },
+  {
+    "name": "java.lang.invoke.VarHandle",
+    "methods": [
+      {
+        "name": "releaseFence",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "java.lang.ref.SoftReference"
+  },
+  {
+    "name": "java.lang.reflect.InvocationTargetException"
+  },
+  {
+    "name": "java.lang.reflect.Method"
+  },
+  {
+    "name": "java.nio.ByteBuffer[]"
+  },
+  {
+    "name": "java.nio.charset.Charset"
+  },
+  {
+    "name": "java.security.MessageDigestSpi"
+  },
+  {
+    "name": "java.sql.Date"
+  },
+  {
+    "name": "java.sql.Timestamp"
+  },
+  {
+    "name": "java.util.Comparator"
+  },
+  {
+    "name": "java.util.HashMap"
+  },
+  {
+    "name": "java.util.List"
+  },
+  {
+    "name": "java.util.Locale"
+  },
+  {
+    "name": "java.util.Map"
+  },
+  {
+    "name": "java.util.Set"
+  },
+  {
+    "name": "java.util.stream.IntStream"
+  },
+  {
+    "name": "java.util.stream.Stream"
+  },
+  {
+    "name": "jdk.internal.HotSpotIntrinsicCandidate"
+  },
+  {
+    "name": "jdk.internal.vm.annotation.Stable"
+  },
+  {
+    "name": "org.http4s.blaze.channel.nio1.SelectorLoop[]"
+  },
+  {
+    "name": "org.http4s.blaze.util.TickWheelExecutor$Bucket[]"
+  },
+  {
+    "name": "scala.$eq$colon$eq"
+  },
+  {
+    "name": "scala.$less$colon$less"
+  },
+  {
+    "name": "scala.AnyVal"
+  },
+  {
+    "name": "scala.AnyValCompanion"
+  },
+  {
+    "name": "scala.Array"
+  },
+  {
+    "name": "scala.Boolean"
+  },
+  {
+    "name": "scala.Byte"
+  },
+  {
+    "name": "scala.Char"
+  },
+  {
+    "name": "scala.DelayedInit"
+  },
+  {
+    "name": "scala.Double"
+  },
+  {
+    "name": "scala.DummyImplicit"
+  },
+  {
+    "name": "scala.Dynamic"
+  },
+  {
+    "name": "scala.Equals"
+  },
+  {
+    "name": "scala.Float"
+  },
+  {
+    "name": "scala.Function0"
+  },
+  {
+    "name": "scala.Function1"
+  },
+  {
+    "name": "scala.Function10"
+  },
+  {
+    "name": "scala.Function11"
+  },
+  {
+    "name": "scala.Function12"
+  },
+  {
+    "name": "scala.Function13"
+  },
+  {
+    "name": "scala.Function14"
+  },
+  {
+    "name": "scala.Function15"
+  },
+  {
+    "name": "scala.Function16"
+  },
+  {
+    "name": "scala.Function17"
+  },
+  {
+    "name": "scala.Function18"
+  },
+  {
+    "name": "scala.Function19"
+  },
+  {
+    "name": "scala.Function2"
+  },
+  {
+    "name": "scala.Function20"
+  },
+  {
+    "name": "scala.Function21"
+  },
+  {
+    "name": "scala.Function22"
+  },
+  {
+    "name": "scala.Function2[]"
+  },
+  {
+    "name": "scala.Function3"
+  },
+  {
+    "name": "scala.Function4"
+  },
+  {
+    "name": "scala.Function5"
+  },
+  {
+    "name": "scala.Function6"
+  },
+  {
+    "name": "scala.Function7"
+  },
+  {
+    "name": "scala.Function8"
+  },
+  {
+    "name": "scala.Function9"
+  },
+  {
+    "name": "scala.Int"
+  },
+  {
+    "name": "scala.Long"
+  },
+  {
+    "name": "scala.LowPriorityImplicits"
+  },
+  {
+    "name": "scala.MatchError"
+  },
+  {
+    "name": "scala.None"
+  },
+  {
+    "name": "scala.Option"
+  },
+  {
+    "name": "scala.PartialFunction"
+  },
+  {
+    "name": "scala.Predef"
+  },
+  {
+    "name": "scala.Product"
+  },
+  {
+    "name": "scala.Product1"
+  },
+  {
+    "name": "scala.Product10"
+  },
+  {
+    "name": "scala.Product11"
+  },
+  {
+    "name": "scala.Product12"
+  },
+  {
+    "name": "scala.Product13"
+  },
+  {
+    "name": "scala.Product14"
+  },
+  {
+    "name": "scala.Product15"
+  },
+  {
+    "name": "scala.Product16"
+  },
+  {
+    "name": "scala.Product17"
+  },
+  {
+    "name": "scala.Product18"
+  },
+  {
+    "name": "scala.Product19"
+  },
+  {
+    "name": "scala.Product2"
+  },
+  {
+    "name": "scala.Product20"
+  },
+  {
+    "name": "scala.Product21"
+  },
+  {
+    "name": "scala.Product22"
+  },
+  {
+    "name": "scala.Product3"
+  },
+  {
+    "name": "scala.Product4"
+  },
+  {
+    "name": "scala.Product5"
+  },
+  {
+    "name": "scala.Product6"
+  },
+  {
+    "name": "scala.Product7"
+  },
+  {
+    "name": "scala.Product8"
+  },
+  {
+    "name": "scala.Product9"
+  },
+  {
+    "name": "scala.SerialVersionUID"
+  },
+  {
+    "name": "scala.Short"
+  },
+  {
+    "name": "scala.Some"
+  },
+  {
+    "name": "scala.Specializable"
+  },
+  {
+    "name": "scala.StringContext"
+  },
+  {
+    "name": "scala.Symbol",
+    "methods": [
+      {
+        "name": "apply",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "scala.Tuple1"
+  },
+  {
+    "name": "scala.Tuple10"
+  },
+  {
+    "name": "scala.Tuple11"
+  },
+  {
+    "name": "scala.Tuple12"
+  },
+  {
+    "name": "scala.Tuple13"
+  },
+  {
+    "name": "scala.Tuple14"
+  },
+  {
+    "name": "scala.Tuple15"
+  },
+  {
+    "name": "scala.Tuple16"
+  },
+  {
+    "name": "scala.Tuple17"
+  },
+  {
+    "name": "scala.Tuple18"
+  },
+  {
+    "name": "scala.Tuple19"
+  },
+  {
+    "name": "scala.Tuple2"
+  },
+  {
+    "name": "scala.Tuple20"
+  },
+  {
+    "name": "scala.Tuple21"
+  },
+  {
+    "name": "scala.Tuple22"
+  },
+  {
+    "name": "scala.Tuple3"
+  },
+  {
+    "name": "scala.Tuple4"
+  },
+  {
+    "name": "scala.Tuple5"
+  },
+  {
+    "name": "scala.Tuple6"
+  },
+  {
+    "name": "scala.Tuple7"
+  },
+  {
+    "name": "scala.Tuple8"
+  },
+  {
+    "name": "scala.Tuple9"
+  },
+  {
+    "name": "scala.UninitializedFieldError"
+  },
+  {
+    "name": "scala.Unit"
+  },
+  {
+    "name": "scala.ValueOf"
+  },
+  {
+    "name": "scala.annotation.Annotation"
+  },
+  {
+    "name": "scala.annotation.ConstantAnnotation"
+  },
+  {
+    "name": "scala.annotation.StaticAnnotation"
+  },
+  {
+    "name": "scala.annotation.TypeConstraint"
+  },
+  {
+    "name": "scala.annotation.compileTimeOnly"
+  },
+  {
+    "name": "scala.annotation.elidable"
+  },
+  {
+    "name": "scala.annotation.implicitAmbiguous"
+  },
+  {
+    "name": "scala.annotation.implicitNotFound"
+  },
+  {
+    "name": "scala.annotation.meta.beanGetter"
+  },
+  {
+    "name": "scala.annotation.meta.beanSetter"
+  },
+  {
+    "name": "scala.annotation.meta.companionClass"
+  },
+  {
+    "name": "scala.annotation.meta.companionMethod"
+  },
+  {
+    "name": "scala.annotation.meta.companionObject"
+  },
+  {
+    "name": "scala.annotation.meta.field"
+  },
+  {
+    "name": "scala.annotation.meta.getter"
+  },
+  {
+    "name": "scala.annotation.meta.languageFeature"
+  },
+  {
+    "name": "scala.annotation.meta.package"
+  },
+  {
+    "name": "scala.annotation.meta.param"
+  },
+  {
+    "name": "scala.annotation.meta.setter"
+  },
+  {
+    "name": "scala.annotation.migration"
+  },
+  {
+    "name": "scala.annotation.nowarn"
+  },
+  {
+    "name": "scala.annotation.showAsInfix"
+  },
+  {
+    "name": "scala.annotation.strictfp"
+  },
+  {
+    "name": "scala.annotation.switch"
+  },
+  {
+    "name": "scala.annotation.tailrec"
+  },
+  {
+    "name": "scala.annotation.unchecked.uncheckedStable"
+  },
+  {
+    "name": "scala.annotation.unchecked.uncheckedVariance"
+  },
+  {
+    "name": "scala.annotation.unspecialized"
+  },
+  {
+    "name": "scala.annotation.unused"
+  },
+  {
+    "name": "scala.annotation.varargs"
+  },
+  {
+    "name": "scala.beans.BeanProperty"
+  },
+  {
+    "name": "scala.beans.BooleanBeanProperty"
+  },
+  {
+    "name": "scala.collection.ArrayOps"
+  },
+  {
+    "name": "scala.collection.BufferedIterator"
+  },
+  {
+    "name": "scala.collection.Factory"
+  },
+  {
+    "name": "scala.collection.Iterable"
+  },
+  {
+    "name": "scala.collection.IterableFactory"
+  },
+  {
+    "name": "scala.collection.IterableFactoryDefaults"
+  },
+  {
+    "name": "scala.collection.IterableOnce"
+  },
+  {
+    "name": "scala.collection.IterableOnceExtensionMethods"
+  },
+  {
+    "name": "scala.collection.Iterator"
+  },
+  {
+    "name": "scala.collection.Map"
+  },
+  {
+    "name": "scala.collection.MapFactory"
+  },
+  {
+    "name": "scala.collection.Seq"
+  },
+  {
+    "name": "scala.collection.SeqFactory"
+  },
+  {
+    "name": "scala.collection.SeqOps"
+  },
+  {
+    "name": "scala.collection.Set"
+  },
+  {
+    "name": "scala.collection.StringOps"
+  },
+  {
+    "name": "scala.collection.immutable.$colon$colon"
+  },
+  {
+    "name": "scala.collection.immutable.AbstractSeq"
+  },
+  {
+    "name": "scala.collection.immutable.IndexedSeq"
+  },
+  {
+    "name": "scala.collection.immutable.Iterable"
+  },
+  {
+    "name": "scala.collection.immutable.LinearSeq"
+  },
+  {
+    "name": "scala.collection.immutable.LinearSeqOps"
+  },
+  {
+    "name": "scala.collection.immutable.List"
+  },
+  {
+    "name": "scala.collection.immutable.Map"
+  },
+  {
+    "name": "scala.collection.immutable.Nil"
+  },
+  {
+    "name": "scala.collection.immutable.Seq"
+  },
+  {
+    "name": "scala.collection.immutable.Stream"
+  },
+  {
+    "name": "scala.collection.immutable.package"
+  },
+  {
+    "name": "scala.collection.package"
+  },
+  {
+    "name": "scala.concurrent.Future"
+  },
+  {
+    "name": "scala.concurrent.Promise"
+  },
+  {
+    "name": "scala.concurrent.package"
+  },
+  {
+    "name": "scala.deprecated"
+  },
+  {
+    "name": "scala.deprecatedInheritance"
+  },
+  {
+    "name": "scala.deprecatedName"
+  },
+  {
+    "name": "scala.deprecatedOverriding"
+  },
+  {
+    "name": "scala.inline"
+  },
+  {
+    "name": "scala.languageFeature"
+  },
+  {
+    "name": "scala.math.ScalaNumber"
+  },
+  {
+    "name": "scala.math.package"
+  },
+  {
+    "name": "scala.native"
+  },
+  {
+    "name": "scala.noinline"
+  },
+  {
+    "name": "scala.package"
+  },
+  {
+    "name": "scala.reflect.ClassManifestFactory"
+  },
+  {
+    "name": "scala.reflect.ClassTag"
+  },
+  {
+    "name": "scala.reflect.Manifest"
+  },
+  {
+    "name": "scala.reflect.ManifestFactory"
+  },
+  {
+    "name": "scala.reflect.NoManifest"
+  },
+  {
+    "name": "scala.reflect.OptManifest"
+  },
+  {
+    "name": "scala.reflect.ScalaLongSignature"
+  },
+  {
+    "name": "scala.reflect.ScalaSignature",
+    "methods": [
+      {
+        "name": "bytes",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "scala.reflect.api.Exprs"
+  },
+  {
+    "name": "scala.reflect.api.JavaUniverse"
+  },
+  {
+    "name": "scala.reflect.api.Mirror"
+  },
+  {
+    "name": "scala.reflect.api.Quasiquotes"
+  },
+  {
+    "name": "scala.reflect.api.TreeCreator"
+  },
+  {
+    "name": "scala.reflect.api.Trees"
+  },
+  {
+    "name": "scala.reflect.api.TypeCreator"
+  },
+  {
+    "name": "scala.reflect.api.TypeTags"
+  },
+  {
+    "name": "scala.reflect.api.Universe"
+  },
+  {
+    "name": "scala.reflect.api.package"
+  },
+  {
+    "name": "scala.reflect.internal.Symbols$Symbol[]"
+  },
+  {
+    "name": "scala.reflect.internal.Types$Type[]"
+  },
+  {
+    "name": "scala.reflect.internal.annotations.package"
+  },
+  {
+    "name": "scala.reflect.internal.annotations.uncheckedBounds"
+  },
+  {
+    "name": "scala.reflect.macros.blackbox.Context"
+  },
+  {
+    "name": "scala.reflect.macros.internal.macroImpl"
+  },
+  {
+    "name": "scala.reflect.macros.package"
+  },
+  {
+    "name": "scala.reflect.macros.whitebox.Context"
+  },
+  {
+    "name": "scala.reflect.package"
+  },
+  {
+    "name": "scala.reflect.runtime.JavaMirrors$JavaMirror$JavaAnnotationProxy[]"
+  },
+  {
+    "name": "scala.reflect.runtime.package"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction0"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction1"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction10"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction11"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction12"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction13"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction14"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction15"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction16"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction17"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction18"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction19"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction2"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction20"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction21"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction22"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction3"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction4"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction5"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction6"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction7"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction8"
+  },
+  {
+    "name": "scala.runtime.AbstractFunction9"
+  },
+  {
+    "name": "scala.runtime.AbstractPartialFunction"
+  },
+  {
+    "name": "scala.runtime.BooleanRef"
+  },
+  {
+    "name": "scala.runtime.BoxedUnit"
+  },
+  {
+    "name": "scala.runtime.BoxesRunTime"
+  },
+  {
+    "name": "scala.runtime.ByteRef"
+  },
+  {
+    "name": "scala.runtime.CharRef"
+  },
+  {
+    "name": "scala.runtime.DoubleRef"
+  },
+  {
+    "name": "scala.runtime.EmptyMethodCache"
+  },
+  {
+    "name": "scala.runtime.FloatRef"
+  },
+  {
+    "name": "scala.runtime.IntRef"
+  },
+  {
+    "name": "scala.runtime.LazyBoolean"
+  },
+  {
+    "name": "scala.runtime.LazyByte"
+  },
+  {
+    "name": "scala.runtime.LazyChar"
+  },
+  {
+    "name": "scala.runtime.LazyDouble"
+  },
+  {
+    "name": "scala.runtime.LazyFloat"
+  },
+  {
+    "name": "scala.runtime.LazyInt"
+  },
+  {
+    "name": "scala.runtime.LazyLong"
+  },
+  {
+    "name": "scala.runtime.LazyRef"
+  },
+  {
+    "name": "scala.runtime.LazyShort"
+  },
+  {
+    "name": "scala.runtime.LazyUnit"
+  },
+  {
+    "name": "scala.runtime.LongRef"
+  },
+  {
+    "name": "scala.runtime.MethodCache"
+  },
+  {
+    "name": "scala.runtime.ModuleSerializationProxy"
+  },
+  {
+    "name": "scala.runtime.NonLocalReturnControl"
+  },
+  {
+    "name": "scala.runtime.Nothing$"
+  },
+  {
+    "name": "scala.runtime.Null$"
+  },
+  {
+    "name": "scala.runtime.ObjectRef"
+  },
+  {
+    "name": "scala.runtime.ScalaRunTime"
+  },
+  {
+    "name": "scala.runtime.ShortRef"
+  },
+  {
+    "name": "scala.runtime.Statics"
+  },
+  {
+    "name": "scala.runtime.StructuralCallSite"
+  },
+  {
+    "name": "scala.runtime.SymbolLiteral"
+  },
+  {
+    "name": "scala.runtime.VolatileBooleanRef"
+  },
+  {
+    "name": "scala.runtime.VolatileByteRef"
+  },
+  {
+    "name": "scala.runtime.VolatileCharRef"
+  },
+  {
+    "name": "scala.runtime.VolatileDoubleRef"
+  },
+  {
+    "name": "scala.runtime.VolatileFloatRef"
+  },
+  {
+    "name": "scala.runtime.VolatileIntRef"
+  },
+  {
+    "name": "scala.runtime.VolatileLongRef"
+  },
+  {
+    "name": "scala.runtime.VolatileObjectRef"
+  },
+  {
+    "name": "scala.runtime.VolatileShortRef"
+  },
+  {
+    "name": "scala.specialized"
+  },
+  {
+    "name": "scala.throws"
+  },
+  {
+    "name": "scala.transient"
+  },
+  {
+    "name": "scala.unchecked"
+  },
+  {
+    "name": "scala.util.Either[]"
+  },
+  {
+    "name": "scala.util.Failure"
+  },
+  {
+    "name": "scala.util.Success"
+  },
+  {
+    "name": "scala.util.Try"
+  },
+  {
+    "name": "scala.util.control.NonFatal$"
+  },
+  {
+    "name": "scala.util.package"
+  },
+  {
+    "name": "scala.volatile"
+  },
+  {
+    "name": "scala.xml.TopScope"
+  },
+  {
+    "name": "scala.xml.package"
+  },
+  {
+    "name": "sun.security.provider.MD5",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  }
 ]
