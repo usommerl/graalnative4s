@@ -6,7 +6,7 @@ ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "open
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apispec-model" % "early-semver"
 
 val v = new {
-  val apispec = "0.9.0"
+  val apispec = "0.10.0"
   val circe   = "0.14.7"
   val ciris   = "3.5.0"
   val http4s  = "0.23.26"
