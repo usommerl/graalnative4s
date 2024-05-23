@@ -13,7 +13,7 @@ val v = new {
   val odin    = "0.13.0"
   val tapir   = "1.10.7"
   val munit   = "0.7.29"
-  val munitCE = "1.0.7"
+  val munitCE = "2.0.0"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -45,7 +45,7 @@ lazy val graalnative4s = project
       "org.http4s"                    %% "http4s-circe"        % v.http4s,
       "org.http4s"                    %% "http4s-dsl"          % v.http4s,
       "org.scalameta"                 %% "munit"               % v.munit   % Test,
-      "org.typelevel"                 %% "munit-cats-effect-3" % v.munitCE % Test
+      "org.typelevel"                 %% "munit-cats-effect"   % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys                    := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
