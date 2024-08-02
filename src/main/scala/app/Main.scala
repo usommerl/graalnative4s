@@ -10,17 +10,16 @@ import io.odin.*
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.{middleware, Server}
 
-object Main extends IOApp {
+object Main extends IOApp.Simple {
 
-  def run(args: List[String]): IO[ExitCode] =
-    app.config.resource[IO].flatMap(runF[IO](_, FunctionK.id)).useForever
+  def run: IO[Unit] = app.config.resource[IO].flatMap(runF[IO](_, FunctionK.id)).useForever
 
   def runF[F[_]: Async: Network](config: Config, functionK: F ~> IO): Resource[F, Unit] =
-    for {
+    for
       logger <- makeLogger[F](config.logger, functionK)
       _      <- Resource.eval(logger.info(startMessage))
       _      <- makeServer[F](config.server)
-    } yield ()
+    yield ()
 
   private def makeLogger[F[_]: Async](config: LoggerConfig, functionK: F ~> IO): Resource[F, Logger[F]] =
     Resource
