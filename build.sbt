@@ -1,6 +1,5 @@
-ThisBuild / scalaVersion                                   := "2.13.14"
-ThisBuild / organization                                   := "dev.usommerl"
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
+ThisBuild / scalaVersion := "3.4.2"
+ThisBuild / organization := "dev.usommerl"
 
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "openapi-model" % "early-semver"
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apispec-model" % "early-semver"
@@ -22,9 +21,7 @@ lazy val graalnative4s = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
-    scalacOptions ++= Seq("-Xsource:3-cross"),
     libraryDependencies ++= Seq(
-      compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml"  % v.apispec,
       "com.softwaremill.sttp.tapir"   %% "tapir-core"          % v.tapir,
       "com.softwaremill.sttp.tapir"   %% "tapir-http4s-server" % v.tapir,

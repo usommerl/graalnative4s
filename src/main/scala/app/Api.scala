@@ -1,29 +1,27 @@
 package app
 
-import cats.Applicative
 import cats.data.Kleisli
 import cats.effect.kernel.Async
-import cats.implicits._
+import cats.syntax.all.*
 import dev.usommerl.BuildInfo
 import eu.timepit.refined.api.Refined
-import eu.timepit.refined.auto._
-import eu.timepit.refined.collection._
-import io.circe.generic.auto._
+import eu.timepit.refined.collection.*
+import io.circe.generic.auto.*
 import org.http4s.{HttpRoutes, Request, Response}
 import org.http4s.dsl.Http4sDsl
 import org.http4s.headers.Location
-import org.http4s.implicits._
+import org.http4s.implicits.*
 import org.http4s.server.middleware.CORS
 import sttp.model.StatusCode
 import sttp.apispec.openapi.OpenAPI
 import sttp.apispec.Tag
 import sttp.apispec.openapi.Info as OpenApiInfo
 import sttp.apispec.openapi.Server
-import sttp.apispec.openapi.circe.yaml._
-import sttp.tapir._
-import sttp.tapir.codec.refined._
-import sttp.tapir.docs.openapi._
-import sttp.tapir.generic.auto._
+import sttp.apispec.openapi.circe.yaml.*
+import sttp.tapir.*
+import sttp.tapir.codec.refined.*
+import sttp.tapir.docs.openapi.*
+import sttp.tapir.generic.auto.*
 import sttp.tapir.json.circe.jsonBody
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.server.http4s.Http4sServerInterpreter
@@ -39,7 +37,7 @@ object Api {
 
     val docs: OpenAPI = OpenAPIDocsInterpreter()
       .toOpenAPI(apis.flatMap(_.endpoints), OpenApiInfo(BuildInfo.name, BuildInfo.version, description = config.description))
-      .servers(List(Server(config.serverUrl)))
+      .servers(List(Server(config.server.toString)))
       .tags(apis.map(_.tag))
 
     val swaggerUi: HttpRoutes[F]          = Http4sServerInterpreter().toRoutes(SwaggerUI[F](docs.toYaml))
@@ -51,7 +49,7 @@ object Api {
 }
 
 object Examples {
-  def apply[F[_]: Async]()(implicit F: Applicative[F]) = new TapirApi[F] {
+  def apply[F[_]: Async]() = new TapirApi[F] {
     override val tag: Tag                                           = Tag("Getting started", None)
     override lazy val serverEndpoints: List[ServerEndpoint[Any, F]] = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
@@ -64,17 +62,15 @@ object Examples {
         .out(jsonBody[Info])
         .errorOut(statusCode)
         .serverLogic(_ =>
-          F.pure(
-            Info(
-              BuildInfo.name,
-              BuildInfo.version,
-              System.getProperty("java.vm.version"),
-              BuildInfo.scalaVersion,
-              BuildInfo.sbtVersion,
-              BuildInfo.builtAtString,
-              BuildInfo.test_libraryDependencies.sorted
-            ).asRight
-          )
+          Info(
+            BuildInfo.name,
+            BuildInfo.version,
+            System.getProperty("java.vm.version"),
+            BuildInfo.scalaVersion,
+            BuildInfo.sbtVersion,
+            BuildInfo.builtAtString,
+            BuildInfo.test_libraryDependencies.sorted
+          ).asRight.pure
         )
 
     private val hello: ServerEndpoint.Full[Unit, Unit, Option[NonEmptyString], StatusCode, String, Any, F] =
@@ -85,7 +81,7 @@ object Examples {
         .in(query[Option[NonEmptyString]]("name").description("Optional name to greet"))
         .out(stringBody)
         .errorOut(statusCode)
-        .serverLogic(name => F.pure(s"Hello ${name.getOrElse("World")}!".asRight))
+        .serverLogic(name => s"Hello ${name.getOrElse("World")}!".asRight.pure)
 
     case class Info(
       name: String,
@@ -102,6 +98,6 @@ object Examples {
 abstract class TapirApi[F[_]: Async] {
   def tag: Tag
   def serverEndpoints: List[ServerEndpoint[Any, F]]
-  def endpoints: List[Endpoint[_, _, _, _, _]] = serverEndpoints.map(_.endpoint)
+  def endpoints: List[Endpoint[?, ?, ?, ?, ?]] = serverEndpoints.map(_.endpoint)
   def routes: HttpRoutes[F]                    = Http4sServerInterpreter().toRoutes(serverEndpoints)
 }
