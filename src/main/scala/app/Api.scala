@@ -1,6 +1,5 @@
 package app
 
-import cats.Applicative
 import cats.data.Kleisli
 import cats.effect.kernel.Async
 import cats.syntax.all.*
@@ -50,7 +49,7 @@ object Api {
 }
 
 object Examples {
-  def apply[F[_]: Async]()(implicit F: Applicative[F]) = new TapirApi[F] {
+  def apply[F[_]: Async]() = new TapirApi[F] {
     override val tag: Tag                                           = Tag("Getting started", None)
     override lazy val serverEndpoints: List[ServerEndpoint[Any, F]] = List(info, hello)
     type NonEmptyString = String Refined NonEmpty
@@ -63,17 +62,15 @@ object Examples {
         .out(jsonBody[Info])
         .errorOut(statusCode)
         .serverLogic(_ =>
-          F.pure(
-            Info(
-              BuildInfo.name,
-              BuildInfo.version,
-              System.getProperty("java.vm.version"),
-              BuildInfo.scalaVersion,
-              BuildInfo.sbtVersion,
-              BuildInfo.builtAtString,
-              BuildInfo.test_libraryDependencies.sorted
-            ).asRight
-          )
+          Info(
+            BuildInfo.name,
+            BuildInfo.version,
+            System.getProperty("java.vm.version"),
+            BuildInfo.scalaVersion,
+            BuildInfo.sbtVersion,
+            BuildInfo.builtAtString,
+            BuildInfo.test_libraryDependencies.sorted
+          ).asRight.pure
         )
 
     private val hello: ServerEndpoint.Full[Unit, Unit, Option[NonEmptyString], StatusCode, String, Any, F] =
@@ -84,7 +81,7 @@ object Examples {
         .in(query[Option[NonEmptyString]]("name").description("Optional name to greet"))
         .out(stringBody)
         .errorOut(statusCode)
-        .serverLogic(name => F.pure(s"Hello ${name.getOrElse("World")}!".asRight))
+        .serverLogic(name => s"Hello ${name.getOrElse("World")}!".asRight.pure)
 
     case class Info(
       name: String,

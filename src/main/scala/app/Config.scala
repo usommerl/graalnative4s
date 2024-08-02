@@ -37,16 +37,11 @@ package object app {
     env("LOG_FORMATTER").as[Formatter].default(Formatter.colorful)
   ).parMapN(LoggerConfig.apply)
 
-  private implicit lazy val portDecoder: ConfigDecoder[String, Port] =
-    ConfigDecoder[String, String].mapOption("Port")(Port.fromString)
+  given ConfigDecoder[String, Port] = ConfigDecoder[String, String].mapOption("Port")(Port.fromString)
+  given ConfigDecoder[String, Host] = ConfigDecoder[String, String].mapOption("Host")(Host.fromString)
+  given ConfigDecoder[String, Uri]  = ConfigDecoder[String, String].mapOption("Uri")(Uri.fromString(_).toOption)
 
-  private implicit lazy val hostDecoder: ConfigDecoder[String, Host] =
-    ConfigDecoder[String, String].mapOption("Host")(Host.fromString)
-
-  private implicit lazy val uriDecoder: ConfigDecoder[String, Uri] =
-    ConfigDecoder[String, String].mapOption("Uri")(Uri.fromString(_).toOption)
-
-  private implicit lazy val logLevelDecoder: ConfigDecoder[String, Level] =
+  given ConfigDecoder[String, Level] =
     ConfigDecoder[String, String].mapOption("Level")(_.toLowerCase match {
       case "trace" => Level.Trace.some
       case "debug" => Level.Debug.some
@@ -56,7 +51,7 @@ package object app {
       case _       => None
     })
 
-  private implicit lazy val logFormatterDecoder: ConfigDecoder[String, Formatter] =
+  given ConfigDecoder[String, Formatter] =
     ConfigDecoder[String, String].mapOption("Formatter")(_.toLowerCase match {
       case "default"  => Formatter.default.some
       case "colorful" => Formatter.colorful.some
