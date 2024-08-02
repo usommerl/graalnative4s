@@ -2,7 +2,7 @@ package app
 
 import cats.arrow.FunctionK
 import cats.effect.{Resource, *}
-import cats.implicits.*
+import cats.syntax.all.*
 import cats.~>
 import dev.usommerl.BuildInfo
 import fs2.io.net.Network

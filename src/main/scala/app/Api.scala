@@ -3,7 +3,7 @@ package app
 import cats.Applicative
 import cats.data.Kleisli
 import cats.effect.kernel.Async
-import cats.implicits.*
+import cats.syntax.all.*
 import dev.usommerl.BuildInfo
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.collection.*

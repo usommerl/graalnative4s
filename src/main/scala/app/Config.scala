@@ -1,6 +1,6 @@
 package app
 
-import cats.implicits.*
+import cats.syntax.all.*
 import ciris.{Effect, *}
 import com.comcast.ip4s.{Host, Port}
 import io.odin.Level
