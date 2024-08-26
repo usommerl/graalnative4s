@@ -12,12 +12,10 @@ import org.http4s.dsl.Http4sDsl
 import org.http4s.headers.Location
 import org.http4s.implicits.*
 import org.http4s.server.middleware.CORS
-import sttp.model.StatusCode
-import sttp.apispec.openapi.OpenAPI
 import sttp.apispec.Tag
-import sttp.apispec.openapi.Info as OpenApiInfo
-import sttp.apispec.openapi.Server
+import sttp.apispec.openapi.{Info as OpenApiInfo, OpenAPI, Server}
 import sttp.apispec.openapi.circe.yaml.*
+import sttp.model.StatusCode
 import sttp.tapir.*
 import sttp.tapir.codec.refined.*
 import sttp.tapir.docs.openapi.*

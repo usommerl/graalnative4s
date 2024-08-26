@@ -1,30 +1,36 @@
 package app
 
-import cats.arrow.FunctionK
-import cats.effect.{Resource, *}
-import cats.syntax.all.*
-import cats.~>
+import cats.effect.*
+import cats.effect.std.Dispatcher
 import dev.usommerl.BuildInfo
 import fs2.io.net.Network
-import io.odin.*
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.{middleware, Server}
+import org.legogroup.woof.{*, given}
+import org.legogroup.woof.Logger.*
+import org.legogroup.woof.slf4j.*
 
 object Main extends IOApp.Simple {
 
-  def run: IO[Unit] = app.config.resource[IO].flatMap(runF[IO](_, FunctionK.id)).useForever
+  def run: IO[Unit] = makeResources.useForever
 
-  def runF[F[_]: Async: Network](config: Config, functionK: F ~> IO): Resource[F, Unit] =
+  def makeResources: Resource[IO, Unit] =
     for
-      logger <- makeLogger[F](config.logger, functionK)
-      _      <- Resource.eval(logger.info(startMessage))
-      _      <- makeServer[F](config.server)
+      config           <- app.config.resource[IO]
+      given Logger[IO] <- makeIoLogger(config.logger)
+      _                <- logStart
+      _                <- makeServer[IO](config.server)
     yield ()
 
-  private def makeLogger[F[_]: Async](config: LoggerConfig, functionK: F ~> IO): Resource[F, Logger[F]] =
-    Resource
-      .pure[F, Logger[F]](consoleLogger[F](config.formatter, config.level))
-      .evalTap(logger => Sync[F].delay(OdinInterop.globalLogger.set(logger.mapK(functionK).some)))
+  private def makeIoLogger(config: LoggerConfig): Resource[IO, Logger[IO]] =
+    Dispatcher.sequential[IO].flatMap { implicit dispatcher =>
+      given Printer = config.printer
+      given Filter  = Filter.atLeastLevel(config.level)
+      for
+        logger <- Resource.eval(DefaultLogger.makeIo(Output.fromConsole))
+        _      <- Resource.eval(logger.registerSlf4j)
+      yield logger
+    }
 
   private def makeServer[F[_]: Async: Network](config: ServerConfig): Resource[F, Server] =
     EmberServerBuilder
@@ -34,13 +40,11 @@ object Main extends IOApp.Simple {
       .withHttpApp(middleware.Logger.httpApp(logHeaders = true, logBody = false)(Api[F](config.apiDocs)))
       .build
 
-  private lazy val startMessage: String =
-    "STARTED [ name: %s, version: %s, vmVersion: %s, scalaVersion: %s, sbtVersion: %s, builtAt: %s ]".format(
-      BuildInfo.name,
-      BuildInfo.version,
-      System.getProperty("java.vm.version"),
-      BuildInfo.scalaVersion,
-      BuildInfo.sbtVersion,
-      BuildInfo.builtAtString
+  def logStart(using logger: Logger[IO]): Resource[IO, Unit] = {
+    val keys    = Set("name", "version", "scalaVersion", "sbtVersion", "builtAtString")
+    val context = BuildInfo.toMap.view.filterKeys(keys.contains).mapValues(_.toString).toSeq ++ Seq(
+      "vmVersion" -> System.getProperty("java.vm.version")
     )
+    Resource.eval(logger.info("STARTED").withLogContext(context*))
+  }
 }

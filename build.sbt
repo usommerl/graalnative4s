@@ -9,10 +9,10 @@ val v = new {
   val circe   = "0.14.9"
   val ciris   = "3.6.0"
   val http4s  = "0.23.27"
-  val odin    = "0.13.0"
   val tapir   = "1.11.1"
   val munit   = "1.0.1"
   val munitCE = "2.0.0"
+  val woof    = "0.7.0"
 }
 
 val upx = "UPX_COMPRESSION"
@@ -29,9 +29,6 @@ lazy val graalnative4s = project
       "com.softwaremill.sttp.tapir"   %% "tapir-openapi-docs"  % v.tapir,
       "com.softwaremill.sttp.tapir"   %% "tapir-refined"       % v.tapir,
       "com.softwaremill.sttp.tapir"   %% "tapir-swagger-ui"    % v.tapir,
-      "com.github.valskalla"          %% "odin-core"           % v.odin,
-      "com.github.valskalla"          %% "odin-json"           % v.odin,
-      "com.github.valskalla"          %% "odin-slf4j"          % v.odin,
       "io.circe"                      %% "circe-core"          % v.circe,
       "io.circe"                      %% "circe-generic"       % v.circe,
       "io.circe"                      %% "circe-parser"        % v.circe,
@@ -41,13 +38,15 @@ lazy val graalnative4s = project
       "org.http4s"                    %% "http4s-ember-server" % v.http4s,
       "org.http4s"                    %% "http4s-circe"        % v.http4s,
       "org.http4s"                    %% "http4s-dsl"          % v.http4s,
+      "org.legogroup"                 %% "woof-core"           % v.woof,
+      "org.legogroup"                 %% "woof-slf4j"          % v.woof,
       "org.scalameta"                 %% "munit"               % v.munit   % Test,
       "org.typelevel"                 %% "munit-cats-effect"   % v.munitCE % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     buildInfoKeys                    := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, Test / libraryDependencies),
     buildInfoPackage                 := organization.value,
-    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime),
+    buildInfoOptions ++= Seq[BuildInfoOption](BuildInfoOption.BuildTime, BuildInfoOption.ToMap),
     semanticdbEnabled                := true,
     semanticdbVersion                := scalafixSemanticdb.revision,
     docker / dockerfile              := NativeDockerfile(file("Dockerfile")),
