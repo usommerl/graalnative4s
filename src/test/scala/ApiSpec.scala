@@ -6,12 +6,11 @@ import dev.usommerl.BuildInfo
 import io.circe.Json
 import io.circe.literal.*
 import munit.CatsEffectSuite
-import org.http4s.{Charset, Request, Response, Status}
+import org.http4s.{Charset, Request, Response, Status, Uri}
 import org.http4s.MediaType.*
 import org.http4s.dsl.io.*
 import org.http4s.headers.{`Content-Type`, `Location`}
 import org.http4s.implicits.*
-import org.http4s.Uri
 
 class ApiSpec extends ApiSuite {
 
