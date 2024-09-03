@@ -9,7 +9,7 @@ val v = new {
   val circe   = "0.14.9"
   val ciris   = "3.6.0"
   val http4s  = "0.23.27"
-  val odin    = "0.13.0"
+  val odin    = "0.14.0"
   val tapir   = "1.11.1"
   val munit   = "1.0.1"
   val munitCE = "2.0.0"
@@ -29,9 +29,9 @@ lazy val graalnative4s = project
       "com.softwaremill.sttp.tapir"   %% "tapir-openapi-docs"  % v.tapir,
       "com.softwaremill.sttp.tapir"   %% "tapir-refined"       % v.tapir,
       "com.softwaremill.sttp.tapir"   %% "tapir-swagger-ui"    % v.tapir,
-      "com.github.valskalla"          %% "odin-core"           % v.odin,
-      "com.github.valskalla"          %% "odin-json"           % v.odin,
-      "com.github.valskalla"          %% "odin-slf4j"          % v.odin,
+      "dev.scalafreaks"               %% "odin-core"           % v.odin,
+      "dev.scalafreaks"               %% "odin-json"           % v.odin,
+      "dev.scalafreaks"               %% "odin-slf4j"          % v.odin,
       "io.circe"                      %% "circe-core"          % v.circe,
       "io.circe"                      %% "circe-generic"       % v.circe,
       "io.circe"                      %% "circe-parser"        % v.circe,
