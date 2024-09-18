@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/native-image-community:22.0.2-muslib-ol9 as builder
+FROM ghcr.io/graalvm/native-image-community:23.0.0-muslib-ol9 as builder
 
 ARG upx_compression
 ARG print_reports
