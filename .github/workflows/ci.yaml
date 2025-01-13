@@ -11,8 +11,10 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        distribution: 'adopt'
-        java-version: 11
+        distribution: temurin
+        java-version: 17
+        cache: sbt
+    - uses: sbt/setup-sbt@v1
     - name: Run tests
       run: sbt coverage test coverageReport
     - name: Upload coverage reports
