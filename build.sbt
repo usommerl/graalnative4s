@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.7.2"
+ThisBuild / scalaVersion := "3.7.3"
 ThisBuild / organization := "dev.usommerl"
 
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "openapi-model" % "early-semver"
