@@ -6,7 +6,7 @@ ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apis
 
 val v = new {
   val apispec = "0.11.10"
-  val circe   = "0.14.14"
+  val circe   = "0.14.15"
   val ciris   = "3.11.0"
   val http4s  = "0.23.32"
   val odin    = "0.14.0"
