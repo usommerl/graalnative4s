@@ -10,7 +10,7 @@ val v = new {
   val ciris   = "3.12.0"
   val http4s  = "0.23.33"
   val odin    = "0.14.0"
-  val tapir   = "1.13.10"
+  val tapir   = "1.13.11"
   val munit   = "1.2.4"
   val munitCE = "2.2.0"
 }
