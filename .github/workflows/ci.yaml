@@ -54,7 +54,7 @@ jobs:
         cache: sbt
     - uses: sbt/setup-sbt@v1
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@v4.0.0
+      uses: docker/login-action@v4.1.0
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
@@ -72,7 +72,7 @@ jobs:
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
     - name: Login to Google Artifact Registry
-      uses: docker/login-action@v4.0.0
+      uses: docker/login-action@v4.1.0
       with:
         registry: eu.gcr.io
         username: _json_key
