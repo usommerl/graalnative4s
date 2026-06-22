@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v7.0.0
     - name: Set up JDK
       uses: actions/setup-java@v5
       with:
@@ -18,7 +18,7 @@ jobs:
     - name: Run tests
       run: sbt coverage test coverageReport
     - name: Upload coverage reports
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7
       with:
         fail_ci_if_error: true
         verbose: true
@@ -29,9 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v7.0.0
     - name: Create GitHub release draft
-      uses: release-drafter/release-drafter@v6
+      uses: release-drafter/release-drafter@v7
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -45,7 +45,7 @@ jobs:
       packages: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v7.0.0
     - name: Set up JDK
       uses: actions/setup-java@v5
       with:
@@ -54,7 +54,7 @@ jobs:
         cache: sbt
     - uses: sbt/setup-sbt@v1
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@v3.5.0
+      uses: docker/login-action@v4.2.0
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
@@ -71,11 +71,11 @@ jobs:
         export IMAGE_GCR=$(echo $IMAGE_GHCR | sed 's/ghcr.io\/usommerl/eu.gcr.io\/usommerl-02/')
         docker tag $IMAGE_GHCR $IMAGE_GCR
         echo "image_gcr=$IMAGE_GCR" >> $GITHUB_ENV
-    - name: Login to Google Container Registry
-      uses: docker/login-action@v3.5.0
+    - name: Login to Google Artifact Registry
+      uses: docker/login-action@v4.2.0
       with:
         registry: eu.gcr.io
         username: _json_key
         password: ${{ secrets.GCP_SA_KEY_JSON }}
-    - name: Push image to Google Container Registry
+    - name: Push image to Google Artifact Registry
       run: docker push ${{ env.image_gcr }}

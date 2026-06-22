@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.7.2"
+ThisBuild / scalaVersion := "3.8.4"
 ThisBuild / organization := "dev.usommerl"
 
 ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "openapi-model" % "early-semver"
@@ -6,13 +6,13 @@ ThisBuild / libraryDependencySchemes += "com.softwaremill.sttp.apispec" %% "apis
 
 val v = new {
   val apispec = "0.11.10"
-  val circe   = "0.14.14"
-  val ciris   = "3.10.0"
-  val http4s  = "0.23.30"
+  val circe   = "0.14.15"
+  val ciris   = "3.15.0"
+  val http4s  = "0.23.34"
   val odin    = "0.14.0"
-  val tapir   = "1.11.42"
-  val munit   = "1.1.1"
-  val munitCE = "2.1.0"
+  val tapir   = "1.13.23"
+  val munit   = "1.3.3"
+  val munitCE = "2.2.0"
 }
 
 val upx = "UPX_COMPRESSION"
