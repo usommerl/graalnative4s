@@ -2,14 +2,17 @@ name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: 'Enhancements'
-    label: 'enhancement'
+    when:
+      label: 'enhancement'
   - title: 'Bug fixes'
-    labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
+    when:
+      labels:
+        - 'fix'
+        - 'bugfix'
+        - 'bug'
   - title: 'Dependency updates'
-    label: 'dependency-update'
+    when:
+      label: 'dependency-update'
 change-template: '- $TITLE: #$NUMBER by @$AUTHOR'
 template: |
   $CHANGES
