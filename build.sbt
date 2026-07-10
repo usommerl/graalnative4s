@@ -11,7 +11,7 @@ val v = new {
   val http4s  = "0.23.36"
   val odin    = "0.14.0"
   val tapir   = "1.13.26"
-  val munit   = "1.3.3"
+  val munit   = "1.3.4"
   val munitCE = "2.2.0"
 }
 
