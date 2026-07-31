@@ -31,7 +31,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v7.0.1
     - name: Create GitHub release draft
-      uses: release-drafter/release-drafter@v7
+      uses: release-drafter/release-drafter@v7.6.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
