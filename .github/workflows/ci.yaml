@@ -14,7 +14,7 @@ jobs:
         distribution: temurin
         java-version: 17
         cache: sbt
-    - uses: sbt/setup-sbt@v1
+    - uses: sbt/setup-sbt@v1.5.5
     - name: Run tests
       run: sbt coverage test coverageReport
     - name: Upload coverage reports
@@ -52,7 +52,7 @@ jobs:
         distribution: temurin
         java-version: 17
         cache: sbt
-    - uses: sbt/setup-sbt@v1
+    - uses: sbt/setup-sbt@v1.5.5
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v4.6.0
       with:
